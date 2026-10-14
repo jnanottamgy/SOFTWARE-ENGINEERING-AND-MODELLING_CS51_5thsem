@@ -1,0 +1,76 @@
+<style>
+  @page { size: A4; margin: 0; }
+  body { margin: 0; }
+  .cover { width: 210mm; height: 296.5mm; position: relative; overflow: hidden; background: #121735; color: #fff; }
+  .cover .bg { position: absolute; inset: 0; }
+  .cover .inner { position: absolute; left: 19mm; right: 19mm; top: 22mm; bottom: 17mm; display: flex; flex-direction: column; }
+  .cover .eyebrow { display: flex; gap: 8pt; align-items: center; font-size: 8.5pt; letter-spacing: .2em; text-transform: uppercase; color: #b9c1ff; font-weight: 700; }
+  .cover .eyebrow .pill { background: #4f46e5; color: #fff; padding: 3pt 9pt; border-radius: 20pt; letter-spacing: .12em; }
+  .cover .title { font-family: "Jakarta", "InterWeb", sans-serif; font-size: 46pt; line-height: 1.0; font-weight: 800; margin: 16mm 0 0; letter-spacing: -.02em; }
+  .cover .title .amp { color: #8b93ff; }
+  .cover .code { margin-top: 6mm; font-family: "Jakarta", sans-serif; font-size: 13pt; font-weight: 700; color: #ffd166; letter-spacing: .04em; }
+  .cover .lede { font-size: 12.5pt; color: #d7dcff; max-width: 118mm; line-height: 1.5; margin-top: 7mm; }
+  .cover .lede b { color: #fff; }
+  .cover .feat { display: flex; flex-wrap: wrap; gap: 6pt; margin-top: 8mm; }
+  .cover .feat span { font-size: 8.8pt; font-weight: 600; color: #e9ecff; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.06); padding: 4pt 10pt; border-radius: 20pt; }
+  .cover .units { margin-top: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+  .cover .u { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 12pt; padding: 5mm 5mm 4mm; border-top: 4pt solid var(--c); }
+  .cover .u .n { font-size: 7.6pt; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--c); }
+  .cover .u .h { font-family: "Jakarta", sans-serif; font-size: 12pt; font-weight: 700; margin: 2mm 0 2mm; color: #fff; }
+  .cover .u ul { list-style: none; padding: 0; margin: 0; font-size: 8.8pt; color: #cfd5ff; line-height: 1.45; }
+  .cover .u li { margin: 0 0 1.5pt; padding-left: 9pt; position: relative; }
+  .cover .u li::before { content: ""; position: absolute; left: 0; top: 5pt; width: 4pt; height: 4pt; border-radius: 50%; background: var(--c); }
+  .cover .foot { margin-top: 7mm; display: flex; justify-content: space-between; align-items: flex-end; font-size: 8.4pt; color: #9aa3d6; line-height: 1.45; }
+  .cover .foot b { color: #dfe3ff; font-weight: 600; }
+</style>
+<div class="cover">
+  <svg class="bg" viewBox="0 0 794 1123" width="794" height="1123" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="cv-g1" cx="0.85" cy="0.12" r="0.55"><stop offset="0" stop-color="#4f46e5" stop-opacity=".55"/><stop offset="1" stop-color="#4f46e5" stop-opacity="0"/></radialGradient>
+      <radialGradient id="cv-g2" cx="0.05" cy="0.75" r="0.5"><stop offset="0" stop-color="#0d9488" stop-opacity=".35"/><stop offset="1" stop-color="#0d9488" stop-opacity="0"/></radialGradient>
+      <pattern id="cv-dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="#ffffff" fill-opacity=".07"/></pattern>
+    </defs>
+    <rect width="794" height="1123" fill="url(#cv-g1)"/>
+    <rect width="794" height="1123" fill="url(#cv-g2)"/>
+    <rect width="794" height="1123" fill="url(#cv-dots)"/>
+    <!-- stylised process loop: specify → design → validate → evolve -->
+    <g transform="translate(640 318)" fill="none">
+      <circle r="138" stroke="#ffffff" stroke-opacity=".06" stroke-width="1"/>
+      <circle r="76" stroke="#ffffff" stroke-opacity=".08" stroke-width="1.2" stroke-dasharray="3 6"/>
+      <path d="M0 -108 A108 108 0 0 1 108 0" stroke="#8b93ff" stroke-width="3" stroke-linecap="round"/>
+      <path d="M108 0 A108 108 0 0 1 0 108" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round"/>
+      <path d="M0 108 A108 108 0 0 1 -108 0" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/>
+      <path d="M-108 0 A108 108 0 0 1 0 -108" stroke="#f472b6" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="0" cy="-108" r="8" fill="#121735" stroke="#8b93ff" stroke-width="3"/>
+      <circle cx="108" cy="0" r="8" fill="#121735" stroke="#2dd4bf" stroke-width="3"/>
+      <circle cx="0" cy="108" r="8" fill="#121735" stroke="#fbbf24" stroke-width="3"/>
+      <circle cx="-108" cy="0" r="8" fill="#121735" stroke="#f472b6" stroke-width="3"/>
+      <g font-family="InterWeb, sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.6" text-anchor="middle">
+        <text x="0" y="-25" fill="#aab1ff">SPECIFY</text>
+        <text x="0" y="-6" fill="#5eead4">DESIGN</text>
+        <text x="0" y="13" fill="#fcd34d">VALIDATE</text>
+        <text x="0" y="32" fill="#f9a8d4">EVOLVE</text>
+      </g>
+    </g>
+  </svg>
+  <div class="inner">
+    <div class="eyebrow"><span class="pill">CIE-1 Study Guide</span><span>5th Semester · Theory</span></div>
+    <div class="title">Software<br>Engineering <span class="amp">&amp;</span><br>Modelling</div>
+    <div class="code">COURSE CODE CS51</div>
+    <div class="lede">Everything you need for <b>CIE-1</b>, explained from zero, with every slide point covered, diagrams you can reproduce in the exam, highlighted key points, tips and a question bank for each chapter.</div>
+    <div class="feat"><span>70+ diagrams</span><span>Key points highlighted</span><span>Exam tips &amp; memory tricks</span><span>One-page recaps</span><span>85 likely questions + how to answer</span></div>
+
+    <div class="units">
+      <div class="u" style="--c:#8b93ff"><div class="n">Unit 1</div><div class="h">Process &amp; Agile</div>
+        <ul><li>Introduction &amp; ethics</li><li>Software processes</li><li>Agile development</li></ul></div>
+      <div class="u" style="--c:#2dd4bf"><div class="n">Unit 2</div><div class="h">Requirements &amp; Design</div>
+        <ul><li>Requirements engineering</li><li>Design concepts</li><li>The design model</li></ul></div>
+      <div class="u" style="--c:#fbbf24"><div class="n">Unit 3 · part</div><div class="h">Architecture</div>
+        <ul><li>Architectural design</li><li>Design decisions</li><li>Architectural views (4+1)</li></ul></div>
+    </div>
+    <div class="foot">
+      <div>Built from <b>your lecture slides</b>, <b>Sommerville, Software Engineering (10th ed)</b><br>and <b>Pressman, Software Engineering: A Practitioner's Approach</b>.</div>
+      <div style="text-align:right">Course coordinators<br><b>Mr. Pradeep Kumar D · Dr Shilpa S Chaudhari</b></div>
+    </div>
+  </div>
+</div>

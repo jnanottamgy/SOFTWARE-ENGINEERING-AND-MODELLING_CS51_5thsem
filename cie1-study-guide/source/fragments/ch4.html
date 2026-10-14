@@ -1,0 +1,1328 @@
+<section class="chapter unit-2" id="ch4">
+<header class="opener">
+  <span class="tag">Unit 2 · Chapter 4</span>
+  <h1 id="ch4-top">Requirements Engineering</h1>
+  <p class="sub">Functional &amp; non-functional requirements · RE processes · Elicitation · Specification · Validation · Change</p>
+  <div class="meta">
+    <div><b>Study time</b>About 5 hours (two sittings)</div>
+    <div><b>Sources</b>Your Ch 4 slides (88 slides) + Sommerville Ch 4</div>
+    <div><b>Exam weight</b>Very high: FR vs NFR, NFR types, elicitation, SRS structure and validation are asked almost every time</div>
+  </div>
+  <div class="learn">
+    <h4>After this chapter you can</h4>
+    <ul>
+      <li>Define RE, user requirements and system requirements</li>
+      <li>Differentiate functional, non-functional and domain requirements</li>
+      <li>Draw the NFR classification tree with Mentcare examples</li>
+      <li>Turn a vague goal into a verifiable NFR using metrics</li>
+      <li>Draw the spiral RE process and the elicitation cycle</li>
+      <li>Compare interviews, ethnography, stories and scenarios</li>
+      <li>Write requirements as sentences, forms, tables and use cases</li>
+      <li>Give the structure of a software requirements document</li>
+      <li>List validation checks, techniques and review checks</li>
+      <li>Explain requirements management and change management</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============================================================ 4.1 -->
+<h2 id="ch4-1"><span class="num">4.1</span> Requirements, readers and stakeholders <span class="prio p3">Must know</span></h2>
+
+<div class="simple"><p>Before an architect draws a house, the owner says what is needed: "three bedrooms, a kitchen facing east, a total cost under 40 lakh rupees, and it must follow the city building code". The first two are <em>services</em> the house must provide; the last two are <em>constraints</em>. Software is the same. The list of services and constraints is the <b>requirements</b>; the work of finding, writing and checking that list is <b>requirements engineering</b>.</p></div>
+
+<p>The <strong>requirements</strong> for a system are the descriptions of the <b>services</b> that a system should provide and the <b>constraints</b> on its operation. They reflect what customers need from a system that serves a purpose such as controlling a device, placing an order or finding information.</p>
+
+<div class="def">
+<p><span class="term">Requirements engineering (RE)</span> — the process of establishing the services that a customer requires from a system and the constraints under which it operates and is developed.</p>
+<p><span class="term">System requirements</span> — the descriptions of the system services and constraints that are generated during the requirements engineering process.</p>
+</div>
+
+<p>Sommerville's wording is also worth quoting: the process of <mark>finding out, analysing, documenting and checking</mark> these services and constraints is called requirements engineering.</p>
+
+<h3>What is a requirement? <span class="prio p2">Important</span></h3>
+<p>The term is not used consistently in industry. A requirement <strong>may range from a high-level abstract statement of a service or of a system constraint to a detailed mathematical functional specification</strong>. This is inevitable because requirements may serve a <strong>dual function</strong>:</p>
+<ul>
+  <li>They may be the <b>basis for a bid for a contract</b> — therefore they must be <em>open to interpretation</em>, so that different companies can propose different solutions.</li>
+  <li>They may be the <b>basis for the contract itself</b> — therefore they must be <em>defined in detail</em>.</li>
+  <li>Both these statements may be called "requirements".</li>
+</ul>
+
+<div class="key" data-title="★  Requirements abstraction (Davis)"><p>"If a company wishes to let a contract for a large software development project, it must define its needs in a sufficiently abstract way that a solution is not pre-defined. The requirements must be written so that several contractors can bid for the contract, offering, perhaps, different ways of meeting the client organization's needs. Once a contract has been awarded, the contractor must write a system definition for the client in more detail so that the client understands and can validate what the software will do. Both of these documents may be called the requirements document for the system."</p></div>
+
+<p>In short: an <b>abstract</b> version is written so that contractors can bid; a <b>detailed</b> version is written after the contract is awarded so that the client can check (validate) what will be built. Many problems in RE come from not separating these two levels clearly — which is why we name them separately.</p>
+
+<h3>User requirements and system requirements <span class="prio p3">Must know</span></h3>
+<div class="def">
+<p><span class="term">User requirements</span> — statements in natural language plus diagrams of the services the system provides and its operational constraints. Written for customers.</p>
+<p><span class="term">System requirements</span> — a structured document setting out detailed descriptions of the system's functions, services and operational constraints. It defines what should be implemented, so it may be part of a contract between client and contractor.</p>
+</div>
+
+<table>
+  <thead><tr><th style="width:22%">Basis</th><th>User requirements</th><th>System requirements</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Level of detail</td><td>High-level, abstract; may range from broad feature statements to fairly precise descriptions</td><td>Detailed, precise descriptions of functions, services and operational constraints</td></tr>
+    <tr><td class="rowhead">Notation</td><td>Natural language plus diagrams</td><td>Structured document (natural language, forms, tables, models)</td></tr>
+    <tr><td class="rowhead">Written for</td><td>Customers: client managers, end-users</td><td>Engineers: system architects, software developers</td></tr>
+    <tr><td class="rowhead">Purpose</td><td>Agree what services are needed; basis for a bid</td><td>Define exactly what is to be implemented; may be part of the contract</td></tr>
+    <tr><td class="rowhead">Also called</td><td>User requirements definition</td><td>System requirements specification / functional specification</td></tr>
+  </tbody>
+</table>
+
+<p>Fig 4.1 shows the difference using the <b>Mentcare</b> system (a patient information system for mental health care, one of the textbook case studies). One general user requirement is expanded into five specific system requirements.</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 342" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <text x="16" y="16" font-size="12.5" font-weight="700" style="fill:#115e59">User requirements definition</text>
+  <text x="624" y="16" font-size="11" text-anchor="end" style="fill:#6b7385">written for customers and managers</text>
+  <rect x="10" y="24" width="620" height="54" rx="9" fill="#e5f6f3" stroke="#0d9488" stroke-width="1.5"/>
+  <g font-size="12">
+    <text x="24" y="46" font-weight="700">1.</text>
+    <text x="56" y="46">The Mentcare system shall generate monthly management reports showing</text>
+    <text x="56" y="63">the cost of drugs prescribed by each clinic during that month.</text>
+  </g>
+  <path d="M320,80 V104" stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr)"/>
+  <text x="330" y="96" font-size="11" style="fill:#6b7385">expanded into</text>
+  <text x="16" y="122" font-size="12.5" font-weight="700" style="fill:#115e59">System requirements specification</text>
+  <text x="624" y="122" font-size="11" text-anchor="end" style="fill:#6b7385">written for developers and architects</text>
+  <rect x="10" y="130" width="620" height="206" rx="9" fill="#ffffff" stroke="#0d9488" stroke-width="1.5"/>
+  <g font-size="12">
+    <text x="24" y="150" font-weight="700">1.1</text>
+    <text x="56" y="150">On the last working day of each month, a summary of the drugs prescribed,</text>
+    <text x="56" y="166">their cost and the prescribing clinics shall be generated.</text>
+    <text x="24" y="186" font-weight="700">1.2</text>
+    <text x="56" y="186">The system shall generate the report for printing after 17.30 on the last</text>
+    <text x="56" y="202">working day of the month.</text>
+    <text x="24" y="222" font-weight="700">1.3</text>
+    <text x="56" y="222">A report shall be created for each clinic and shall list the individual drug</text>
+    <text x="56" y="238">names, the total number of prescriptions, the number of doses prescribed</text>
+    <text x="56" y="254">and the total cost of the prescribed drugs.</text>
+    <text x="24" y="274" font-weight="700">1.4</text>
+    <text x="56" y="274">If drugs are available in different dose units (e.g. 10mg, 20mg, etc.)</text>
+    <text x="56" y="290">separate reports shall be created for each dose unit.</text>
+    <text x="24" y="310" font-weight="700">1.5</text>
+    <text x="56" y="310">Access to drug cost reports shall be restricted to authorized users as</text>
+    <text x="56" y="326">listed on a management access control list.</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.1</b> User and system requirements: one user requirement expanded into five system requirements. <span class="src">Sommerville Fig 4.1 · Your slides, slide 7</span></figcaption>
+</figure>
+
+<p>Requirements are written at different levels of detail because <b>different readers use them in different ways</b> (Fig 4.2). Readers of user requirements are not usually concerned with how the system will be implemented; readers of system requirements need to know more precisely what the system will do, because they must support business processes with it or are involved in implementing it.</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 246" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g font-size="12.5" font-weight="600" text-anchor="middle">
+    <rect x="10" y="33" width="160" height="50" rx="9" fill="#e5f6f3" stroke="#0d9488" stroke-width="1.5"/>
+    <text x="90" y="54">User</text><text x="90" y="70">requirements</text>
+    <rect x="10" y="163" width="160" height="50" rx="9" fill="#e5f6f3" stroke="#0d9488" stroke-width="1.5"/>
+    <text x="90" y="184">System</text><text x="90" y="200">requirements</text>
+  </g>
+  <rect x="210" y="8" width="200" height="104" rx="9" fill="#ffffff" stroke="#0d9488" stroke-width="1.5"/>
+  <rect x="210" y="140" width="200" height="96" rx="9" fill="#ffffff" stroke="#0d9488" stroke-width="1.5"/>
+  <g font-size="12" text-anchor="middle">
+    <text x="310" y="30">Client managers</text><text x="310" y="48">System end-users</text><text x="310" y="66">Client engineers</text><text x="310" y="84">Contractor managers</text><text x="310" y="102">System architects</text>
+    <text x="310" y="162">System end-users</text><text x="310" y="180">Client engineers</text><text x="310" y="198">System architects</text><text x="310" y="216">Software developers</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr2)">
+    <path d="M170,58 H207"/><path d="M170,188 H207"/>
+  </g>
+  <g font-size="11" style="fill:#6b7385">
+    <text x="430" y="38" style="fill:#6b7385">Not usually concerned with how</text>
+    <text x="430" y="53" style="fill:#6b7385">the system will be implemented;</text>
+    <text x="430" y="68" style="fill:#6b7385">may be managers who are not</text>
+    <text x="430" y="83" style="fill:#6b7385">interested in detailed facilities</text>
+    <text x="430" y="168" style="fill:#6b7385">Need to know more precisely</text>
+    <text x="430" y="183" style="fill:#6b7385">what the system will do: they</text>
+    <text x="430" y="198" style="fill:#6b7385">support business processes</text>
+    <text x="430" y="213" style="fill:#6b7385">with it or implement it</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.2</b> Readers of different types of requirements specification. <span class="src">Sommerville Fig 4.2 · Your slides, slide 8</span></figcaption>
+</figure>
+
+<div class="tip"><p>For "Differentiate user and system requirements" (4–5 marks): write both definitions, a 4-row table, the Mentcare drug-cost example (one user requirement → system requirements 1.1–1.5) and draw Fig 4.2. The figure alone earns easy marks.</p></div>
+
+<h3>System stakeholders <span class="prio p3">Must know</span></h3>
+<p>The readers in Fig 4.2 are examples of <b>stakeholders</b>. Besides users, many other people have an interest in a system.</p>
+<div class="def"><p><span class="term">System stakeholder</span> — any person or organization who is affected by the system in some way and so who has a legitimate interest in it.</p></div>
+<p><b>Stakeholder types</b> (range from end-users through managers to external stakeholders):</p>
+<ul>
+  <li><b>End users</b> — the people who use the system in their daily work.</li>
+  <li><b>System managers</b> — the people who manage and run the system.</li>
+  <li><b>System owners</b> — the organisation that pays for and owns the system.</li>
+  <li><b>External stakeholders</b> — e.g. regulators, who certify the acceptability of the system.</li>
+</ul>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 282" width="640" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#94a3b8" stroke-width="1.3" fill="none">
+    <path d="M220,36 L262,128"/><path d="M220,106 L262,134"/><path d="M220,176 L262,146"/><path d="M220,246 L262,152"/>
+    <path d="M420,36 L378,128"/><path d="M420,106 L378,134"/><path d="M420,176 L378,146"/><path d="M420,246 L378,152"/>
+  </g>
+  <rect x="262" y="112" width="116" height="56" rx="9" fill="#e5f6f3" stroke="#0d9488" stroke-width="2"/>
+  <g font-size="12.5" font-weight="700" text-anchor="middle"><text x="320" y="136">Mentcare</text><text x="320" y="152">system</text></g>
+  <g fill="#ffffff" stroke="#0d9488" stroke-width="1.3">
+    <rect x="8" y="6" width="212" height="60" rx="9"/><rect x="8" y="76" width="212" height="60" rx="9"/><rect x="8" y="146" width="212" height="60" rx="9"/><rect x="8" y="216" width="212" height="60" rx="9"/>
+    <rect x="420" y="6" width="212" height="60" rx="9"/><rect x="420" y="76" width="212" height="60" rx="9"/><rect x="420" y="146" width="212" height="60" rx="9"/><rect x="420" y="216" width="212" height="60" rx="9"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="114" y="26">Patients</text><text x="114" y="96">Doctors</text><text x="114" y="166">Nurses</text><text x="114" y="236">Medical receptionists</text>
+    <text x="526" y="26">IT staff</text><text x="526" y="96">Medical ethics manager</text><text x="526" y="166">Health care managers</text><text x="526" y="236">Medical records staff</text>
+  </g>
+  <g font-size="11" text-anchor="middle">
+    <text x="114" y="42" style="fill:#3a4152">whose information is recorded</text><text x="114" y="56" style="fill:#3a4152">in the system</text>
+    <text x="114" y="112" style="fill:#3a4152">responsible for assessing and</text><text x="114" y="126" style="fill:#3a4152">treating patients</text>
+    <text x="114" y="182" style="fill:#3a4152">coordinate consultations with</text><text x="114" y="196" style="fill:#3a4152">doctors; give some treatments</text>
+    <text x="114" y="252" style="fill:#3a4152">manage patients'</text><text x="114" y="266" style="fill:#3a4152">appointments</text>
+    <text x="526" y="42" style="fill:#3a4152">install and maintain</text><text x="526" y="56" style="fill:#3a4152">the system</text>
+    <text x="526" y="112" style="fill:#3a4152">ensures the system meets current</text><text x="526" y="126" style="fill:#3a4152">ethical guidelines for patient care</text>
+    <text x="526" y="182" style="fill:#3a4152">obtain management information</text><text x="526" y="196" style="fill:#3a4152">from the system</text>
+    <text x="526" y="252" style="fill:#3a4152">information maintained and</text><text x="526" y="266" style="fill:#3a4152">preserved; records kept properly</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.3</b> The eight stakeholder groups of the Mentcare system (the textbook also includes patients' relatives). <span class="src">Drawn for this guide from your slides, slides 10–11</span></figcaption>
+</figure>
+
+<h4>Before RE starts: the feasibility study <span class="prio p1">Read once</span></h4>
+<p>Some understanding of the requirements is needed before deciding to build or buy a system at all. This early RE gives a high-level view of what the system might do and its benefits, which is assessed in a <b>feasibility study</b> — a short, focused study early in the RE process that answers three questions: (1) Does the system contribute to the overall objectives of the organisation? (2) Can it be implemented within schedule and budget using current technology? (3) Can it be integrated with other systems that are used? If any answer is "no", you should probably not go ahead.</p>
+
+<h3>Agile methods and requirements <span class="prio p2">Important</span></h3>
+<ul>
+  <li>Many agile methods argue that producing detailed system requirements is a <b>waste of time</b>, as requirements change so quickly.</li>
+  <li>The requirements document is therefore <b>always out of date</b>.</li>
+  <li>Agile methods usually use <b>incremental requirements engineering</b> and may express requirements as <b>user stories</b> (Chapter 3), written on cards or whiteboards; the user prioritises the stories for the next increment.</li>
+  <li>This is practical for <b>business systems</b> but problematic for systems that require <b>pre-delivery analysis</b> (e.g. critical systems) or systems developed by <b>several teams</b>.</li>
+</ul>
+<p>Sommerville's middle path: even with agile development, write a <b>short supporting document</b> that defines the business and dependability requirements, because requirements that apply to the whole system are easily forgotten when you focus on the features of the next release.</p>
+
+<!-- ============================================================ 4.2 -->
+<h2 id="ch4-2"><span class="num">4.2</span> Functional and non-functional requirements <span class="prio p3">Must know</span></h2>
+
+<div class="simple"><p><b>Functional</b> = what the system <em>does</em> (search, generate a report, identify a user). <b>Non-functional</b> = how well it must do it and under which rules (how fast, how reliable, how secure, which laws and standards apply). For a car, "the car shall have brakes" is functional; "it shall stop from 100 km/h within 40 metres" and "it shall meet emission laws" are non-functional.</p></div>
+
+<div class="def">
+<p><span class="term">Functional requirements</span> — statements of services the system should provide, how the system should react to particular inputs and how the system should behave in particular situations. They may also state what the system should <em>not</em> do.</p>
+<p><span class="term">Non-functional requirements</span> — constraints on the services or functions offered by the system, such as timing constraints, constraints on the development process, standards, etc. They often apply to the system as a whole rather than to individual features or services.</p>
+<p><span class="term">Domain requirements</span> — constraints on the system from the domain of operation (the application area, e.g. medicine, banking, railways).</p>
+</div>
+
+<p><b>The line between them is not sharp.</b> A user requirement about security, such as limiting access to authorised users, looks non-functional. When developed in more detail it generates requirements that are clearly functional, such as including user authentication facilities. Requirements are not independent: one requirement often <b>generates or constrains</b> other requirements (Fig 4.4).</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 128" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <rect x="8" y="30" width="214" height="68" rx="9" fill="#e5f6f3" stroke="#0d9488" stroke-width="1.5"/>
+  <text x="115" y="52" font-size="12.5" font-weight="700" text-anchor="middle">Security NFR (user level)</text>
+  <text x="115" y="70" font-size="12" text-anchor="middle">"Only authorised users may</text>
+  <text x="115" y="86" font-size="12" text-anchor="middle">access the system"</text>
+  <rect x="296" y="6" width="336" height="48" rx="9" fill="#eef0ff" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="464" y="25" font-size="12" font-weight="600" text-anchor="middle">Generates a new functional requirement:</text>
+  <text x="464" y="43" font-size="12" text-anchor="middle">"include user authentication facilities"</text>
+  <rect x="296" y="74" width="336" height="48" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <text x="464" y="93" font-size="12" font-weight="600" text-anchor="middle">Constrains existing requirements:</text>
+  <text x="464" y="111" font-size="12" text-anchor="middle">"limit access to information in the system"</text>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr3)">
+    <path d="M222,56 C256,56 262,30 293,30"/><path d="M222,72 C256,72 262,98 293,98"/>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.4</b> One non-functional requirement can generate new functional requirements and restrict existing ones. <span class="src">Drawn for this guide from Sommerville 4.1</span></figcaption>
+</figure>
+
+<h3>Functional requirements <span class="prio p3">Must know</span></h3>
+<ul>
+  <li>Describe <b>functionality or system services</b> — what the system should do. They are statements of the services the system must provide, or descriptions of <b>how some computations must be carried out</b>.</li>
+  <li>Depend on the <b>type of software</b>, the <b>expected users</b> and the <b>type of system</b> where the software is used.</li>
+  <li><b>Functional user requirements</b> may be high-level statements of what the system should do. They are written in natural language so that users and managers can understand them.</li>
+  <li><b>Functional system requirements</b> should describe the system services in detail — the functions, their inputs and outputs, and exceptions. They are written for developers.</li>
+</ul>
+
+<div class="eg" data-title="Example — Mentcare functional requirements">
+<ol style="margin-bottom:4pt">
+  <li>A user shall be able to search the appointments lists for all clinics.</li>
+  <li>The system shall generate each day, for each clinic, a list of patients who are expected to attend appointments that day.</li>
+  <li>Each staff member using the system shall be uniquely identified by his or her 8-digit employee number.</li>
+</ol>
+<p>Functional requirements can be written at different levels of detail: requirement 1 is general, requirement 3 is very specific.</p>
+</div>
+
+<p class="small">Information requirements: if an off-the-shelf product will meet the need, a detailed functional specification is pointless. Focus instead on <b>information requirements</b> — what information people need to do their work and how it is delivered and organised (e.g. what goes into the daily list of expected patients).</p>
+
+<h3>Domain requirements <span class="prio p2">Important</span></h3>
+<p>Domain requirements are derived from the <b>application domain</b> of the system rather than from the specific needs of system users. They may:</p>
+<ul>
+  <li>be <b>new functional requirements</b> in their own right,</li>
+  <li><b>constrain existing</b> functional requirements, or</li>
+  <li>set out <b>how particular computations must be carried out</b>.</li>
+</ul>
+<p><b>The problem with domain requirements:</b> software engineers may not understand the characteristics of the domain, so they may not know whether a domain requirement has been <b>missed out</b> or <b>conflicts</b> with other requirements. Domain requirements are found during requirements discovery, from stakeholders and from documentation (Section 4.4). For instance, the insulin pump's rule for computing a dose from the rate of change of blood sugar (Section 4.5) comes from medical knowledge, not from a user's personal wish — it sets out how a computation must be carried out.</p>
+
+<h3>Requirements imprecision <span class="prio p3">Must know</span></h3>
+<ul>
+  <li>Problems arise when functional requirements are <b>not precisely stated</b>.</li>
+  <li><b>Ambiguous</b> requirements may be interpreted in different ways by developers and users.</li>
+  <li>A developer naturally chooses the interpretation that is <b>simplest to implement</b>. If that is not what the customer wanted, new requirements and changes are needed — causing disputes, <b>delayed delivery and higher cost</b>.</li>
+</ul>
+<p>Consider the term <b>"search"</b> in Mentcare requirement 1:</p>
+<div class="cols-2">
+  <div class="card tinted"><h4>User intention</h4><p>Search for a patient name across <b>all appointments in all clinics</b>. Rationale: patients with mental health problems are sometimes confused and may go to a different clinic from the one booked.</p></div>
+  <div class="card"><h4>Developer interpretation</h4><p>Search for a patient name in <b>an individual clinic</b>: the user chooses a clinic, then searches. Easier to build, but needs more user input and takes longer.</p></div>
+</div>
+
+<h3>Requirements completeness and consistency <span class="prio p3">Must know</span></h3>
+<p>In principle, requirements should be both complete and consistent:</p>
+<dl class="terms">
+  <dt>Complete</dt><dd>They should include descriptions of all facilities (services and information) required.</dd>
+  <dt>Consistent</dt><dd>There should be no conflicts or contradictions in the descriptions of the system facilities.</dd>
+</dl>
+<p>In practice, because of system and environmental complexity, it is <b>impossible to produce a complete and consistent requirements document</b> (except for very small systems). Two reasons: (1) it is easy to make <b>mistakes and omissions</b> when writing specifications for large, complex systems; (2) large systems have <b>many stakeholders</b> with different backgrounds and often inconsistent needs, and the inconsistencies may only appear after deeper analysis or during development.</p>
+
+<h3>Non-functional requirements <span class="prio p3">Must know</span></h3>
+<ul>
+  <li>NFRs define <b>system properties and constraints</b>, e.g. reliability, response time and storage requirements. Constraints are I/O device capability, system representations (the data representations used in interfaces), etc.</li>
+  <li><b>Process requirements</b> may also be specified, mandating a particular IDE, programming language or development method.</li>
+  <li>NFRs often relate to <b>emergent properties</b> — properties of the system as a whole (such as reliability, response time, memory use) rather than of one component.</li>
+  <li>NFRs may be <mark>more critical than functional requirements</mark>. If these are not met, the system may be useless.</li>
+</ul>
+<div class="eg"><p>Users can usually find a way round a function that does not quite meet their needs, but not round a failed NFR. If an <b>aircraft</b> system does not meet its reliability requirements, it will not be certified as safe for operation; if an <b>embedded control system</b> fails to meet its performance requirements, the control functions will not operate correctly.</p></div>
+
+<h4>Non-functional requirements implementation</h4>
+<p>You can usually point to the component that implements a functional requirement (e.g. a formatting component for reports). NFRs are harder to locate — their implementation may be spread throughout the system, for two reasons:</p>
+<ol>
+  <li>NFRs may affect the <b>overall architecture</b> of a system rather than the individual components. For example, to ensure that performance requirements are met, you may have to organise the system to minimise communications between components.</li>
+  <li>A single NFR, such as a <b>security requirement</b>, may generate a number of related <b>functional requirements</b> that define system services that are required. It may also generate requirements that <b>restrict existing requirements</b> (Fig 4.4).</li>
+</ol>
+
+<h3>Types of non-functional requirement <span class="prio p3">Must know</span></h3>
+<p>NFRs arise from user needs because of budget constraints, organisational policies, the need for interoperability with other software or hardware systems, or external factors such as safety regulations or privacy legislation. Sommerville classifies them by <b>where they come from</b>: the product, the organisation, or outside (Fig 4.5).</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 394" width="640" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#475569" stroke-width="1.4" fill="none">
+    <path d="M320,48 V62 M110,62 H530 M110,62 V76 M320,62 V76 M530,62 V76"/>
+    <path d="M36,118 V368 M36,148 H50 M36,192 H50 M36,324 H50 M36,368 H50"/>
+    <path d="M68,210 V280 M68,236 H86 M68,280 H86"/>
+    <path d="M246,118 V236 M246,148 H260 M246,192 H260 M246,236 H260"/>
+    <path d="M456,118 V236 M456,148 H470 M456,192 H470 M456,236 H470"/>
+    <path d="M488,254 V324 M488,280 H506 M488,324 H506"/>
+  </g>
+  <rect x="235" y="6" width="170" height="42" rx="9" fill="#e5f6f3" stroke="#0d9488" stroke-width="1.5"/>
+  <rect x="20" y="76" width="180" height="42" rx="9" fill="#eef0ff" stroke="#4f46e5" stroke-width="1.5"/>
+  <rect x="230" y="76" width="180" height="42" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <rect x="440" y="76" width="180" height="42" rx="9" fill="#f4efff" stroke="#7c3aed" stroke-width="1.5"/>
+  <g font-size="12.5" font-weight="700" text-anchor="middle">
+    <text x="320" y="23">Non-functional</text><text x="320" y="39">requirements</text>
+    <text x="110" y="93">Product</text><text x="110" y="109">requirements</text>
+    <text x="320" y="93">Organizational</text><text x="320" y="109">requirements</text>
+    <text x="530" y="93">External</text><text x="530" y="109">requirements</text>
+  </g>
+  <g fill="#ffffff" stroke-width="1.4">
+    <rect x="50" y="130" width="124" height="36" rx="8" stroke="#4f46e5"/>
+    <rect x="50" y="174" width="124" height="36" rx="8" stroke="#4f46e5"/>
+    <rect x="86" y="218" width="124" height="36" rx="8" stroke="#4f46e5" fill="#eef0ff"/>
+    <rect x="86" y="262" width="124" height="36" rx="8" stroke="#4f46e5" fill="#eef0ff"/>
+    <rect x="50" y="306" width="124" height="36" rx="8" stroke="#4f46e5"/>
+    <rect x="50" y="350" width="124" height="36" rx="8" stroke="#4f46e5"/>
+    <rect x="260" y="130" width="124" height="36" rx="8" stroke="#d97706"/>
+    <rect x="260" y="174" width="124" height="36" rx="8" stroke="#d97706"/>
+    <rect x="260" y="218" width="124" height="36" rx="8" stroke="#d97706"/>
+    <rect x="470" y="130" width="124" height="36" rx="8" stroke="#7c3aed"/>
+    <rect x="470" y="174" width="124" height="36" rx="8" stroke="#7c3aed"/>
+    <rect x="470" y="218" width="124" height="36" rx="8" stroke="#7c3aed"/>
+    <rect x="506" y="262" width="124" height="36" rx="8" stroke="#7c3aed" fill="#f4efff"/>
+    <rect x="506" y="306" width="124" height="36" rx="8" stroke="#7c3aed" fill="#f4efff"/>
+  </g>
+  <g font-size="11.5" font-weight="600" text-anchor="middle">
+    <text x="112" y="145">Usability</text><text x="112" y="159">requirements</text>
+    <text x="112" y="189">Efficiency</text><text x="112" y="203">requirements</text>
+    <text x="148" y="233">Performance</text><text x="148" y="247">requirements</text>
+    <text x="148" y="277">Space</text><text x="148" y="291">requirements</text>
+    <text x="112" y="321">Dependability</text><text x="112" y="335">requirements</text>
+    <text x="112" y="365">Security</text><text x="112" y="379">requirements</text>
+    <text x="322" y="145">Environmental</text><text x="322" y="159">requirements</text>
+    <text x="322" y="189">Operational</text><text x="322" y="203">requirements</text>
+    <text x="322" y="233">Development</text><text x="322" y="247">requirements</text>
+    <text x="532" y="145">Regulatory</text><text x="532" y="159">requirements</text>
+    <text x="532" y="189">Ethical</text><text x="532" y="203">requirements</text>
+    <text x="532" y="233">Legislative</text><text x="532" y="247">requirements</text>
+    <text x="568" y="277">Accounting</text><text x="568" y="291">requirements</text>
+    <text x="568" y="321">Safety/security</text><text x="568" y="335">requirements</text>
+  </g>
+  <g font-size="11" style="fill:#6b7385">
+    <text x="244" y="290" style="fill:#6b7385">Product: how the delivered</text>
+    <text x="244" y="304" style="fill:#6b7385">software behaves at run time</text>
+    <text x="244" y="326" style="fill:#6b7385">Organizational: from policies</text>
+    <text x="244" y="340" style="fill:#6b7385">and procedures</text>
+    <text x="244" y="362" style="fill:#6b7385">External: from outside the</text>
+    <text x="244" y="376" style="fill:#6b7385">system and its development</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.5</b> Types of non-functional requirement. Shaded boxes are sub-types (Efficiency → Performance, Space; Legislative → Accounting, Safety/security). <span class="src">Sommerville Fig 4.3 · Your slides, slide 20</span></figcaption>
+</figure>
+
+<table>
+  <thead><tr><th style="width:17%">Class</th><th style="width:36%">Meaning (exam wording)</th><th>Sub-types and examples</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Product requirements</td><td>Requirements which specify that the delivered product must behave in a particular way — they specify or constrain the run-time behaviour of the software.</td><td><b>Usability</b>; <b>efficiency</b> (<b>performance</b> — how fast it executes; <b>space</b> — how much memory it needs); <b>dependability</b> (e.g. reliability — acceptable failure rate); <b>security</b>. E.g. execution speed, reliability.</td></tr>
+    <tr><td class="rowhead">Organisational requirements</td><td>Requirements which are a consequence of organisational policies and procedures (in the customer's and developer's organisations).</td><td><b>Operational</b> — how the system will be used; <b>development</b> — programming language, development environment, process standards; <b>environmental</b> — the operating environment of the system. E.g. process standards used, implementation requirements.</td></tr>
+    <tr><td class="rowhead">External requirements</td><td>Requirements which arise from factors which are external to the system and its development process.</td><td><b>Regulatory</b> — what must be done for a regulator (e.g. a nuclear safety authority) to approve it; <b>legislative</b> — operate within the law (accounting, safety/security); <b>ethical</b> — acceptable to users and the general public. E.g. interoperability requirements, legislative requirements.</td></tr>
+  </tbody>
+</table>
+
+<div class="mem"><p>Three roots — <b>P-O-E</b>: what the <b>P</b>roduct does at run time, what the <b>O</b>rganisation's rules say, what the world <b>E</b>xternal to the project demands.<br>
+Leaves: Product → <b>U-E-D-S</b> "<i>U Eat Dosa Slowly</i>" (Usability, Efficiency [Performance, Space], Dependability, Security) · Organisational → <b>E-O-D</b> "<i>Every Office Decides</i>" (Environmental, Operational, Development) · External → <b>R-E-L</b> "the <i>REaL</i> world" (Regulatory, Ethical, Legislative [Accounting, Safety/security]).</p></div>
+
+<h4>Examples of non-functional requirements in the Mentcare system</h4>
+<table>
+  <thead><tr><th style="width:20%">Type</th><th style="width:45%">Requirement</th><th>Why it is this type</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Product requirement</td><td>The Mentcare system shall be available to all clinics during normal working hours (Mon–Fri, 08:30–17:30). Downtime within normal working hours shall not exceed five seconds in any one day.</td><td>An <b>availability</b> requirement: when the system must be available and the allowed downtime. It says nothing about functionality — it is a constraint for the designers.</td></tr>
+    <tr><td class="rowhead">Organisational requirement</td><td>Users of the Mentcare system shall authenticate themselves using their health authority identity card.</td><td>Comes from <b>policy</b>: the health authority is moving to a standard procedure where users swipe an identity card instead of using a login name.</td></tr>
+    <tr><td class="rowhead">External requirement</td><td>The system shall implement patient privacy provisions as set out in HStan-03-2006-priv.</td><td>Comes from <b>privacy legislation</b>: the system must follow a national privacy standard.</td></tr>
+  </tbody>
+</table>
+
+<h3>Goals and verifiable requirements <span class="prio p3">Must know</span></h3>
+<p>Non-functional requirements may be very difficult to state precisely, and imprecise requirements may be difficult to verify. Stakeholders often propose NFRs as general <b>goals</b> — ease of use, the ability to recover from failure, rapid user response. Goals set out good intentions but leave room for interpretation and for dispute once the system is delivered.</p>
+<div class="def">
+<p><span class="term">Goal</span> — a general intention of the user, such as ease of use.</p>
+<p><span class="term">Verifiable non-functional requirement</span> — a statement using some measure that can be objectively tested.</p>
+</div>
+<p>Goals are still helpful to developers, as they convey the intentions of the system users. Whenever possible, though, write NFRs <b>quantitatively</b> so they can be objectively tested.</p>
+<table>
+  <thead><tr><th style="width:24%">Usability requirement</th><th>Statement</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Goal (not testable)</td><td>"The system should be easy to use by medical staff and should be organized in such a way that user errors are minimized."</td></tr>
+    <tr><td class="rowhead">Testable NFR</td><td>"Medical staff shall be able to use all the system functions after four hours of training. After this training, the average number of errors made by experienced users shall not exceed two per hour of system use."</td></tr>
+  </tbody>
+</table>
+<div class="warn"><p>Your slides say <b>four</b> hours of training; the 10th-edition textbook text says <b>two</b> hours. Either is accepted — what matters is that the rewritten requirement has <b>measurable numbers</b> (training time, errors per hour). These can be checked by software instrumentation that counts user errors during testing.</p></div>
+<p><b>Why quantifying NFRs is hard:</b> customers find it difficult to translate goals into measurable requirements; for some goals, such as <b>maintainability</b>, there are no simple metrics; customers may not relate a number (e.g. for reliability) to their everyday experience; and objectively verifying measurable NFRs can be very expensive.</p>
+
+<h3>Metrics for specifying non-functional requirements <span class="prio p3">Must know</span></h3>
+<p>These metrics can be measured while the system is being tested, to check whether it meets its NFRs.</p>
+<table>
+  <thead><tr><th style="width:16%">Property</th><th style="width:42%">Measure</th><th>What it tells you</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Speed</td><td>Processed transactions/second · User/event response time · Screen refresh time</td><td>How quickly the system works</td></tr>
+    <tr><td class="rowhead">Size</td><td>Mbytes · Number of ROM chips</td><td>How much memory or storage it needs</td></tr>
+    <tr><td class="rowhead">Ease of use</td><td>Training time · Number of help frames</td><td>How fast people learn it; how much help they need</td></tr>
+    <tr><td class="rowhead">Reliability</td><td>Mean time to failure · Probability of unavailability · Rate of failure occurrence · Availability</td><td>How rarely it fails; how often it is available for use</td></tr>
+    <tr><td class="rowhead">Robustness</td><td>Time to restart after failure · Percentage of events causing failure · Probability of data corruption on failure</td><td>How well it copes with and recovers from failure</td></tr>
+    <tr><td class="rowhead">Portability</td><td>Percentage of target dependent statements · Number of target systems</td><td>How easily it moves to other platforms</td></tr>
+  </tbody>
+</table>
+<div class="mem"><p>"<b>S</b>ix <b>S</b>mart <b>E</b>ngineers <b>R</b>arely <b>R</b>un <b>P</b>oorly" → Speed, Size, Ease of use, Reliability, Robustness, Portability.</p></div>
+
+<h4>NFR conflicts and where to put NFRs</h4>
+<ul>
+  <li>NFRs often <b>conflict and interact</b> with other requirements. The Mentcare ID-card requirement needs a card reader on each computer, but another requirement may ask for mobile access from doctors' and nurses' tablets or smartphones, which have no card readers — so an alternative identification method may be needed.</li>
+  <li>It is difficult to separate FRs and NFRs in the requirements document. If NFRs are stated separately, relationships are hard to see; ideally, <b>highlight</b> NFRs related to emergent properties (performance, reliability) in a separate section or by marking them.</li>
+  <li>NFRs such as reliability, safety and confidentiality are particularly important for <b>critical systems</b>.</li>
+</ul>
+<div class="tip"><p>A verifiable NFR = <b>property + measure + number + unit + condition</b>. For example: "The system shall display the results of a patient-name search within 2 seconds for 95% of searches when 50 users are logged in." Examiners reward the number.</p></div>
+
+<h3>Functional vs non-functional requirements — the comparison <span class="prio p3">Must know</span></h3>
+<table>
+  <thead><tr><th style="width:18%">Basis</th><th>Functional requirements</th><th>Non-functional requirements</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Meaning</td><td>Services the system should provide; how it reacts to inputs and behaves in particular situations</td><td>Constraints on the services or functions; properties of the system</td></tr>
+    <tr><td class="rowhead">Question answered</td><td>What should the system do?</td><td>How well, and under what constraints, must it do it?</td></tr>
+    <tr><td class="rowhead">Scope</td><td>Usually one feature or service</td><td>Often the system as a whole (emergent properties)</td></tr>
+    <tr><td class="rowhead">Classification</td><td>Functional user requirements and functional system requirements</td><td>Product, organisational, external</td></tr>
+    <tr><td class="rowhead">Mentcare example</td><td>Search appointment lists for all clinics; daily list of expected patients; staff identified by 8-digit number</td><td>Available 08:30–17:30 with ≤ 5 s downtime per day; ID-card authentication; privacy standard HStan-03-2006-priv</td></tr>
+    <tr><td class="rowhead">Where implemented</td><td>Can usually be traced to particular components</td><td>Spread through the system; may shape the whole architecture</td></tr>
+    <tr><td class="rowhead">If not met</td><td>Users can often work around the gap</td><td>System may be useless (e.g. not certified as safe)</td></tr>
+    <tr><td class="rowhead">How verified</td><td>Test that the function gives the right output for given inputs</td><td>Measure with metrics: response time, MTTF, training time, etc.</td></tr>
+    <tr><td class="rowhead">Ease of stating</td><td>Easier, but must avoid ambiguity ("search")</td><td>Harder; often stated as vague goals that must be made measurable</td></tr>
+  </tbody>
+</table>
+
+<h3>FR vs NFR for an app you use every day <span class="prio p2">Important</span></h3>
+<p>Practise on a <b>food-delivery app</b>. These requirements are illustrations written for this guide, not textbook text.</p>
+<table>
+  <thead><tr><th style="width:5%">#</th><th>Requirement</th><th style="width:9%">Kind</th><th style="width:30%">NFR type (Fig 4.5)</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>The app shall let a customer search restaurants by restaurant name and by dish.</td><td>FR</td><td>—</td></tr>
+    <tr><td>2</td><td>The app shall show the live location of the delivery partner after the order is picked up.</td><td>FR</td><td>—</td></tr>
+    <tr><td>3</td><td>The app shall let a customer cancel an order before the restaurant accepts it.</td><td>FR</td><td>—</td></tr>
+    <tr><td>4</td><td>Search results shall appear within 2 seconds for 95% of searches.</td><td>NFR</td><td>Product → efficiency (performance)</td></tr>
+    <tr><td>5</td><td>The ordering service shall be available 99.5% of the time in each month.</td><td>NFR</td><td>Product → dependability</td></tr>
+    <tr><td>6</td><td>A first-time user shall be able to place an order within 3 minutes without help.</td><td>NFR</td><td>Product → usability</td></tr>
+    <tr><td>7</td><td>The app shall be developed in Kotlin following the company coding standard.</td><td>NFR</td><td>Organisational → development</td></tr>
+    <tr><td>8</td><td>Card payments shall comply with the national payment-data regulations.</td><td>NFR</td><td>External → regulatory / legislative</td></tr>
+  </tbody>
+</table>
+<div class="check"><p>"The system shall print a monthly drug-cost report" — FR or NFR? And "Each report shall be generated within 10 seconds"?<span class="ans">The first is functional (a service). The second is a non-functional product requirement (efficiency → performance); it is verifiable because it contains a number.</span></p></div>
+
+<!-- ============================================================ 4.3 -->
+<h2 id="ch4-3"><span class="num">4.3</span> Requirements engineering processes <span class="prio p3">Must know</span></h2>
+<p>The processes used for RE <b>vary widely</b> depending on the application domain, the people involved and the organisation developing the requirements. However, there are a number of <b>generic activities common to all processes</b>:</p>
+<ol class="steps">
+  <li><b>Requirements elicitation</b> — discovering requirements by working with stakeholders.</li>
+  <li><b>Requirements analysis</b> — classifying, organising, prioritising and negotiating them (done together with elicitation).</li>
+  <li><b>Requirements validation</b> — checking that the requirements define the system the customer really wants.</li>
+  <li><b>Requirements management</b> — managing changes to the requirements.</li>
+</ol>
+<p>The textbook describes the same work as <b>three key activities</b>: discovering requirements by interacting with stakeholders (<b>elicitation and analysis</b>); converting them into a standard form (<b>specification</b>); and checking that they define the system the customer wants (<b>validation</b>) — with <b>requirements management</b> handling change. In practice, RE is an <mark>iterative activity in which these processes are interleaved</mark>.</p>
+<div class="warn"><p>Slides: 4 generic activities (elicitation, analysis, validation, management). Textbook: 3 key activities (elicitation &amp; analysis, specification, validation). In the exam write <b>elicitation &amp; analysis, specification, validation and management</b> — that covers both versions.</p></div>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 330" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g fill="#ffffff" stroke="#94a3b8" stroke-width="1.2">
+    <rect x="236" y="10" width="396" height="50" rx="9"/><rect x="236" y="78" width="396" height="50" rx="9"/><rect x="236" y="146" width="396" height="50" rx="9"/><rect x="236" y="214" width="396" height="50" rx="9"/>
+  </g>
+  <g stroke="#94a3b8" stroke-width="1.2"><path d="M210,35 H236 M210,103 H236 M210,171 H236 M210,239 H236"/></g>
+  <g stroke-width="1.5">
+    <rect x="30" y="10" width="180" height="50" rx="9" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="30" y="78" width="180" height="50" rx="9" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="30" y="146" width="180" height="50" rx="9" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="30" y="214" width="180" height="50" rx="9" fill="#e8f8ee" stroke="#16a34a"/>
+  </g>
+  <g font-size="12.5" font-weight="700" text-anchor="middle">
+    <text x="120" y="31">Elicitation &amp; analysis</text>
+    <text x="120" y="99">Specification</text>
+    <text x="120" y="167">Validation</text>
+    <text x="120" y="235">Requirements</text><text x="120" y="251">document</text>
+  </g>
+  <g font-size="10.5" text-anchor="middle">
+    <text x="120" y="49" style="fill:#6b7385">Section 4.4</text>
+    <text x="120" y="117" style="fill:#6b7385">Section 4.5</text>
+    <text x="120" y="185" style="fill:#6b7385">Section 4.6</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr4)">
+    <path d="M120,60 V76"/><path d="M120,128 V144"/><path d="M120,196 V212"/>
+  </g>
+  <path d="M30,171 H16 V35 H27" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="4 3" fill="none" marker-end="url(#ch4-arr4)"/>
+  <text transform="translate(10,104) rotate(-90)" font-size="10.5" text-anchor="middle" style="fill:#6b7385">iterate</text>
+  <g font-size="11.5">
+    <text x="250" y="31">Discover: interviews, ethnography, stories and scenarios;</text>
+    <text x="250" y="48">then classify &amp; organise → prioritise &amp; negotiate → document</text>
+    <text x="250" y="99">Natural language · structured forms · tables · use cases</text>
+    <text x="250" y="116">Output: the software requirements document (SRS)</text>
+    <text x="250" y="167">Checks: validity, consistency, completeness, realism,</text>
+    <text x="250" y="184">verifiability · Techniques: reviews, prototyping, test cases</text>
+    <text x="250" y="235">Agreed statement of WHAT the system must do (not HOW);</text>
+    <text x="250" y="252">may be part of the contract</text>
+  </g>
+  <rect x="10" y="280" width="622" height="44" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <text x="321" y="298" font-size="12" font-weight="700" text-anchor="middle">Requirements management (Section 4.7) runs alongside every activity</text>
+  <text x="321" y="315" font-size="11.5" text-anchor="middle">unique IDs · change management process · traceability · tool support</text>
+</svg></div>
+<figcaption><b>Fig 4.6</b> Requirements engineering at a glance — a map of this chapter. <span class="src">Drawn for this guide</span></figcaption>
+</figure>
+
+<h3>A spiral view of the requirements engineering process <span class="prio p3">Must know</span></h3>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 472" width="640" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ch4-arrs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker></defs>
+<line x1="320" y1="230" x2="146.8" y2="130.0" stroke="#475569" stroke-width="1.3"/>
+<line x1="320" y1="230" x2="493.2" y2="130.0" stroke="#475569" stroke-width="1.3"/>
+<line x1="320" y1="230" x2="320.0" y2="430.0" stroke="#475569" stroke-width="1.3"/>
+<path d="M285.4,250.0 L283.9,248.4 L282.6,246.7 L281.3,244.9 L280.1,243.0 L279.0,241.0 L278.0,238.9 L277.2,236.8 L276.4,234.6 L275.7,232.3 L275.2,230.0 L274.7,227.6 L274.5,225.2 L274.3,222.8 L274.3,220.3 L274.4,217.8 L274.6,215.2 L275.0,212.7 L275.5,210.2 L276.2,207.7 L277.0,205.2 L277.9,202.7 L279.0,200.2 L280.3,197.8 L281.7,195.5 L283.2,193.2 L284.8,190.9 L286.6,188.8 L288.5,186.7 L290.6,184.7 L292.8,182.8 L295.0,181.0 L297.4,179.3 L299.9,177.8 L302.6,176.3 L305.3,175.0 L308.1,173.9 L310.9,172.8 L313.9,172.0 L316.9,171.2 L320.0,170.7 L323.1,170.3 L326.3,170.0 L329.5,170.0 L332.7,170.1 L336.0,170.4 L339.2,170.8 L342.5,171.4 L345.7,172.3 L348.9,173.3 L352.1,174.4 L355.2,175.8 L358.3,177.3 L361.3,179.0 L364.2,180.9 L367.1,182.9 L369.8,185.1 L372.5,187.5 L375.0,190.0 L377.5,192.7 L379.8,195.5 L381.9,198.5 L383.9,201.5 L385.8,204.8 L387.5,208.1 L389.0,211.5 L390.3,215.1 L391.5,218.7 L392.5,222.4 L393.2,226.2 L393.8,230.0 L394.2,233.9 L394.4,237.8 L394.4,241.8 L394.1,245.8 L393.7,249.7 L393.0,253.7 L392.1,257.7 L391.0,261.6 L389.7,265.5 L388.1,269.3 L386.4,273.1 L384.4,276.8 L382.3,280.4 L379.9,283.9 L377.3,287.3 L374.6,290.6 L371.6,293.8 L368.5,296.8 L365.2,299.6 L361.8,302.3 L358.1,304.8 L354.4,307.2 L350.4,309.3 L346.4,311.3 L342.2,313.0 L338.0,314.5 L333.6,315.8 L329.1,316.9 L324.6,317.7 L320.0,318.3 L315.4,318.7 L310.7,318.8 L306.0,318.7 L301.2,318.3 L296.5,317.7 L291.8,316.8 L287.1,315.6 L282.5,314.2 L277.9,312.6 L273.4,310.7 L269.0,308.5 L264.7,306.2 L260.5,303.5 L256.4,300.7 L252.4,297.6 L248.6,294.3 L245.0,290.8 L241.5,287.0 L238.2,283.1 L235.1,279.0 L232.3,274.7 L229.6,270.3 L227.2,265.6 L225.0,260.9 L223.0,256.0 L221.3,251.0 L219.9,245.9 L218.7,240.6 L217.8,235.4 L217.2,230.0 L216.8,224.6 L216.8,219.1 L217.0,213.7 L217.5,208.2 L218.3,202.8 L219.4,197.3 L220.8,191.9 L222.5,186.6 L224.5,181.3 L226.8,176.2 L229.3,171.1 L232.1,166.1 L235.2,161.3 L238.6,156.7 L242.2,152.2 L246.0,147.8 L250.1,143.7 L254.4,139.8 L259.0,136.1 L263.8,132.6 L268.7,129.3 L273.8,126.3 L279.2,123.6 L284.6,121.2 L290.3,119.0 L296.0,117.1 L301.9,115.5 L307.8,114.3 L313.9,113.3 L320.0,112.7 L326.2,112.3 L332.4,112.3 L338.6,112.7 L344.8,113.3 L351.0,114.3 L357.2,115.7 L363.3,117.3 L369.3,119.3 L375.2,121.6 L381.1,124.2 L386.8,127.1 L392.4,130.4 L397.8,133.9 L403.0,137.8 L408.1,141.9 L412.9,146.3 L417.6,151.0 L422.0,155.9 L426.1,161.1 L430.0,166.5 L433.6,172.1 L436.9,178.0 L439.9,184.0 L442.6,190.2 L445.0,196.5 L447.1,203.0 L448.8,209.6 L450.1,216.3 L451.2,223.1 L451.8,230.0 L452.1,236.9 L452.1,243.9 L451.6,250.9 L450.8,257.8 L449.7,264.7 L448.1,271.6 L446.2,278.5 L444.0,285.2 L441.3,291.8 L438.4,298.3 L435.0,304.7 L431.3,310.9 L427.3,316.9 L423.0,322.7 L418.3,328.3 L413.4,333.7 L408.1,338.8 L402.6,343.7 L396.8,348.3 L390.8,352.5 L384.5,356.5 L377.9,360.1 L371.2,363.5 L364.3,366.4 L357.2,369.0 L350.0,371.2 L342.7,373.1 L335.2,374.6 L327.6,375.7 L320.0,376.3 L312.3,376.6 L304.6,376.5 L296.9,376.0 L289.2,375.0 L281.5,373.7 L273.9,371.9 L266.3,369.8 L258.9,367.2 L251.6,364.3 L244.4,360.9 L237.4,357.2 L230.6,353.1 L224.0,348.6 L217.6,343.8 L211.4,338.6 L205.5,333.1 L199.9,327.3 L194.6,321.1 L189.6,314.7 L184.9,308.0 L180.6,301.0 L176.6,293.8 L173.0,286.4 L169.8,278.8 L167.0,271.0 L164.6,263.0 L162.6,254.9 L161.0,246.7 L159.9,238.4 L159.2,230.0 L158.9,221.6 L159.1,213.1 L159.7,204.6 L160.8,196.2 L162.3,187.7 L164.3,179.4 L166.7,171.2 L169.5,163.0 L172.8,155.0 L176.5,147.2 L180.7,139.5 L185.2,132.1 L190.1,124.8 L195.4,117.9 L201.1,111.1 L207.2,104.7 L213.6,98.6 L220.4,92.8 L227.4,87.4 L234.7,82.3 L242.4,77.7 L250.3,73.4 L258.4,69.5 L266.7,66.0 L275.2,63.0 L283.9,60.4 L292.8,58.3 L301.8,56.6 L310.8,55.4 L320.0,54.7 L329.2,54.4 L338.4,54.7 L347.7,55.4 L356.9,56.6 L366.0,58.3 L375.1,60.5 L384.0,63.2 L392.9,66.3 L401.6,69.9 L410.1,74.0 L418.4,78.5 L426.5,83.5 L434.3,88.9 L441.8,94.7 L449.1,100.9 L456.0,107.5 L462.6,114.5 L468.9,121.8 L474.7,129.5 L480.2,137.5 L485.3,145.8 L489.9,154.4 L494.1,163.2 L497.8,172.2 L501.0,181.5 L503.8,190.9 L506.1,200.5 L507.8,210.3 L509.1,220.1 L509.8,230.0 L510.1,240.0 L509.8,249.9 L508.9,259.9 L507.6,269.9 L505.7,279.8 L503.3,289.6 L500.4,299.2 L497.0,308.8 L493.0,318.2 L488.6,327.3 L483.7,336.3 L478.3,345.0 L472.4,353.4 L466.1,361.6 L459.4,369.4 L452.2,376.8 L444.6,383.9 L436.7,390.6 L428.4,396.9 L419.8,402.8 L410.8,408.2 L401.5,413.1 L392.0,417.6 L382.2,421.6 L372.3,425.0 L362.1,428.0 L351.7,430.4 L341.3,432.3 L330.7,433.6 L320.0,434.3 Q306.0,436.3 290.0,444.3" fill="none" stroke="#0d9488" stroke-width="2" marker-end="url(#ch4-arrs)"/>
+<text x="320" y="16" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">Requirements specification</text>
+<text x="62" y="226" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">Requirements</text><text x="62" y="241" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">elicitation</text>
+<text x="580" y="226" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">Requirements</text><text x="580" y="241" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">validation</text>
+<rect x="265.4" y="239.5" width="39.9" height="21.0" rx="7" fill="#e8f8ee" stroke="#16a34a" stroke-width="1.3"/>
+<text x="285.4" y="254.0" text-anchor="middle" font-size="11" font-weight="600">Start</text>
+<rect x="252.1" y="153.7" width="135.7" height="34.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="320.0" y="168.2" text-anchor="middle" font-size="11" font-weight="600">Business requirements</text>
+<text x="320.0" y="181.2" text-anchor="middle" font-size="11" font-weight="600">specification</text>
+<rect x="347.5" y="264.6" width="68.1" height="34.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="381.5" y="279.1" text-anchor="middle" font-size="11" font-weight="600">Feasibility</text>
+<text x="381.5" y="292.1" text-anchor="middle" font-size="11" font-weight="600">study</text>
+<rect x="223.7" y="283.5" width="84.7" height="47.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="266.1" y="298.0" text-anchor="middle" font-size="11" font-weight="600">User</text>
+<text x="266.1" y="311.0" text-anchor="middle" font-size="11" font-weight="600">requirements</text>
+<text x="266.1" y="324.0" text-anchor="middle" font-size="11" font-weight="600">elicitation</text>
+<rect x="263.8" y="95.7" width="112.5" height="34.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="320.0" y="110.2" text-anchor="middle" font-size="11" font-weight="600">User requirements</text>
+<text x="320.0" y="123.2" text-anchor="middle" font-size="11" font-weight="600">specification</text>
+<rect x="387.8" y="308.4" width="76.3" height="21.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="425.9" y="322.9" text-anchor="middle" font-size="11" font-weight="600">Prototyping</text>
+<rect x="194.0" y="337.5" width="77.6" height="34.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="232.8" y="352.0" text-anchor="middle" font-size="11" font-weight="600">System req.</text>
+<text x="232.8" y="365.0" text-anchor="middle" font-size="11" font-weight="600">elicitation</text>
+<rect x="256.3" y="31.2" width="127.3" height="47.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="320.0" y="45.7" text-anchor="middle" font-size="11" font-weight="600">System requirements</text>
+<text x="320.0" y="58.7" text-anchor="middle" font-size="11" font-weight="600">specification and</text>
+<text x="320.0" y="71.7" text-anchor="middle" font-size="11" font-weight="600">modeling</text>
+<rect x="441.2" y="345.7" width="58.3" height="21.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="470.4" y="360.2" text-anchor="middle" font-size="11" font-weight="600">Reviews</text>
+<rect x="142.6" y="430.3" width="143.4" height="36" rx="9" fill="#e8f8ee" stroke="#16a34a" stroke-width="1.5"/>
+<text x="214.3" y="445.3" text-anchor="middle" font-size="12" font-weight="700">System requirements</text>
+<text x="214.3" y="459.3" text-anchor="middle" font-size="12" font-weight="700">document</text>
+</svg>
+</div><figcaption><b>Fig 4.7</b> A spiral view of the requirements engineering process: each loop runs elicitation → specification → validation at a greater level of detail. <span class="src">Sommerville Fig 4.6 · Your slides, slide 29</span></figcaption>
+</figure>
+<ul>
+  <li>The three activities — <b>elicitation, specification and validation</b> — are organised as an iterative process around a <b>spiral</b>. Each loop adds detail: <b>business → user → system</b> requirements.</li>
+  <li>The <b>output</b> of the RE process is a <b>system requirements document</b>.</li>
+  <li>The time and effort spent on each activity in an iteration depends on the <b>stage</b> of the overall process, the <b>type of system</b> being developed and the <b>budget</b> available.</li>
+  <li><b>Early</b> in the process, most effort goes on understanding high-level <b>business and non-functional requirements</b> and the <b>user requirements</b>. <b>Later</b>, in the outer rings, more effort goes on eliciting and understanding the NFRs and more <b>detailed system requirements</b>.</li>
+  <li>The number of iterations can vary: the spiral can be <b>exited</b> after some or all of the user requirements have been elicited. <b>Agile development</b> can be used instead of prototyping, so that the requirements and the implementation are developed together.</li>
+  <li>In virtually all systems, <b>requirements change</b> (people understand their needs better, the buying organisation changes, the hardware, software and organisational environment changes). Changes must be managed — see Section 4.7.</li>
+</ul>
+<div class="tip"><p>To draw Fig 4.7 quickly: draw a "Y" (three lines from a centre); label the sectors <b>specification</b> (top), <b>elicitation</b> (left), <b>validation</b> (right); draw a spiral outwards from the centre; write the nine activities along it in order — <i>Start → business requirements spec → feasibility study → user requirements elicitation → user requirements spec → prototyping → system requirements elicitation → system requirements spec &amp; modelling → reviews</i> — and end with an arrow to "System requirements document".</p></div>
+
+<!-- ============================================================ 4.4 -->
+<h2 id="ch4-4"><span class="num">4.4</span> Requirements elicitation <span class="prio p3">Must know</span></h2>
+<div class="simple"><p>"Elicit" means to draw something out. Requirements rarely arrive written down — you draw them out of people by talking to them, watching them work and discussing realistic examples with them.</p></div>
+<p><b>Requirements elicitation and analysis</b> (sometimes called requirements elicitation or requirements discovery):</p>
+<ul>
+  <li>Involves technical staff working with customers to find out about the <b>application domain</b>, the <b>services</b> that the system should provide and the system's <b>operational constraints</b>.</li>
+  <li>May involve end-users, managers, engineers involved in maintenance, domain experts, trade unions, etc. These are called <b>stakeholders</b>.</li>
+</ul>
+<p>The aim is to understand the <b>work that stakeholders do</b> and how they might use a new system to support it. Software engineers work with a range of system stakeholders to find out about the application domain, work activities, the services and features wanted, the <b>required system performance</b>, <b>hardware constraints</b>, <b>other systems</b>, etc. The stages are: requirements <b>discovery</b>; requirements <b>classification and organisation</b>; requirements <b>prioritisation and negotiation</b>; and requirements <b>specification</b>.</p>
+
+<h3>Problems of requirements elicitation <span class="prio p3">Must know</span></h3>
+<table>
+  <thead><tr><th style="width:38%">Problem (slide wording)</th><th>What it means (textbook detail)</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">1. Stakeholders don't know what they really want</td><td>They know only in the most general terms, find it hard to say what the system should do, and may make unrealistic demands because they don't know what is feasible.</td></tr>
+    <tr><td class="rowhead">2. Stakeholders express requirements in their own terms</td><td>They use their own language and implicit knowledge of their work; requirements engineers without domain experience may not understand them.</td></tr>
+    <tr><td class="rowhead">3. Different stakeholders may have conflicting requirements</td><td>Diverse stakeholders express requirements in different ways; engineers must find all sources and discover commonalities and conflicts.</td></tr>
+    <tr><td class="rowhead">4. Organisational and political factors may influence the requirements</td><td>E.g. managers may demand specific requirements because these will increase their influence in the organisation.</td></tr>
+    <tr><td class="rowhead">5. Requirements change during the analysis process</td><td>The economic and business environment is dynamic; the importance of requirements changes; new stakeholders may emerge who were not originally consulted.</td></tr>
+  </tbody>
+</table>
+
+<h3>The requirements elicitation and analysis process <span class="prio p3">Must know</span></h3>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 300" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" stroke="#0d9488" fill="#e5f6f3">
+    <rect x="235" y="8" width="170" height="50" rx="9"/>
+    <rect x="440" y="118" width="180" height="58" rx="9"/>
+    <rect x="235" y="236" width="170" height="58" rx="9"/>
+    <rect x="20" y="125" width="180" height="44" rx="9"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="320" y="29">1. Requirements</text><text x="320" y="45">discovery</text>
+    <text x="530" y="137">2. Requirements</text><text x="530" y="152">classification and</text><text x="530" y="167">organization</text>
+    <text x="320" y="255">3. Requirements</text><text x="320" y="270">prioritization and</text><text x="320" y="285">negotiation</text>
+    <text x="110" y="143">4. Requirements</text><text x="110" y="159">specification</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr5)">
+    <path d="M405,33 Q520,36 528,115"/>
+    <path d="M530,176 Q526,262 408,264"/>
+    <path d="M235,265 Q112,262 110,172"/>
+    <path d="M110,125 Q112,36 232,33"/>
+  </g>
+  <g font-size="11" text-anchor="middle">
+    <text x="320" y="132" style="fill:#6b7385">repeat, improving understanding</text>
+    <text x="320" y="147" style="fill:#6b7385">each round, until the</text>
+    <text x="320" y="162" style="fill:#6b7385">requirements document is produced</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.8</b> The requirements elicitation and analysis process (step 4 is called "requirements documentation" in the 10th-edition textbook). <span class="src">Sommerville Fig 4.7 · Your slides, slide 35</span></figcaption>
+</figure>
+
+<ol class="steps">
+  <li><b>Requirements discovery</b> — interacting with stakeholders to discover their requirements. Domain requirements (from stakeholders and documentation) are also discovered at this stage.</li>
+  <li><b>Requirements classification and organisation</b> — takes the unstructured collection of requirements, groups related requirements and organises them into coherent clusters.</li>
+  <li><b>Prioritisation and negotiation</b> — prioritising requirements and resolving requirements conflicts. With many stakeholders, requirements will conflict; stakeholders usually meet to agree compromise requirements.</li>
+  <li><b>Requirements specification</b> — requirements are documented and input into the next round of the spiral. An early draft of the requirements document may be produced, or requirements kept informally on whiteboards, wikis or other shared spaces.</li>
+</ol>
+<ul>
+  <li>The process is <b>iterative</b>, with continual feedback between activities. It starts with discovery and ends with documentation; the analyst's understanding improves each round; it ends when the requirements document is produced.</li>
+  <li>Each organisation has its own version of this general model, depending on local factors: staff expertise, the type of system and the standards used.</li>
+  <li><b>Viewpoints</b> help organise stakeholder information: a viewpoint collects the requirements of one group of stakeholders who have something in common (e.g. end-users, managers). Viewpoints can also represent domain requirements and constraints from other systems. Alternatively, a model of the system architecture can be used to link requirements to subsystems.</li>
+  <li>Hold <b>regular stakeholder meetings</b>: stakeholders who feel their views were ignored may deliberately try to undermine the RE process.</li>
+  <li>When documenting, use <b>simple language and diagrams</b>, and a shared document or wiki that all stakeholders can access.</li>
+</ul>
+
+<h3>Requirements discovery <span class="prio p3">Must know</span></h3>
+<div class="def"><p><span class="term">Requirements discovery</span> — the process of gathering information about the required and existing systems and distilling the user and system requirements from this information.</p></div>
+<ul>
+  <li>Interaction is with system stakeholders, from managers to external regulators.</li>
+  <li>Systems normally have a range of stakeholders.</li>
+  <li>Stakeholder information is supplemented by knowledge of existing systems and their usage, and by documents of various kinds.</li>
+</ul>
+<p>There are two fundamental approaches: <b>interviewing</b>, where you talk to people about what they do, and <b>observation or ethnography</b>, where you watch people doing their job to see what artifacts they use and how they use them. Use a <b>mix</b> of both; stories and scenarios then help to discuss the requirements you derive.</p>
+
+<h3>Interviewing <span class="prio p3">Must know</span></h3>
+<p>Formal or informal interviews with stakeholders are part of most RE processes. The RE team asks stakeholders about the system they use now and the system to be developed, and derives requirements from the answers.</p>
+<div class="cols-2">
+  <div class="card tinted"><h4>Closed interviews</h4><p>Based on a <b>pre-determined list of questions</b>: the stakeholder answers a predefined set of questions.</p></div>
+  <div class="card tinted"><h4>Open interviews</h4><p><b>No predefined agenda</b>: various issues are explored with stakeholders to develop a better understanding of their needs.</p></div>
+</div>
+<h4>Effective interviewing</h4>
+<ul>
+  <li>Be <b>open-minded</b>, avoid pre-conceived ideas about the requirements, and be willing to listen to stakeholders — if a stakeholder suggests something surprising, be willing to change your mind about the system.</li>
+  <li><b>Prompt</b> the interviewee to get discussions going using a <b>springboard question</b>, a <b>requirements proposal</b>, or by working together on a <b>prototype</b> system. Saying "tell me what you want" rarely gives useful information; people talk more easily in a defined context.</li>
+</ul>
+<h4>Interviews in practice</h4>
+<ul>
+  <li>Normally a <b>mix of closed and open-ended</b> interviewing: some questions must be answered, and these lead to less structured discussion. Completely open-ended discussions rarely work well.</li>
+  <li>Interviews are good for getting an <b>overall understanding</b> of what stakeholders do, how they might interact with the system, and the difficulties they face with current systems.</li>
+  <li>Interviewers need to be open-minded, without pre-conceived ideas of what the system should do.</li>
+  <li>You need to prompt the user to talk about the system by <b>suggesting requirements</b> rather than simply asking them what they want. Unless you have a prototype to show, don't expect specific, detailed requirements — you analyse the information and generate the requirements yourself.</li>
+</ul>
+<h4>Problems with interviews</h4>
+<ul>
+  <li>Application specialists may use <b>language (jargon)</b> to describe their work that isn't easy for the requirements engineer to understand.</li>
+  <li>Interviews are <b>not good for understanding domain requirements</b>:
+    <ul>
+      <li>requirements engineers cannot understand specific domain terminology;</li>
+      <li>some domain knowledge is so familiar that people find it hard to articulate, or think it isn't worth articulating. (For a librarian, it goes without saying that all acquisitions are catalogued before being added to the library — so the interviewer never hears it.)</li>
+    </ul></li>
+  <li>Interviews are also poor for <b>organisational requirements and constraints</b>: there are subtle power relationships, and people are reluctant to reveal the real (not the published) structure of decision-making to a stranger.</li>
+  <li>On its own, interviewing is liable to miss essential information, so use it together with other techniques.</li>
+</ul>
+
+<h3>Ethnography <span class="prio p3">Must know</span></h3>
+<p>Software systems are used in a social and organisational environment. One reason why many systems are delivered but never used is that their requirements do not take proper account of how social and organisational factors affect the practical operation of the system.</p>
+<div class="def"><p><span class="term">Ethnography</span> — an observational technique in which a social scientist spends a considerable time observing and analysing how people actually work, immersed in the working environment, to derive requirements for software that supports that work.</p></div>
+<ul>
+  <li>People <b>do not have to explain or articulate</b> their work — which is useful, because their work is often "second nature" to them.</li>
+  <li><b>Social and organisational factors</b> of importance may be observed. (E.g. a workgroup may self-organise so that members can cover for each other — something never mentioned in an interview.)</li>
+  <li>Ethnographic studies have shown that work is usually <b>richer and more complex than suggested by simple system models</b>. Suchman's pioneering study of office work found real practice far richer than office-automation models assumed — the main reason those systems had no significant effect on productivity.</li>
+  <li>Its value is that it discovers <b>implicit</b> requirements that reflect how people actually work, not the formal processes defined by the organisation.</li>
+</ul>
+<h4>Scope of ethnography</h4>
+<p>Ethnography is particularly effective for discovering two types of requirements:</p>
+<ol>
+  <li>Requirements derived from the way that people <b>actually work</b>, rather than the way in which process definitions suggest that they ought to work. <i>Example:</i> air traffic controllers may switch off a conflict-alert system that sounds warnings even when planes are far apart, and use other strategies to keep planes on safe paths.</li>
+  <li>Requirements derived from <b>cooperation and awareness of other people's activities</b> — awareness of what other people are doing leads to changes in the ways in which we do things. <i>Example:</i> controllers watch adjacent sectors to predict how many aircraft will enter their own sector, so an automated ATC system should show some of the work in adjacent sectors.</li>
+</ol>
+<p><b>Limitation:</b> ethnography is effective for understanding <b>existing processes</b> but <b>cannot identify new features</b> that should be added to a system. Commentators suggest Nokia used ethnography to study how people used their phones, while Apple ignored current use and revolutionised the industry with the iPhone. Because it focuses on the end-user, ethnography is also weak for broader organisational or domain requirements — so it is one technique among several.</p>
+
+<h4>Focused ethnography</h4>
+<ul>
+  <li>Developed in a project studying the <b>air traffic control</b> process.</li>
+  <li><b>Combines ethnography with prototyping</b>.</li>
+  <li>Prototype development results in <b>unanswered questions</b>, which focus the ethnographic analysis.</li>
+  <li>The problem with ethnography is that it studies <b>existing practices</b>, which may have some historical basis that is no longer relevant.</li>
+</ul>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 186" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" stroke="#0d9488" fill="#e5f6f3">
+    <rect x="8" y="14" width="140" height="44" rx="22"/>
+    <rect x="180" y="14" width="140" height="44" rx="22"/>
+    <rect x="352" y="14" width="140" height="44" rx="22"/>
+    <rect x="496" y="74" width="140" height="44" rx="22" fill="#e8f8ee" stroke="#16a34a"/>
+    <rect x="96" y="128" width="140" height="44" rx="22" fill="#f2f5f9" stroke="#64748b"/>
+    <rect x="352" y="128" width="140" height="44" rx="22"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="78" y="32">Ethnographic</text><text x="78" y="48">analysis</text>
+    <text x="250" y="32">Debriefing</text><text x="250" y="48">meetings</text>
+    <text x="422" y="32">Focused</text><text x="422" y="48">ethnography</text>
+    <text x="566" y="92">Prototype</text><text x="566" y="108">evaluation</text>
+    <text x="166" y="146">Generic system</text><text x="166" y="162">development</text>
+    <text x="422" y="146">System</text><text x="422" y="162">prototyping</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr6)">
+    <path d="M148,36 H177"/>
+    <path d="M320,36 H349"/>
+    <path d="M466,55 L530,73"/>
+    <path d="M422,58 V125"/>
+    <path d="M385,129 L290,60"/>
+    <path d="M236,150 H349"/>
+    <path d="M478,138 L530,119"/>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.9</b> Ethnography and prototyping for requirements analysis. <span class="src">Sommerville Fig 4.8 · Your slides, slide 44</span></figcaption>
+</figure>
+<p>The ethnography <b>informs</b> the development of the prototype, so fewer prototype refinement cycles are needed. The prototyping <b>focuses</b> the ethnography by identifying problems and questions, which are discussed with the ethnographer in debriefing meetings; the ethnographer then looks for answers in the next phase of the study.</p>
+
+<table>
+  <thead><tr><th style="width:18%">Basis</th><th>Interviewing</th><th>Ethnography</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Method</td><td>Talk to people about what they do</td><td>Watch people doing their job</td></tr>
+    <tr><td class="rowhead">Who explains the work?</td><td>The stakeholder must put it into words</td><td>Nobody needs to; the observer records it</td></tr>
+    <tr><td class="rowhead">Good for</td><td>Overall understanding of tasks, how people would use the system, problems with current systems</td><td>Real working practice; cooperation and awareness; social and organisational factors</td></tr>
+    <tr><td class="rowhead">Weak for</td><td>Domain requirements (jargon, tacit knowledge); organisational and political issues</td><td>New features (innovation); broader organisational and domain requirements</td></tr>
+    <tr><td class="rowhead">Time needed</td><td>Relatively short sessions</td><td>Considerable time in the workplace</td></tr>
+    <tr><td class="rowhead">Typical risk</td><td>Interviewer's pre-conceived ideas; missing "obvious" knowledge</td><td>Copying existing practices whose historical basis is no longer relevant</td></tr>
+  </tbody>
+</table>
+
+<h3>Stories and scenarios <span class="prio p3">Must know</span></h3>
+<ul>
+  <li>Scenarios and user stories are <b>real-life examples</b> of how a system can be used.</li>
+  <li>Stories and scenarios are a description of how a system may be used for a <b>particular task</b> — what people do, what information they use and produce, and what systems they may use.</li>
+  <li>Because they are based on a practical situation, stakeholders can <b>relate to them</b> and can comment on their situation with respect to the story.</li>
+</ul>
+<p><b>Story vs scenario:</b> both describe system use for a task; they differ in structure and level of detail. A <b>story</b> is narrative text giving a high-level, "big picture" description. A <b>scenario</b> is a structured form of user story with specific information such as inputs and outputs. Parts of a story are developed into scenarios.</p>
+
+<div class="eg" data-title="Story — photo sharing in the classroom (iLearn)"><p>Jack is a primary school teacher in Ullapool (a village in northern Scotland). He has decided that a class project should be focused around the fishing industry in the area, looking at the history, development and economic impact of fishing. As part of this, pupils are asked to gather and share reminiscences from relatives, use newspaper archives and collect old photographs related to fishing and fishing communities in the area. Pupils use an iLearn wiki to gather together fishing stories and SCRAN (a history resources site) to access newspaper archives and photographs. However, Jack also needs a photo sharing site as he wants pupils to take and comment on each other's photos and to upload scans of old photographs that they may have in their families.</p>
+<p>Jack sends an email to a primary school teachers group, which he is a member of, to see if anyone can recommend an appropriate system. Two teachers reply and both suggest that he uses KidsTakePics, a photo sharing site that allows teachers to check and moderate content. As KidsTakePics is not integrated with the iLearn authentication service, he sets up a teacher and a class account. He uses the iLearn setup service to add KidsTakePics to the services seen by the pupils in his class so that when they log in, they can immediately use the system to upload photos from their mobile devices and class computers.</p></div>
+
+<p>The advantage of stories is that <b>everyone can relate to them</b>. The iLearn team put such stories on a wiki and invited teachers and students across the country to comment — reaching a wider community than they could ever interview. User stories in agile methods such as Extreme Programming are really narrative scenarios.</p>
+
+<h4>What a scenario should include</h4>
+<p>A <b>scenario</b> is a structured form of user story. It starts with an outline of the interaction, and details are added during elicitation. Scenarios should include:</p>
+<ol>
+  <li>A description of the <b>starting situation</b> (what the system and users expect when the scenario starts);</li>
+  <li>a description of the <b>normal flow of events</b>;</li>
+  <li>a description of <b>what can go wrong</b> (and how the resulting problems are handled);</li>
+  <li>information about <b>other concurrent activities</b>;</li>
+  <li>a description of the <b>state when the scenario finishes</b>.</li>
+</ol>
+<div class="mem"><p><b>S-N-W-O-E</b> — "<i>Start, Normal, Wrong, Others, End</i>". Think of a short film: opening scene, normal plot, what goes wrong, side plots, final scene.</p></div>
+
+<table>
+  <thead><tr><th style="width:22%">Scenario part</th><th>Uploading photos to KidsTakePics (iLearn)</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Initial assumption</td><td>A user or a group of users have one or more digital photographs to be uploaded to the picture sharing site. These are saved on either a tablet or laptop computer. They have successfully logged on to KidsTakePics.</td></tr>
+    <tr><td class="rowhead">Normal</td><td>The user chooses upload photos and is prompted to select the photos to be uploaded on their computer and to select the project name under which the photos will be stored. They should also be given the option of inputting keywords that should be associated with each uploaded photo. Uploaded photos are named by creating a conjunction of the user name with the filename of the photo on the local computer.<br>On completion of the upload, the system automatically sends an email to the project moderator asking them to check new content, and generates an on-screen message to the user that this has been done.</td></tr>
+    <tr><td class="rowhead">What can go wrong</td><td>No moderator is associated with the selected project. An email is automatically generated to the school administrator asking them to nominate a project moderator. Users should be informed that there could be a delay in making their photos visible.<br>Photos with the same name have already been uploaded by the same user. The user should be asked if they wish to re-upload the photos with the same name, rename the photos or cancel the upload. If they choose to re-upload the photos, the originals are overwritten. If they choose to rename the photos, a new name is automatically generated by adding a number to the existing file name.</td></tr>
+    <tr><td class="rowhead">Other activities</td><td>The moderator may be logged on to the system and may approve photos as they are uploaded.</td></tr>
+    <tr><td class="rowhead">System state on completion</td><td>User is logged on. The selected photos have been uploaded and assigned a status "awaiting moderation". Photos are visible to the moderator and to the user who uploaded them.</td></tr>
+  </tbody>
+</table>
+<p>The key feature that makes KidsTakePics different from other photo sites is that a <b>teacher moderates</b> uploaded photos before they are shared. The scenario is much more detailed than the story, so it can be used to propose specific requirements.</p>
+
+<table>
+  <thead><tr><th style="width:15%">Basis</th><th>Story</th><th>Scenario</th><th>Use case (Section 4.5)</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Form</td><td>Narrative text</td><td>Structured text under fixed headings</td><td>UML diagram + textual description</td></tr>
+    <tr><td class="rowhead">Detail</td><td>High level, "big picture"</td><td>Detailed: inputs, outputs, exceptions</td><td>Names actors and each type of interaction</td></tr>
+    <tr><td class="rowhead">Best use</td><td>Start discussion with many stakeholders</td><td>Propose specific requirements</td><td>Describe all interactions; also used in design</td></tr>
+    <tr><td class="rowhead">Example</td><td>Jack's photo-sharing story</td><td>Uploading photos to KidsTakePics</td><td>Mentcare use cases (Fig 4.10)</td></tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ 4.5 -->
+<h2 id="ch4-5"><span class="num">4.5</span> Requirements specification <span class="prio p3">Must know</span></h2>
+<div class="def"><p><span class="term">Requirements specification</span> — the process of writing down the user and system requirements in a requirements document.</p></div>
+<ul>
+  <li><b>User requirements</b> have to be understandable by end-users and customers who do not have a technical background. Write them in natural language with simple tables, forms and intuitive diagrams; avoid software jargon and structured or formal notations; describe only external behaviour, not architecture or design.</li>
+  <li><b>System requirements</b> are more detailed requirements and may include more technical information. They are the starting point for system design.</li>
+  <li>The requirements may be part of a <b>contract</b> for the system development, so it is important that they are as <b>complete as possible</b>.</li>
+  <li>Ideally requirements are clear, unambiguous, easy to understand, complete and consistent. In practice this is almost impossible, because stakeholders interpret requirements differently and there are inherent conflicts.</li>
+</ul>
+
+<h3>Ways of writing a system requirements specification <span class="prio p3">Must know</span></h3>
+<table>
+  <thead><tr><th style="width:22%">Notation</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Natural language</td><td>The requirements are written using numbered sentences in natural language. Each sentence should express one requirement.</td></tr>
+    <tr><td class="rowhead">Structured natural language</td><td>The requirements are written in natural language on a standard form or template. Each field provides information about an aspect of the requirement.</td></tr>
+    <tr><td class="rowhead">Design description languages</td><td>This approach uses a language like a programming language, but with more abstract features, to specify the requirements by defining an operational model of the system. This approach is now rarely used although it can be useful for interface specifications.</td></tr>
+    <tr><td class="rowhead">Graphical notations</td><td>Graphical models, supplemented by text annotations, are used to define the functional requirements for the system; UML use case and sequence diagrams are commonly used.</td></tr>
+    <tr><td class="rowhead">Mathematical specifications</td><td>These notations are based on mathematical concepts such as finite-state machines or sets. Although these unambiguous specifications can reduce the ambiguity in a requirements document, most customers don't understand a formal specification. They cannot check that it represents what they want and are reluctant to accept it as a system contract.</td></tr>
+  </tbody>
+</table>
+<div class="mem"><p><b>N-S-D-G-M</b> — "<i>Nice Students Draw Good Maps</i>": Natural language, Structured natural language, Design description languages, Graphical notations, Mathematical specifications.</p></div>
+
+<h3>Requirements and design <span class="prio p2">Important</span></h3>
+<p>In principle, requirements should state <b>what</b> the system should do, and the design should describe <b>how</b> it does this. In practice, requirements and design are <b>inseparable</b>:</p>
+<ul>
+  <li>A <b>system architecture may be designed to structure the requirements</b> — the requirements are organised by subsystem (as was done for iLearn).</li>
+  <li>The system may <b>inter-operate with other systems</b> that generate design requirements (existing systems constrain the design).</li>
+  <li>The use of a <b>specific architecture to satisfy non-functional requirements</b> may be a domain requirement (e.g. N-version programming to achieve reliability).</li>
+  <li>This may be the consequence of a <b>regulatory requirement</b> — a regulator who must certify that the system is safe may insist on an architecture that has already been certified.</li>
+</ul>
+
+<h3>Natural language specification <span class="prio p3">Must know</span></h3>
+<ul>
+  <li>Requirements are written as natural language sentences supplemented by diagrams and tables.</li>
+  <li>Natural language is used because it is <b>expressive, intuitive and universal</b>, so the requirements can be understood by users and customers. It has been used since the 1950s and is still the most widely used way of specifying requirements.</li>
+  <li>But it is also potentially <b>vague and ambiguous</b>, and its meaning depends on the background of the reader.</li>
+</ul>
+<h4>Guidelines for writing requirements</h4>
+<ol class="steps">
+  <li><b>Invent a standard format</b> and use it for all requirements. Standardising makes omissions less likely and requirements easier to check (ideally one or two sentences per requirement).</li>
+  <li><b>Use language in a consistent way.</b> Use <b>shall</b> for mandatory requirements and <b>should</b> for desirable requirements.</li>
+  <li><b>Use text highlighting</b> (bold, italic or colour) to identify key parts of the requirement.</li>
+  <li><b>Avoid the use of computer jargon</b>, abbreviations and acronyms — words like "architecture" and "module" are easily misunderstood.</li>
+  <li><b>Include an explanation (rationale)</b> of why a requirement is necessary, and who proposed it (its source), so you know whom to consult if it has to change.</li>
+</ol>
+<h4>Problems with natural language</h4>
+<table>
+  <thead><tr><th style="width:28%">Problem</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Lack of clarity</td><td>Precision is difficult without making the document difficult to read.</td></tr>
+    <tr><td class="rowhead">Requirements confusion</td><td>Functional and non-functional requirements tend to be mixed up.</td></tr>
+    <tr><td class="rowhead">Requirements amalgamation</td><td>Several different requirements may be expressed together (in one sentence).</td></tr>
+  </tbody>
+</table>
+<div class="eg" data-title="Example — insulin pump requirements in natural language">
+<p><b>3.2</b> The system <b>shall</b> measure the blood sugar and deliver insulin, if required, every 10 minutes. <i>(Changes in blood sugar are relatively slow so more frequent measurement is unnecessary; less frequent measurement could lead to unnecessarily high sugar levels.)</i></p>
+<p><b>3.6</b> The system <b>shall</b> run a self-test routine every minute with the conditions to be tested and the associated actions defined in Table 1. <i>(A self-test routine can discover hardware and software problems and alert the user to the fact the normal operation may be impossible.)</i></p>
+<p>Guidelines in action: a numbered standard format, "shall" for mandatory, the key word highlighted, and the rationale in brackets.</p>
+</div>
+
+<h3>Structured specifications <span class="prio p3">Must know</span></h3>
+<div class="def"><p><span class="term">Structured specification</span> — an approach to writing requirements where the freedom of the requirements writer is limited and requirements are written in a standard way (using templates/forms).</p></div>
+<ul>
+  <li>Keeps most of the expressiveness and understandability of natural language, but imposes uniformity.</li>
+  <li>This works well for some types of requirements, e.g. requirements for an <b>embedded control system</b>, but is sometimes <b>too rigid</b> for writing <b>business system</b> requirements.</li>
+  <li>Templates may use programming-language constructs to show alternatives and iteration, and highlight key elements with shading or different fonts. The specification can be organised around the objects, functions or events of the system.</li>
+  <li>(In the VOLERE method, each user requirement is first written on a card with fields such as rationale, dependencies on other requirements, source and supporting materials.)</li>
+</ul>
+<h4>Form-based specifications — the information on the form</h4>
+<ol>
+  <li>Definition of the <b>function or entity</b>.</li>
+  <li>Description of <b>inputs</b> and where they come from.</li>
+  <li>Description of <b>outputs</b> and where they go to.</li>
+  <li>Information about the information needed for the computation and other entities used (the <b>"requires"</b> part).</li>
+  <li>Description of the <b>action</b> to be taken.</li>
+  <li><b>Pre and post conditions</b> (if appropriate) — what must be true before the function is called, and what is true after it.</li>
+  <li>The <b>side effects</b> (if any) of the function.</li>
+</ol>
+<table>
+  <thead><tr><th colspan="2">Insulin Pump / Control Software / SRS / 3.3.2</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead" style="width:18%">Function</td><td>Compute insulin dose: safe sugar level.</td></tr>
+    <tr><td class="rowhead">Description</td><td>Computes the dose of insulin to be delivered when the current measured sugar level is in the safe zone between 3 and 7 units.</td></tr>
+    <tr><td class="rowhead">Inputs</td><td>Current sugar reading (r2); the previous two readings (r0 and r1).</td></tr>
+    <tr><td class="rowhead">Source</td><td>Current sugar reading from sensor. Other readings from memory.</td></tr>
+    <tr><td class="rowhead">Outputs</td><td>CompDose — the dose in insulin to be delivered.</td></tr>
+    <tr><td class="rowhead">Destination</td><td>Main control loop.</td></tr>
+    <tr><td class="rowhead">Action</td><td>CompDose is zero if the sugar level is stable or falling or if the level is increasing but the rate of increase is decreasing. If the level is increasing and the rate of increase is increasing, then CompDose is computed by dividing the difference between the current sugar level and the previous level by 4 and rounding the result. If the result is rounded to zero then CompDose is set to the minimum dose that can be delivered.</td></tr>
+    <tr><td class="rowhead">Requires</td><td>Two previous readings so that the rate of change of sugar level can be computed.</td></tr>
+    <tr><td class="rowhead">Pre-condition</td><td>The insulin reservoir contains at least the maximum allowed single dose of insulin.</td></tr>
+    <tr><td class="rowhead">Post-condition</td><td>r0 is replaced by r1 then r1 is replaced by r2.</td></tr>
+    <tr><td class="rowhead">Side effects</td><td>None.</td></tr>
+  </tbody>
+</table>
+<p class="small" style="margin-top:-4pt">A structured specification of a requirement for an insulin pump (Sommerville Fig 4.13; your slides, slides 60–61).</p>
+<p>Structured specifications <b>reduce variability</b> and organise requirements more effectively. But it is still hard to write complex computations (such as the insulin dose) clearly — so add <b>tables</b> or graphical models.</p>
+
+<h3>Tabular specification <span class="prio p3">Must know</span></h3>
+<ul>
+  <li>Used to <b>supplement natural language</b>.</li>
+  <li>Particularly useful when you have to define a number of possible <b>alternative courses of action</b>.</li>
+  <li>For example, the insulin pump system bases its computations on the <b>rate of change of blood sugar level</b>, and the tabular specification explains how to calculate the insulin requirement for different scenarios. Here r0, r1 and r2 are the last three sugar readings, r2 being the current one.</li>
+</ul>
+<table>
+  <thead><tr><th style="width:62%">Condition</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td>Sugar level falling (r2 &lt; r1)</td><td>CompDose = 0</td></tr>
+    <tr><td>Sugar level stable (r2 = r1)</td><td>CompDose = 0</td></tr>
+    <tr><td>Sugar level increasing and rate of increase decreasing ((r2 − r1) &lt; (r1 − r0))</td><td>CompDose = 0</td></tr>
+    <tr><td>Sugar level increasing and rate of increase stable or increasing ((r2 − r1) ≥ (r1 − r0))</td><td>CompDose = round ((r2 − r1)/4)<br>If rounded result = 0 then CompDose = MinimumDose</td></tr>
+  </tbody>
+</table>
+<div class="check"><p>Readings r0 = 4, r1 = 5, r2 = 6. What is CompDose?<span class="ans">The level is rising and the rate of increase is stable ((6 − 5) = 1 ≥ (5 − 4) = 1), so CompDose = round(1/4) = round(0.25) = 0; because the rounded result is 0, CompDose = MinimumDose.</span></p></div>
+
+<h3>Use cases <span class="prio p3">Must know</span></h3>
+<ul>
+  <li>Use cases are a kind of <b>scenario</b> that are included in the <b>UML</b> (they were first introduced in the Objectory method).</li>
+  <li>Use cases identify the <b>actors</b> in an interaction and describe the <b>interaction</b> itself.</li>
+  <li>A set of use cases should describe <b>all possible interactions</b> with the system.</li>
+  <li>A <b>high-level graphical model</b> is supplemented by a more detailed <b>tabular description</b> (Chapter 5).</li>
+  <li>UML <b>sequence diagrams</b> may be used to add detail to use cases by showing the sequence of event processing in the system.</li>
+</ul>
+<p><b>Notation:</b> actors — people or other systems — are drawn as <b>stick figures</b>; each class of interaction is a <b>named ellipse</b>; <b>lines</b> link actors with the interactions they take part in. Arrowheads may be added to show how an interaction is initiated.</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 336" width="640" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#475569" stroke-width="1.3" fill="none">
+    <path d="M90,60 L207,36"/><path d="M90,62 L207,100"/>
+    <path d="M424,66 L333,98"/><path d="M456,62 L518,42"/><path d="M456,70 L519,116"/>
+    <path d="M90,190 L207,170"/><path d="M90,192 L207,234"/>
+    <path d="M424,214 L333,172"/><path d="M424,218 L333,234"/><path d="M424,222 L318,290"/><path d="M456,212 L545,141"/>
+  </g>
+  <g stroke="#1b1f2a" stroke-width="1.5" fill="none">
+    <circle cx="70" cy="40" r="9" fill="#ffffff"/><path d="M70,49 V76 M56,60 H84 M70,76 L58,96 M70,76 L82,96"/>
+    <circle cx="70" cy="170" r="9" fill="#ffffff"/><path d="M70,179 V206 M56,190 H84 M70,206 L58,226 M70,206 L82,226"/>
+    <circle cx="440" cy="46" r="9" fill="#ffffff"/><path d="M440,55 V82 M426,66 H454 M440,82 L428,102 M440,82 L452,102"/>
+    <circle cx="440" cy="196" r="9" fill="#ffffff"/><path d="M440,205 V232 M426,216 H454 M440,232 L428,252 M440,232 L452,252"/>
+  </g>
+  <g font-size="12" font-weight="600" text-anchor="middle">
+    <text x="70" y="114">Medical receptionist</text>
+    <text x="70" y="244">Nurse</text>
+    <text x="440" y="120">Manager</text>
+    <text x="440" y="270">Doctor</text>
+  </g>
+  <g fill="#e5f6f3" stroke="#0d9488" stroke-width="1.5">
+    <ellipse cx="270" cy="34" rx="63" ry="24"/>
+    <ellipse cx="270" cy="100" rx="63" ry="24"/>
+    <ellipse cx="270" cy="170" rx="63" ry="22"/>
+    <ellipse cx="270" cy="234" rx="63" ry="22"/>
+    <ellipse cx="270" cy="306" rx="63" ry="24"/>
+    <ellipse cx="575" cy="40" rx="57" ry="24"/>
+    <ellipse cx="575" cy="120" rx="57" ry="24"/>
+  </g>
+  <g font-size="12" text-anchor="middle">
+    <text x="270" y="30">Register</text><text x="270" y="45">patient</text>
+    <text x="270" y="96">View</text><text x="270" y="111">personal info.</text>
+    <text x="270" y="174">View record</text>
+    <text x="270" y="238">Edit record</text>
+    <text x="270" y="302">Setup</text><text x="270" y="317">consultation</text>
+    <text x="575" y="36">Export</text><text x="575" y="51">statistics</text>
+    <text x="575" y="116">Generate</text><text x="575" y="131">report</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.10</b> Use cases for the Mentcare system: four actors and seven use cases. <span class="src">Sommerville Fig 4.15 · Your slides, slide 65</span></figcaption>
+</figure>
+
+<div class="eg" data-title="Example — textual description of the Setup consultation use case"><p>Setup consultation allows two or more doctors, working in different offices, to view the same patient record at the same time. One doctor initiates the consultation by choosing the people involved from a dropdown menu of doctors who are online. The patient record is then displayed on their screens, but only the initiating doctor can edit the record. In addition, a text chat window is created to help coordinate actions. It is assumed that a phone call for voice communication can be separately arranged.</p></div>
+<p>Sommerville's view: stakeholders often don't understand the term "use case", don't find the diagram useful and are not interested in every detailed interaction — so use cases are often <b>more helpful in system design</b> than in RE. Some people treat each use case as a single low-level scenario; others (Stevens and Pooley) treat a use case as a set of related scenarios — one for the normal interaction plus one for each possible exception.</p>
+
+<h3>The software requirements document <span class="prio p3">Must know</span></h3>
+<div class="def"><p><span class="term">Software requirements document</span> (also called the software requirements specification, <b>SRS</b>) — the official statement of what is required of the system developers. It should include both a definition of user requirements and a specification of the system requirements.</p></div>
+<ul>
+  <li>It is an <b>agreed statement</b> of the system requirements, organised so that both system customers and software developers can use it.</li>
+  <li>It is <b>NOT a design document</b>. As far as possible, it should set out <b>WHAT</b> the system should do rather than <b>HOW</b> it should do it.</li>
+  <li>It is essential when systems are <b>outsourced</b>, when <b>different teams</b> develop different parts of the system, and when a <b>detailed analysis</b> of the requirements is mandatory. It may not be needed for software products or business systems.</li>
+  <li>Agile methods argue that it is out of date as soon as it is written; they collect user requirements incrementally as short user stories.</li>
+</ul>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 290" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" stroke="#0d9488" fill="#e5f6f3">
+    <rect x="8" y="4" width="140" height="48" rx="9"/><rect x="8" y="62" width="140" height="48" rx="9"/><rect x="8" y="120" width="140" height="48" rx="9"/><rect x="8" y="178" width="140" height="48" rx="9"/><rect x="8" y="236" width="140" height="48" rx="9"/>
+  </g>
+  <g stroke-width="1.2" stroke="#94a3b8" fill="#ffffff">
+    <rect x="180" y="4" width="452" height="48" rx="9"/><rect x="180" y="62" width="452" height="48" rx="9"/><rect x="180" y="120" width="452" height="48" rx="9"/><rect x="180" y="178" width="452" height="48" rx="9"/><rect x="180" y="236" width="452" height="48" rx="9"/>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr7)">
+    <path d="M148,28 H177"/><path d="M148,86 H177"/><path d="M148,144 H177"/><path d="M148,202 H177"/><path d="M148,260 H177"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="78" y="24">System</text><text x="78" y="40">customers</text>
+    <text x="78" y="91">Managers</text>
+    <text x="78" y="140">System</text><text x="78" y="156">engineers</text>
+    <text x="78" y="198">System test</text><text x="78" y="214">engineers</text>
+    <text x="78" y="256">System maintenance</text><text x="78" y="272">engineers</text>
+  </g>
+  <g font-size="11.5">
+    <text x="194" y="24">Specify the requirements and read them to check that they meet</text>
+    <text x="194" y="40">their needs. Customers specify changes to the requirements.</text>
+    <text x="194" y="82">Use the requirements document to plan a bid for the system and to</text>
+    <text x="194" y="98">plan the system development process.</text>
+    <text x="194" y="140">Use the requirements to understand what system is to be</text>
+    <text x="194" y="156">developed.</text>
+    <text x="194" y="198">Use the requirements to develop validation tests for the</text>
+    <text x="194" y="214">system.</text>
+    <text x="194" y="256">Use the requirements to understand the system and the</text>
+    <text x="194" y="272">relationships between its parts.</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.11</b> Users of a requirements document and how they use it. <span class="src">Sommerville Fig 4.16 · Your slides, slide 67</span></figcaption>
+</figure>
+<p>Because its users are so diverse, the document is a <b>compromise</b>: it must describe requirements for customers, define them in precise detail for developers and testers, and include information about likely future evolution (which helps designers avoid restrictive decisions and helps maintenance engineers adapt the system).</p>
+
+<h4>Requirements document variability</h4>
+<ul>
+  <li>Information in the requirements document depends on the <b>type of system</b> and the <b>approach to development</b> used.</li>
+  <li>Systems developed <b>incrementally</b> will, typically, have <b>less detail</b> in the requirements document (with in-house iterative development, details are added during development).</li>
+  <li><b>Critical systems</b> need detailed requirements, because safety and security must be analysed; <b>outsourced</b> systems need detailed and precise specifications.</li>
+  <li>Requirements document <b>standards</b> have been designed, e.g. the <b>IEEE standard</b>. These are mostly applicable to the requirements for large systems engineering projects — such as military command-and-control systems with a long lifetime, developed by a group of organisations.</li>
+</ul>
+
+<h4>The structure of a requirements document</h4>
+<p>One possible organisation, based on the IEEE standard and extended with information about predicted system evolution:</p>
+<table>
+  <thead><tr><th style="width:23%">Chapter</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Preface</td><td>Defines the expected readership of the document and describes its version history, including a rationale for the creation of a new version and a summary of the changes made in each version.</td></tr>
+    <tr><td class="rowhead">Introduction</td><td>Describes the need for the system. It should briefly describe the system's functions and explain how it will work with other systems. It should also describe how the system fits into the overall business or strategic objectives of the organisation commissioning the software.</td></tr>
+    <tr><td class="rowhead">Glossary</td><td>Defines the technical terms used in the document. You should not make assumptions about the experience or expertise of the reader.</td></tr>
+    <tr><td class="rowhead">User requirements definition</td><td>Describes the services provided for the user. The non-functional system requirements should also be described in this section. This description may use natural language, diagrams, or other notations that are understandable to customers. Product and process standards that must be followed should be specified.</td></tr>
+    <tr><td class="rowhead">System architecture</td><td>Presents a high-level overview of the anticipated system architecture, showing the distribution of functions across system modules. Architectural components that are reused should be highlighted.</td></tr>
+    <tr><td class="rowhead">System requirements specification</td><td>Describes the functional and non-functional requirements in more detail. If necessary, further detail may also be added to the non-functional requirements. Interfaces to other systems may be defined.</td></tr>
+    <tr><td class="rowhead">System models</td><td>Graphical system models showing the relationships between the system components and between the system and its environment. Examples: object models, data-flow models, semantic data models.</td></tr>
+    <tr><td class="rowhead">System evolution</td><td>Describes the fundamental assumptions on which the system is based, and any anticipated changes due to hardware evolution, changing user needs, and so on. Useful for system designers, as it may help them avoid design decisions that would constrain likely future changes.</td></tr>
+    <tr><td class="rowhead">Appendices</td><td>Detailed, specific information related to the application being developed — for example, hardware and database descriptions. Hardware requirements define the minimal and optimal configurations for the system. Database requirements define the logical organisation of the data used by the system and the relationships between data.</td></tr>
+    <tr><td class="rowhead">Index</td><td>Several indexes to the document may be included. As well as a normal alphabetic index, there may be an index of diagrams, an index of functions, and so on.</td></tr>
+  </tbody>
+</table>
+<div class="mem"><p><b>"PIG-U, four S's, A-I"</b>: <b>P</b>reface, <b>I</b>ntroduction, <b>G</b>lossary, <b>U</b>ser requirements definition → <b>S</b>ystem architecture, <b>S</b>ystem requirements specification, <b>S</b>ystem models, <b>S</b>ystem evolution → <b>A</b>ppendices, <b>I</b>ndex.</p></div>
+<p>A long document for a complex system built by several companies needs a full table of contents and index. A document for an in-house software product leaves out many of these chapters and focuses on the user requirements and high-level non-functional requirements.</p>
+
+<!-- ============================================================ 4.6 -->
+<h2 id="ch4-6"><span class="num">4.6</span> Requirements validation <span class="prio p3">Must know</span></h2>
+<div class="simple"><p>Validation asks: "Have we written down the <em>right</em> system?" — before anyone starts building it. Catching a wrong requirement on paper is cheap; catching it after delivery is very expensive.</p></div>
+<div class="def"><p><span class="term">Requirements validation</span> — the process of demonstrating that the requirements define the system that the customer really wants.</p></div>
+<ul>
+  <li>It overlaps with elicitation and analysis, as it is concerned with finding problems with the requirements.</li>
+  <li>Requirements error costs are high, so validation is very important: <mark>fixing a requirements error after delivery may cost up to 100 times the cost of fixing an implementation error</mark>.</li>
+  <li>Why so expensive? A requirements change usually means the system design and implementation must also change, and the system must then be retested.</li>
+</ul>
+
+<h3>Requirements checking <span class="prio p3">Must know</span></h3>
+<table>
+  <thead><tr><th style="width:16%">Check</th><th style="width:38%">Question to ask</th><th>Textbook detail</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Validity</td><td>Does the system provide the functions which best support the customer's needs?</td><td>Requirements reflect the real needs of users — which may have changed since they were elicited.</td></tr>
+    <tr><td class="rowhead">Consistency</td><td>Are there any requirements conflicts?</td><td>No contradictory constraints and no different descriptions of the same function.</td></tr>
+    <tr><td class="rowhead">Completeness</td><td>Are all functions required by the customer included?</td><td>The document defines all functions and constraints intended by the system user.</td></tr>
+    <tr><td class="rowhead">Realism</td><td>Can the requirements be implemented given available budget and technology?</td><td>Use knowledge of existing technology; also consider the budget and schedule.</td></tr>
+    <tr><td class="rowhead">Verifiability</td><td>Can the requirements be checked?</td><td>Requirements are written so that tests can show the delivered system meets each one — this reduces disputes between customer and contractor.</td></tr>
+  </tbody>
+</table>
+<div class="mem"><p><b>V-C-C-R-V</b> — "<i>Very Careful Clients Request Verification</i>": Validity, Consistency, Completeness, Realism, Verifiability.</p></div>
+
+<h3>Requirements validation techniques <span class="prio p3">Must know</span></h3>
+<ol class="steps">
+  <li><b>Requirements reviews</b> — systematic manual analysis of the requirements by a team of reviewers, who check for errors and inconsistencies.</li>
+  <li><b>Prototyping</b> — using an executable model of the system to check requirements (Chapter 2). End-users and customers experiment with it and feed back requirements changes.</li>
+  <li><b>Test-case generation</b> — developing tests for requirements to check testability. If a test is difficult or impossible to design, the requirement will usually be hard to implement and should be reconsidered. Writing tests from the user requirements before any code is an integral part of test-driven development.</li>
+</ol>
+
+<h3>Requirements reviews <span class="prio p3">Must know</span></h3>
+<ul>
+  <li>Regular reviews should be held <b>while the requirements definition is being formulated</b>.</li>
+  <li><b>Both client and contractor staff</b> should be involved in reviews.</li>
+  <li>Reviews may be <b>formal</b> (with completed documents) or <b>informal</b>. Good communication between developers, customers and users can resolve problems at an early stage.</li>
+  <li>In a review, people from the customer and the developer read the document in detail and check for errors, anomalies and inconsistencies; once these are recorded, customer and developer negotiate how to solve them.</li>
+</ul>
+<h4>Review checks</h4>
+<table>
+  <thead><tr><th style="width:22%">Review check</th><th>Question</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Verifiability</td><td>Is the requirement realistically testable?</td></tr>
+    <tr><td class="rowhead">Comprehensibility</td><td>Is the requirement properly understood?</td></tr>
+    <tr><td class="rowhead">Traceability</td><td>Is the origin of the requirement clearly stated?</td></tr>
+    <tr><td class="rowhead">Adaptability</td><td>Can the requirement be changed without a large impact on other requirements?</td></tr>
+  </tbody>
+</table>
+<div class="warn"><p>Don't mix the two lists. <b>Requirements checks</b> (5): validity, consistency, completeness, realism, verifiability. <b>Review checks</b> (4): verifiability, comprehensibility, traceability, adaptability. Only <b>verifiability</b> appears in both.</p></div>
+<p><b>Be realistic about validation.</b> It is hard to show that requirements meet a user's needs: users must picture the system in operation and imagine how it fits their work — hard even for skilled professionals. You rarely find all problems during validation, so further changes to correct omissions and misunderstandings are inevitable after the document has been agreed.</p>
+
+<!-- ============================================================ 4.7 -->
+<h2 id="ch4-7"><span class="num">4.7</span> Requirements change <span class="prio p3">Must know</span></h2>
+<p>The requirements for large software systems are <b>always changing</b>. One reason is that these systems often address <b>"wicked" problems</b> — problems that cannot be completely defined — so the requirements are bound to be incomplete. During development, the stakeholders' understanding of the problem keeps changing, and the requirements must evolve to reflect it (Fig 4.12).</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 192" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5">
+    <rect x="90" y="8" width="160" height="62" rx="9" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="90" y="104" width="160" height="44" rx="9" fill="#ffffff" stroke="#0d9488"/>
+    <rect x="340" y="8" width="160" height="62" rx="9" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="420" y="104" width="160" height="44" rx="9" fill="#ffffff" stroke="#0d9488"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="170" y="29">Initial</text><text x="170" y="45">understanding</text><text x="170" y="61">of problem</text>
+    <text x="170" y="122">Initial</text><text x="170" y="138">requirements</text>
+    <text x="420" y="29">Changed</text><text x="420" y="45">understanding</text><text x="420" y="61">of problem</text>
+    <text x="500" y="122">Changed</text><text x="500" y="138">requirements</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr8)">
+    <path d="M170,70 V101"/><path d="M250,126 H380 V73"/><path d="M470,70 V101"/>
+    <path d="M40,170 H610"/>
+  </g>
+  <text x="315" y="118" font-size="11" text-anchor="middle" style="fill:#6b7385">understanding grows</text>
+  <text x="610" y="188" font-size="12" font-weight="600" text-anchor="end">Time</text>
+</svg></div>
+<figcaption><b>Fig 4.12</b> Requirements evolution: as understanding of the problem changes, the requirements change. <span class="src">Sommerville Fig 4.18 · Your slides, slide 80</span></figcaption>
+</figure>
+
+<h3>Why requirements change <span class="prio p3">Must know</span></h3>
+<p>Once a system is installed and regularly used, new requirements inevitably emerge. Some come from errors and omissions in the original requirements, but most come from changes to the system's environment:</p>
+<ol>
+  <li><b>The business and technical environment of the system always changes after installation.</b> New hardware may be introduced, it may be necessary to interface the system with other systems, business priorities may change (with consequent changes in the system support required), and new legislation and regulations may be introduced that the system must necessarily abide by.</li>
+  <li><b>The people who pay for a system and the users of that system are rarely the same people.</b> System customers impose requirements because of organisational and budgetary constraints. These may conflict with end-user requirements and, after delivery, new features may have to be added for user support if the system is to meet its goals.</li>
+  <li><b>Large systems usually have a diverse user community</b>, with many users having different requirements and priorities that may be conflicting or contradictory. The final system requirements are inevitably a compromise between them and, with experience, it is often discovered that the balance of support given to different users has to be changed.</li>
+</ol>
+
+<h3>Enduring and volatile requirements <span class="prio p2">Important</span></h3>
+<table>
+  <thead><tr><th style="width:18%">Basis</th><th>Enduring requirements</th><th>Volatile requirements</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Meaning</td><td>Associated with the core, slow-to-change activities of an organisation — its fundamental work activities</td><td>More likely to change; associated with supporting activities that reflect <i>how</i> the organisation does its work rather than the work itself</td></tr>
+    <tr><td class="rowhead">Illustration (Mentcare)</td><td>Recording patients and the treatments they receive — a clinic always needs this</td><td>The layout of a management report, or the way staff log in (e.g. moving to ID cards)</td></tr>
+  </tbody>
+</table>
+
+<h3>Requirements management <span class="prio p3">Must know</span></h3>
+<div class="def"><p><span class="term">Requirements management</span> — the process of managing changing requirements during the requirements engineering process and system development.</p></div>
+<ul>
+  <li>New requirements emerge as a system is being developed and after it has gone into use.</li>
+  <li>You need to <b>keep track of individual requirements</b> and maintain <b>links between dependent requirements</b>, so that you can assess the impact of requirements changes.</li>
+  <li>You need to establish a <b>formal process for making change proposals</b> and linking these to system requirements. Requirements management should start as soon as a draft of the requirements document is available.</li>
+  <li><b>Agile</b> processes handle change without a formal process: the user prioritises the change and, if it is high priority, decides which planned features to drop. The problem: users are not necessarily the best judges of whether a change is cost-effective. With many stakeholders, an <b>independent authority</b> that balances everyone's needs is often better.</li>
+</ul>
+
+<h3>Requirements management planning <span class="prio p3">Must know</span></h3>
+<p>Planning establishes the <b>level of requirements management detail</b> that is required. The requirements management decisions are:</p>
+<table>
+  <thead><tr><th style="width:26%">Decision</th><th>What it means</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Requirements identification</td><td>Each requirement must be uniquely identified so that it can be cross-referenced with other requirements (and used in traceability assessments).</td></tr>
+    <tr><td class="rowhead">A change management process</td><td>The set of activities that assess the impact and cost of changes (Fig 4.13).</td></tr>
+    <tr><td class="rowhead">Traceability policies</td><td>Define the relationships between each requirement, and between the requirements and the system design, that should be recorded — and how these records are maintained.</td></tr>
+    <tr><td class="rowhead">Tool support</td><td>Tools may range from specialist requirements management systems to spreadsheets and simple database systems.</td></tr>
+  </tbody>
+</table>
+<p>Tool support is needed for <b>requirements storage</b> (a secure, managed data store accessible to everyone involved), <b>change management</b> (tracking suggested changes and the responses to them) and <b>traceability management</b> (discovering related requirements). Small systems can manage with shared web documents, spreadsheets and databases; large systems use specialised tools such as <b>DOORS</b>.</p>
+<div class="simple" data-title="Traceability in simple words"><p>Traceability is the "family tree" of each requirement: where it came from (its source), which other requirements depend on it, and which parts of the design implement it. When one requirement changes, you can follow the links to see how the change ripples through the system.</p></div>
+
+<h3>Requirements change management <span class="prio p3">Must know</span></h3>
+<p>Change management is applied to all proposed changes after the requirements document has been approved. It decides <b>whether a requirements change should be accepted</b> — whether the benefits of the change justify its cost. A formal process means all change proposals are treated consistently and the document is changed in a controlled way.</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 132" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" stroke="#0d9488" fill="#e5f6f3">
+    <rect x="100" y="20" width="140" height="56" rx="9"/>
+    <rect x="264" y="20" width="124" height="56" rx="9"/>
+    <rect x="412" y="20" width="124" height="56" rx="9"/>
+  </g>
+  <g font-size="12" font-weight="600" text-anchor="middle">
+    <text x="170" y="38">Problem analysis</text><text x="170" y="53">and change</text><text x="170" y="68">specification</text>
+    <text x="326" y="45">Change analysis</text><text x="326" y="60">and costing</text>
+    <text x="474" y="45">Change</text><text x="474" y="60">implementation</text>
+  </g>
+  <g font-size="11.5" font-weight="600" text-anchor="middle">
+    <text x="38" y="44">Identified</text><text x="38" y="59">problem</text>
+    <text x="600" y="44">Revised</text><text x="600" y="59">requirements</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr9)">
+    <path d="M70,48 H97"/><path d="M240,48 H261"/><path d="M388,48 H409"/><path d="M536,48 H563"/>
+  </g>
+  <g font-size="11" text-anchor="middle">
+    <text x="170" y="96" style="fill:#6b7385">check change is valid;</text><text x="170" y="110" style="fill:#6b7385">feed back to requestor</text><text x="170" y="124" style="fill:#6b7385">(refine or withdraw)</text>
+    <text x="326" y="96" style="fill:#6b7385">use traceability to</text><text x="326" y="110" style="fill:#6b7385">assess effect, estimate</text><text x="326" y="124" style="fill:#6b7385">cost; then decide</text>
+    <text x="474" y="96" style="fill:#6b7385">modify requirements</text><text x="474" y="110" style="fill:#6b7385">document (and design</text><text x="474" y="124" style="fill:#6b7385">and code if needed)</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.13</b> Requirements change management. <span class="src">Sommerville Fig 4.19 · Your slides, slides 83–84</span></figcaption>
+</figure>
+<ol class="steps">
+  <li><b>Problem analysis and change specification</b> — the process starts with an identified requirements problem or a specific change proposal. During this stage, the problem or the change proposal is analysed to check that it is valid. This analysis is fed back to the change requestor, who may respond with a more specific requirements change proposal, or decide to withdraw the request.</li>
+  <li><b>Change analysis and costing</b> — the effect of the proposed change is assessed using traceability information and general knowledge of the system requirements. The cost is estimated in terms of changes to the requirements document and, if appropriate, to the design and implementation. Once this analysis is completed, a decision is made whether or not to proceed with the requirements change.</li>
+  <li><b>Change implementation</b> — the requirements document and, where necessary, the system design and implementation are modified. Ideally, the document should be organised so that changes can be easily implemented (modular sections, few external references).</li>
+</ol>
+<div class="warn"><p>Emergency changes: there is always a temptation to change the system first and update the requirements document later. The document and the implementation then get out of step, because changes are easily forgotten. If an emergency change is unavoidable, update the requirements document as soon as possible.</p></div>
+
+<!-- ============================================================ 4.8 -->
+<h2 id="ch4-8"><span class="num">4.8</span> Lab: analysing a real-time case study <span class="prio p2">Important</span></h2>
+<p>The lab asks you to analyse the requirements of a <b>real-time</b> application — software that must react to its inputs within fixed time limits. The textbook's <b>insulin pump</b> is a good model: an embedded system that collects information from a sensor and controls a pump that delivers a controlled dose of insulin. It is <b>safety-critical</b>: if it fails, the user's health may be damaged. Use the same steps for any case study (weather station, traffic signal, ATM, …).</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 160" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ch4-arr10" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5">
+    <rect x="8" y="12" width="104" height="44" rx="6" fill="#f2f5f9" stroke="#64748b"/>
+    <rect x="140" y="12" width="150" height="44" rx="22" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="318" y="12" width="140" height="44" rx="22" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="520" y="12" width="110" height="44" rx="6" fill="#f2f5f9" stroke="#64748b"/>
+    <rect x="8" y="110" width="104" height="44" rx="6" fill="#f2f5f9" stroke="#64748b"/>
+    <rect x="140" y="110" width="150" height="44" rx="22" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="318" y="110" width="140" height="44" rx="22" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="500" y="110" width="130" height="44" rx="22" fill="#e5f6f3" stroke="#0d9488"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="60" y="30">Blood</text><text x="60" y="46">sensor</text>
+    <text x="215" y="30">Analyse sensor</text><text x="215" y="46">reading</text>
+    <text x="388" y="30">Compute</text><text x="388" y="46">insulin</text>
+    <text x="575" y="30">Insulin</text><text x="575" y="46">log</text>
+    <text x="60" y="128">Insulin</text><text x="60" y="144">pump</text>
+    <text x="215" y="128">Control</text><text x="215" y="144">insulin pump</text>
+    <text x="388" y="128">Compute pump</text><text x="388" y="144">commands</text>
+    <text x="565" y="136">Log dose</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#ch4-arr10)">
+    <path d="M112,34 H137"/><path d="M290,34 H315"/>
+    <path d="M388,56 V107"/>
+    <path d="M318,132 H293"/><path d="M140,132 H115"/>
+    <path d="M440,56 L530,108"/>
+    <path d="M575,110 V59"/>
+    <path d="M520,34 H461"/>
+  </g>
+  <g font-size="11" style="fill:#6b7385">
+    <text x="215" y="76" text-anchor="middle" style="fill:#6b7385">every 10 minutes (req. 3.2)</text>
+    <text x="215" y="92" text-anchor="middle" style="fill:#6b7385">self-test every minute (req. 3.6)</text>
+    <text x="396" y="86" style="fill:#6b7385">dose rule:</text>
+    <text x="396" y="100" style="fill:#6b7385">SRS 3.3.2</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig 4.14</b> What the insulin pump software does, with the textbook requirements that govern each step. <span class="src">Simplified from Sommerville Fig 1.5 (activity model of the insulin pump)</span></figcaption>
+</figure>
+
+<ol class="steps">
+  <li><b>Understand the system and its environment</b> — read the case; sketch the hardware and the flow of data (Fig 4.14). Note the timing constraints.</li>
+  <li><b>Identify the stakeholders</b> and the type of each (end users, managers, owners, external).</li>
+  <li><b>Choose elicitation techniques</b> — interviews, observation, stories/scenarios — and say why.</li>
+  <li><b>Write user requirements</b> — high-level, in natural language.</li>
+  <li><b>Write functional system requirements</b> — numbered, "shall", with a rationale.</li>
+  <li><b>Write non-functional requirements</b> — classify each (product / organisational / external) and make it measurable (metrics table).</li>
+  <li><b>Specify one critical function</b> as a structured form or table; add a scenario or use-case diagram.</li>
+  <li><b>Validate and plan for change</b> — apply the five checks; give every requirement an ID; mark enduring vs volatile ones.</li>
+</ol>
+
+<table>
+  <thead><tr><th style="width:20%">Step</th><th>Insulin pump — model answer</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">System</td><td>Embedded, real-time, safety-critical control system: reads a blood-sugar sensor, computes the insulin needed and sends signals to a miniaturised pump (one pulse = one unit of insulin). Hardware: sensor, controller, pump, insulin reservoir, needle assembly, clock, alarm, two displays, power supply.</td></tr>
+    <tr><td class="rowhead">Stakeholders <i>(illustrative)</i></td><td>Patients with diabetes (end users); doctors who set up treatment; the manufacturer's engineers who maintain the device; medical-device regulators (external).</td></tr>
+    <tr><td class="rowhead">Elicitation <i>(illustrative)</i></td><td>Interviews with doctors and patients; observing how patients currently measure blood sugar and inject; scenarios such as "sugar level rising quickly after a meal".</td></tr>
+    <tr><td class="rowhead">User requirements (textbook)</td><td>(1) The system shall be available to deliver insulin when required. (2) The system shall perform reliably and deliver the correct amount of insulin to counteract the current level of blood sugar.</td></tr>
+    <tr><td class="rowhead">Functional requirements (textbook)</td><td>3.2 measure blood sugar and deliver insulin, if required, every 10 minutes · 3.6 run a self-test routine every minute · 3.3.2 compute insulin dose (structured form + table in Section 4.5).</td></tr>
+    <tr><td class="rowhead">Non-functional <i>(illustrative wording)</i></td><td><b>Product (dependability):</b> user requirement (1) above is an availability requirement · <b>Product (performance):</b> each dose computation shall complete within the 10-minute measurement cycle · <b>Organisational (development):</b> the software shall be developed to the manufacturer's safety-critical process standard · <b>External (regulatory):</b> the pump shall be approved by the national medical-device regulator before use.</td></tr>
+    <tr><td class="rowhead">Validation</td><td><b>Verifiability:</b> "every 10 minutes", "every minute" and the dose table are testable; "deliver the correct amount" becomes testable only through the table. <b>Realism:</b> can the controller hardware meet the timing? <b>Consistency:</b> the pre-condition (reservoir holds at least one maximum dose) must agree with the self-test and alarm requirements.</td></tr>
+    <tr><td class="rowhead">Change <i>(illustrative)</i></td><td>Enduring: the dose computation and safety requirements. Volatile: display layout, logging details. Give IDs (3.2, 3.3.2, 3.6…) so changes can be traced.</td></tr>
+  </tbody>
+</table>
+<div class="tip"><p>Lab record layout: 1 Problem statement · 2 Stakeholders · 3 Elicitation method · 4 User requirements · 5 Functional requirements (numbered) · 6 NFRs (classified, with metrics) · 7 One structured or tabular specification · 8 Use-case diagram or scenario · 9 Validation checklist (V-C-C-R-V).</p></div>
+
+<!-- ============================================================ RECAP -->
+<section class="recap"><div class="recap-box">
+<h2 id="ch4-recap">Chapter 4 in one page</h2>
+<div class="cols-2">
+<div>
+  <h4>Key definitions</h4>
+  <ul>
+    <li><b>RE</b>: establishing the services a customer requires and the constraints under which the system operates and is developed.</li>
+    <li><b>User reqs</b>: natural language + diagrams, for customers. <b>System reqs</b>: detailed, structured; may be part of the contract.</li>
+    <li><b>Stakeholder</b>: anyone affected by the system with a legitimate interest — end users, system managers, system owners, external.</li>
+    <li><b>FR</b>: services, reactions to inputs, behaviour in situations (and what not to do), or how computations are carried out. <b>NFR</b>: constraints on services — timing, process, standards; whole system. <b>Domain req</b>: constraint from the domain.</li>
+    <li><b>Goal</b> vs <b>verifiable NFR</b> (has a measure that can be objectively tested).</li>
+    <li><b>Validation</b>: show the requirements define the system the customer really wants.</li>
+    <li><b>Requirements management</b>: managing changing requirements during RE and development.</li>
+  </ul>
+  <h4>Lists to write in full</h4>
+  <ul>
+    <li><b>NFR tree</b>: Product (Usability, Efficiency [Performance, Space], Dependability, Security) · Organisational (Environmental, Operational, Development) · External (Regulatory, Ethical, Legislative [Accounting, Safety/security]).</li>
+    <li><b>Metrics</b>: speed, size, ease of use, reliability, robustness, portability.</li>
+    <li><b>Elicitation problems</b>: don't know what they want · own terms · conflicts · politics · change.</li>
+    <li><b>Scenario parts</b>: start, normal flow, what goes wrong, other activities, end state.</li>
+    <li><b>NL guidelines</b>: standard format · shall/should · highlighting · no jargon · rationale. <b>NL problems</b>: lack of clarity, confusion, amalgamation.</li>
+  </ul>
+</div>
+<div>
+  <h4>Processes</h4>
+  <ul>
+    <li><b>RE activities</b>: elicitation &amp; analysis → specification → validation, plus management; iterative (spiral: business → user → system requirements).</li>
+    <li><b>Elicitation cycle</b>: discovery → classification &amp; organisation → prioritisation &amp; negotiation → specification.</li>
+    <li><b>Techniques</b>: interviews (closed/open) · ethnography (focused = + prototyping) · stories · scenarios · use cases.</li>
+    <li><b>Notations</b>: natural language, structured NL, design description languages, graphical, mathematical.</li>
+    <li><b>Form fields</b>: function, inputs+source, outputs+destination, requires, action, pre/post-conditions, side effects.</li>
+    <li><b>SRS chapters</b> (PIG-U-SSSS-AI): preface, introduction, glossary, user reqs, system architecture, system reqs spec, system models, system evolution, appendices, index.</li>
+    <li><b>Validation checks</b>: validity, consistency, completeness, realism, verifiability. <b>Techniques</b>: reviews, prototyping, test-case generation. <b>Review checks</b>: verifiability, comprehensibility, traceability, adaptability.</li>
+    <li><b>Why change</b>: environment changes · payers ≠ users · diverse users. <b>RM planning</b>: identification, change process, traceability policies, tool support. <b>Change mgmt</b>: problem analysis &amp; change spec → change analysis &amp; costing → change implementation.</li>
+  </ul>
+  <h4>Diagrams to practise</h4>
+  <ul>
+    <li>Readers of requirements (4.2) · NFR tree (4.5) · spiral (4.7) · elicitation cycle (4.8) · ethnography + prototyping (4.9) · Mentcare use cases (4.10) · users of SRS (4.11) · evolution (4.12) · change management (4.13).</li>
+  </ul>
+</div>
+</div>
+</div></section>
+
+<!-- ============================================================ QUESTIONS -->
+<section class="qbank">
+<h2 id="ch4-q">Likely exam questions</h2>
+<div class="q"><span class="marks">2M</span><div class="qt">Define requirements engineering. What is a stakeholder? Give two Mentcare stakeholders.</div><div class="hint">Slide definition of RE (services + constraints); stakeholder definition; e.g. doctors, medical receptionists (Section 4.1).</div></div>
+<div class="q"><span class="marks">2M</span><div class="qt">Differentiate a goal and a verifiable non-functional requirement with an example.</div><div class="hint">Two definitions + the usability goal and its testable version (training hours, errors per hour).</div></div>
+<div class="q"><span class="marks">4M</span><div class="qt">Distinguish between user requirements and system requirements. Who reads each?</div><div class="hint">Definitions → table → Mentcare drug-cost example (Fig 4.1) → readers diagram (Fig 4.2).</div></div>
+<div class="q"><span class="marks">10M</span><div class="qt">Differentiate functional and non-functional requirements with suitable examples. Why can NFRs be more critical than FRs?</div><div class="hint">Definitions (also domain requirements) → comparison table (6+ rows) → Mentcare FR and NFR examples → aircraft/embedded examples of criticality → NFR implementation (architecture; generates FRs).</div></div>
+<div class="q"><span class="marks">10M</span><div class="qt">With a neat diagram, explain the classification of non-functional requirements. Give an example of each main type.</div><div class="hint">Draw Fig 4.5 → define product, organisational, external with sub-types → Mentcare examples (availability, ID card, privacy standard).</div></div>
+<div class="q"><span class="marks">5M</span><div class="qt">Explain the metrics used to specify non-functional requirements.</div><div class="hint">Six-row table: speed, size, ease of use, reliability, robustness, portability with their measures; why quantify (goals are not testable).</div></div>
+<div class="q"><span class="marks">8M</span><div class="qt">Explain the spiral view of the requirements engineering process with a diagram.</div><div class="hint">List the RE activities → draw Fig 4.7 → early vs later effort, exit after user requirements, output = system requirements document.</div></div>
+<div class="q"><span class="marks">8M</span><div class="qt">Explain the requirements elicitation and analysis process with a diagram. What problems arise during elicitation?</div><div class="hint">Fig 4.8 → four activities one line each → iterative → five problems (table in Section 4.4).</div></div>
+<div class="q"><span class="marks">10M</span><div class="qt">Explain interviewing and ethnography as elicitation techniques. Compare them.</div><div class="hint">Closed/open interviews, effective interviewing, problems → ethnography definition, two types of requirements it finds, focused ethnography + Fig 4.9 → comparison table.</div></div>
+<div class="q"><span class="marks">6M</span><div class="qt">What are stories and scenarios? What should a scenario include? Illustrate with the iLearn photo-upload scenario.</div><div class="hint">Story vs scenario → five parts (S-N-W-O-E) → fill them in for KidsTakePics.</div></div>
+<div class="q"><span class="marks">6M</span><div class="qt">Explain the different notations for writing a system requirements specification.</div><div class="hint">Five-row table: natural language, structured NL, design description languages, graphical, mathematical — with one weakness each.</div></div>
+<div class="q"><span class="marks">6M</span><div class="qt">Give the guidelines for writing natural language requirements. What problems does natural language cause?</div><div class="hint">Five guidelines (format, shall/should, highlight, no jargon, rationale) → three problems → insulin pump 3.2 example.</div></div>
+<div class="q"><span class="marks">8M</span><div class="qt">Explain structured and tabular specification using the insulin pump example.</div><div class="hint">Definition, when suitable → seven form fields → the SRS 3.3.2 form → the four-row condition/action table.</div></div>
+<div class="q"><span class="marks">6M</span><div class="qt">What are use cases? Draw the use case diagram for the Mentcare system (or for an ATM).</div><div class="hint">Five use-case points → notation (stick figures, ellipses, lines) → Fig 4.10 → one textual description (Setup consultation).</div></div>
+<div class="q"><span class="marks">10M</span><div class="qt">Explain the structure of a software requirements document. Who uses it and how?</div><div class="hint">Definition (WHAT not HOW) → Fig 4.11 users → ten chapters with one line each → variability (IEEE standard, incremental = less detail).</div></div>
+<div class="q"><span class="marks">8M</span><div class="qt">What is requirements validation? Explain the checks and techniques used, and the review checks.</div><div class="hint">Definition + 100× cost → five checks → three techniques → reviews → four review checks.</div></div>
+<div class="q"><span class="marks">10M</span><div class="qt">Why do requirements change? Explain requirements management planning and the change management process with a diagram.</div><div class="hint">Wicked problems + Fig 4.12 → three reasons → four planning decisions + tool support → Fig 4.13 with three stages.</div></div>
+<div class="q"><span class="marks">10M</span><div class="qt">For a real-time system (insulin pump or wilderness weather station), identify stakeholders and write functional and non-functional requirements.</div><div class="hint">Follow the eight lab steps in Section 4.8: stakeholders → user reqs → numbered "shall" FRs → classified, measurable NFRs → one structured spec → validation checks.</div></div>
+</section>
+</section>
