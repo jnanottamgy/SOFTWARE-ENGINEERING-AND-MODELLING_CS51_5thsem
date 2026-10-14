@@ -1,0 +1,505 @@
+<section class="chapter unit-1" id="qa1">
+<header class="opener">
+  <span class="tag">Unit 1 · Most likely 5-mark questions</span>
+  <h1 id="qa1-top">Unit 1: 8 questions you must prepare</h1>
+  <p class="sub">CO1 · Software engineering and ethics · Process models · Coping with change · Process improvement · Agile, XP and Scrum</p>
+  <div class="meta">
+    <div><b>Questions</b>8 model answers + 5 backups</div>
+    <div><b>From</b>Study guide Chapters 1, 2 and 3</div>
+    <div><b>Time per answer</b>About 10 minutes in the exam</div>
+  </div>
+  <div class="learn"><h4>Questions at a glance</h4><ol class="glance">
+    <li>Software engineering, attributes of good software, key challenges <span class="small">(asked 2024)</span></li>
+    <li>ACM/IEEE Code of Ethics and issues of professional responsibility</li>
+    <li>Waterfall model: diagram, when appropriate, problems</li>
+    <li>Incremental development: diagram, advantages, problems <span class="small">(asked 2024)</span></li>
+    <li>Coping with change: prototyping and incremental delivery</li>
+    <li>Process improvement cycle and SEI capability maturity levels</li>
+    <li>XP practices: refactoring, pair programming, user stories <span class="small">(asked 2024)</span></li>
+    <li>Agile principles and the Scrum sprint cycle <span class="small">(asked 2024)</span></li>
+  </ol></div>
+</header>
+
+<!-- ============================================================ Q1 -->
+<h2 class="qa-h" id="qa1-1"><span class="num">Q1</span> What is software engineering? What are the essential attributes of good software? List the key challenges faced in software engineering.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO1</span><span class="t-bloom">L2</span><span class="t-pyq">Asked in CIE-1 2024</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Definition 1 + Four attributes 2 + Challenges 2</div>
+<div class="ans-label" style="break-after:avoid">Model answer</div>
+<div class="def"><p><span class="term">Software engineering</span> is an engineering discipline that is concerned with all aspects of software production, from the early stages of system specification through to maintaining the system after it has gone into use.</p></div>
+<ul>
+  <li><b>Engineering discipline</b>: using appropriate theories and methods to solve problems, bearing in mind organisational and financial constraints.</li>
+  <li><b>All aspects of software production</b>: not just the technical process of development, but also project management and the development of tools, methods and theories. (<i>Software</i> = computer programs and associated documentation.)</li>
+</ul>
+
+<p><b>Essential attributes of good software.</b> Good software should deliver the required functionality and performance to the user and should be maintainable, dependable and usable:</p>
+<ol class="steps">
+  <li><b>Maintainability</b>: written so that it can evolve to meet the changing needs of customers, because software change is inevitable in a changing business environment.</li>
+  <li><b>Dependability and security</b>: includes reliability, security and safety; it should not cause physical or economic damage if the system fails, and malicious users should not be able to access or damage it.</li>
+  <li><b>Efficiency</b>: no wasteful use of system resources such as memory and processor cycles (responsiveness, processing time, memory utilisation).</li>
+  <li><b>Acceptability</b>: acceptable to the type of users it is designed for, i.e. understandable, usable and compatible with the other systems they use.</li>
+</ol>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 146" width="640" xmlns="http://www.w3.org/2000/svg">
+  <path d="M320 32 V46 M80 46 H560 M80 46 V58 M240 46 V58 M400 46 V58 M560 46 V58" stroke="#94a3b8" stroke-width="1.6" fill="none"/>
+  <rect x="165" y="1" width="310" height="31" rx="15.5" fill="#eef0ff" stroke="#4f46e5" stroke-width="2"/>
+  <text x="320" y="21" font-size="13" font-weight="700" text-anchor="middle" fill="#1b1f2a">Good software (beyond functionality)</text>
+  <rect x="4" y="58" width="152" height="84" rx="9" fill="#eef0ff" stroke="#4f46e5" stroke-width="1.5"/>
+  <rect x="164" y="58" width="152" height="84" rx="9" fill="#fdeeee" stroke="#dc2626" stroke-width="1.5"/>
+  <rect x="324" y="58" width="152" height="84" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <rect x="484" y="58" width="152" height="84" rx="9" fill="#e8f8ee" stroke="#16a34a" stroke-width="1.5"/>
+  <g text-anchor="middle" font-size="12.5" font-weight="700">
+    <text x="80" y="88" fill="#3730a3">Maintainability</text>
+    <text x="240" y="80" fill="#991b1b">Dependability</text><text x="240" y="95" fill="#991b1b">and security</text>
+    <text x="400" y="88" fill="#92400e">Efficiency</text>
+    <text x="560" y="88" fill="#166534">Acceptability</text>
+  </g>
+  <g text-anchor="middle" font-size="11" fill="#1b1f2a">
+    <text x="80" y="114">evolves to meet</text><text x="80" y="129">changing needs</text>
+    <text x="240" y="114">reliable, safe, secure;</text><text x="240" y="129">no damage on failure</text>
+    <text x="400" y="114">no waste of memory or</text><text x="400" y="129">processor; responsive</text>
+    <text x="560" y="114">understandable, usable</text><text x="560" y="129">and compatible</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig Q1</b> The four essential attributes of good software (quick sketch for the answer). <span class="src">Sommerville Fig 1.2 · Study guide 1.4</span></figcaption></figure>
+
+<p><b>Key challenges.</b> Four general issues affect many types of software and create its main challenges:</p>
+<table>
+  <thead><tr><th style="width:24%">Challenge</th><th>Meaning</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">1. Heterogeneity</td><td>Systems must operate as distributed systems across networks of different types of computers and mobile devices, and integrate with older legacy systems.</td></tr>
+    <tr><td class="rowhead">2. Business and social change</td><td>Business and society change very quickly, so existing software must be changed and new software developed rapidly.</td></tr>
+    <tr><td class="rowhead">3. Security and trust</td><td>Software is intertwined with all aspects of our lives, so we must be able to trust it, especially remote systems used through web pages or web services.</td></tr>
+    <tr><td class="rowhead">4. Scale</td><td>Software is built at very different scales, from very small embedded systems in wearable devices to Internet-scale, cloud-based systems serving a global community.</td></tr>
+  </tbody>
+</table>
+<p>In short, the key challenges are <b>coping with increasing diversity, demands for reduced delivery times and developing trustworthy software</b>.</p>
+<div class="mem"><p><b>"My Dog Eats Apples"</b> = <b>M</b>aintainability, <b>D</b>ependability &amp; security, <b>E</b>fficiency, <b>A</b>cceptability. <b>"Hungry Bears Steal Snacks"</b> = <b>H</b>eterogeneity, <b>B</b>usiness &amp; social change, <b>S</b>ecurity &amp; trust, <b>S</b>cale.</p></div>
+
+<!-- ============================================================ Q2 -->
+<h2 class="qa-h" id="qa1-2"><span class="num">Q2</span> Explain the ACM/IEEE Code of Ethics. What are the issues of professional responsibility?</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO1</span><span class="t-bloom">L2</span><span class="t-like">Likely</span></div>
+<div class="qa-split">Ethics intro 1 + Professional responsibility 1.5 + Code and eight principles 2.5</div>
+<div class="ans-label" style="break-after:avoid">Model answer</div>
+<p>Software engineering involves <b>wider responsibilities than simply the application of technical skills</b>. Software engineers must behave in an honest and ethically responsible way if they are to be respected as professionals. Ethical behaviour is <b>more than simply upholding the law</b>: it involves following a set of principles that are morally correct.</p>
+<p><b>Issues of professional responsibility</b> (areas where acceptable behaviour is set by professional responsibility, not by laws):</p>
+<ol class="steps">
+  <li><b>Confidentiality</b>: respect the confidentiality of employers or clients, whether or not a formal confidentiality agreement has been signed.</li>
+  <li><b>Competence</b>: do not misrepresent your level of competence or knowingly accept work that is outside your competence.</li>
+  <li><b>Intellectual property rights</b>: be aware of local laws on the use of intellectual property such as patents and copyright, and protect the intellectual property of employers and clients.</li>
+  <li><b>Computer misuse</b>: do not use technical skills to misuse other people's computers. Misuse ranges from trivial (game playing on an employer's machine) to extremely serious (dissemination of viruses).</li>
+</ol>
+<p><b>ACM/IEEE Code of Ethics.</b> The professional societies in the US, <b>ACM and IEEE</b>, cooperated to produce the <i>Software Engineering Code of Ethics and Professional Practice</i>. Members of these organisations <b>sign up to the code</b> when they join. Because software engineers have significant opportunities to do good or cause harm, they commit to making software engineering a beneficial and respected profession. The code contains <b>eight principles</b> on the behaviour and decisions of professional software engineers, including practitioners, educators, managers, supervisors, policy makers, trainees and students. In accordance with their commitment to the <b>health, safety and welfare of the public</b>, software engineers shall adhere to:</p>
+<table>
+  <thead><tr><th style="width:27%">Principle</th><th>Software engineers shall …</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">1. Public</td><td>act consistently with the public interest.</td></tr>
+    <tr><td class="rowhead">2. Client and employer</td><td>act in a manner that is in the best interests of their client and employer consistent with the public interest.</td></tr>
+    <tr><td class="rowhead">3. Product</td><td>ensure that their products and related modifications meet the highest professional standards possible.</td></tr>
+    <tr><td class="rowhead">4. Judgment</td><td>maintain integrity and independence in their professional judgment.</td></tr>
+    <tr><td class="rowhead">5. Management</td><td>(managers and leaders) subscribe to and promote an ethical approach to the management of software development and maintenance.</td></tr>
+    <tr><td class="rowhead">6. Profession</td><td>advance the integrity and reputation of the profession consistent with the public interest.</td></tr>
+    <tr><td class="rowhead">7. Colleagues</td><td>be fair to and supportive of their colleagues.</td></tr>
+    <tr><td class="rowhead">8. Self</td><td>participate in lifelong learning regarding the practice of their profession and promote an ethical approach to the practice of the profession.</td></tr>
+  </tbody>
+</table>
+<div class="mem"><p><b>Principles in pairs: PC · PJ · MP · CS</b>, "A <b>PC</b> in <b>PJ</b>s meets an <b>MP</b> from <b>CS</b>" = <b>P</b>ublic–<b>C</b>lient, <b>P</b>roduct–<b>J</b>udgment, <b>M</b>anagement–<b>P</b>rofession, <b>C</b>olleagues–<b>S</b>elf. <b>Responsibility issues: "Careful Coders Inspect Code"</b> = Confidentiality, Competence, IPR, Computer misuse.</p></div>
+
+<!-- ============================================================ Q3 -->
+<h2 class="qa-h" id="qa1-3"><span class="num">Q3</span> Explain the waterfall model with a neat diagram. When is it appropriate, and what are its problems?</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO1</span><span class="t-bloom">L2</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Diagram 2 + Five phases 1.5 + When appropriate and problems 1.5</div>
+<div class="ans-label" style="break-after:avoid">Model answer</div>
+<p>The <b>waterfall model</b> is a <b>plan-driven</b> process model with <b>separate and distinct phases of specification and development</b>: all process activities are planned and scheduled before development starts, and each phase must be complete before the next begins. It was the first published process model (Royce, 1970) and is also called the <i>software life cycle</i>.</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 274" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa1-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" fill="#eef0ff" stroke="#4f46e5">
+    <rect x="20" y="6" width="170" height="42" rx="9"/><rect x="135" y="58" width="170" height="42" rx="9"/>
+    <rect x="250" y="110" width="170" height="42" rx="9"/><rect x="365" y="162" width="170" height="42" rx="9"/>
+    <rect x="450" y="214" width="170" height="42" rx="9" fill="#e5f6f3" stroke="#0d9488"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle" fill="#1b1f2a">
+    <text x="105" y="23">Requirements</text><text x="105" y="39">definition</text>
+    <text x="220" y="75">System and</text><text x="220" y="91">software design</text>
+    <text x="335" y="127">Implementation</text><text x="335" y="143">and unit testing</text>
+    <text x="450" y="179">Integration and</text><text x="450" y="195">system testing</text>
+    <text x="535" y="231">Operation and</text><text x="535" y="247">maintenance</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa1-arr)">
+    <path d="M190 27 H262 V56"/><path d="M305 79 H377 V108"/><path d="M420 131 H492 V160"/><path d="M535 183 H580 V212"/>
+  </g>
+  <path d="M450 244 H40" stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="4 3" fill="none"/>
+  <g stroke="#94a3b8" stroke-width="1.4" stroke-dasharray="4 3" fill="none" marker-end="url(#qa1-arr)">
+    <path d="M40 244 V50"/><path d="M160 244 V102"/><path d="M275 244 V154"/><path d="M390 244 V206"/>
+  </g>
+  <text x="245" y="266" font-size="11" fill="#6b7385" text-anchor="middle">feedback: problems found later send work back to earlier phases (costly)</text>
+</svg></div>
+<figcaption><b>Fig Q3</b> The waterfall model: draw it as a staircase with dashed feedback arrows. <span class="src">Sommerville Fig 2.1 · Study guide Fig 2.1</span></figcaption></figure>
+<ol class="steps">
+  <li><b>Requirements analysis and definition</b>: the system's services, constraints and goals are established with users and defined in detail as the system specification.</li>
+  <li><b>System and software design</b>: requirements are allocated to hardware or software, an overall architecture is established, and the fundamental software abstractions and their relationships are identified.</li>
+  <li><b>Implementation and unit testing</b>: the design is realised as a set of programs or program units; each unit is verified against its specification.</li>
+  <li><b>Integration and system testing</b>: units are integrated and tested as a complete system against the requirements, then delivered to the customer.</li>
+  <li><b>Operation and maintenance</b>: normally the longest phase; the system is used, and maintenance corrects errors, improves the implementation and adds new services.</li>
+</ol>
+<p>The result of each phase is one or more approved (<i>signed-off</i>) documents. In practice the phases overlap and feed information back (dashed arrows). <b>The main drawback is the difficulty of accommodating change after the process is underway.</b></p>
+<div class="proscons">
+  <div class="pros"><h4>When it is appropriate</h4><ul>
+    <li>Requirements are <b>well understood</b> and changes will be fairly limited</li>
+    <li><b>Embedded systems</b>: software must interface with inflexible hardware, so decisions cannot be delayed</li>
+    <li><b>Critical systems</b>: safety and security analysis needs a complete specification and design (e.g. insulin pump)</li>
+    <li><b>Large systems engineering projects developed at several sites</b>: the plan-driven nature helps coordinate the work</li>
+  </ul></div>
+  <div class="cons"><h4>Problems</h4><ul>
+    <li><b>Inflexible partitioning</b> of the project into distinct stages makes it difficult to respond to changing customer requirements</li>
+    <li>Few business systems have <b>stable requirements</b>, so the model suits few of them</li>
+    <li>Requirements are <b>frozen early</b>, so the system may not do what users want</li>
+    <li><b>No working version until late</b>; customers find it hard to state all requirements at the start</li>
+  </ul></div>
+</div>
+<div class="tip"><p>Marks go to the <b>labelled diagram with feedback arrows</b>, one line per phase, the words <b>"plan-driven"</b> and <b>"signed-off documents"</b>, and an example system for "when appropriate".</p></div>
+
+<!-- ============================================================ Q4 -->
+<h2 class="qa-h" id="qa1-4"><span class="num">Q4</span> With a neat diagram describe the incremental development model. What are the advantages and problems of the incremental approach?</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO1</span><span class="t-bloom">L2</span><span class="t-pyq">Asked in CIE-1 2024</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Definition 1 + Diagram 2 + Advantages and problems 2</div>
+<div class="ans-label" style="break-after:avoid">Model answer</div>
+<div class="def"><p><span class="term">Incremental development</span> is based on the idea of developing an initial implementation, getting feedback from users and evolving the software through several versions until the required system has been developed. Specification, development and validation are <b>interleaved</b> rather than separate, with rapid feedback across activities.</p></div>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 236" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa1-arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <text x="255" y="15" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">Concurrent activities</text>
+  <rect x="170" y="24" width="170" height="206" rx="12" fill="#f2f5f9" stroke="#64748b" stroke-width="1.2"/>
+  <rect x="400" y="24" width="200" height="206" rx="12" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+  <g stroke-width="1.5">
+    <rect x="10" y="103" width="120" height="48" rx="3" fill="#ffffff" stroke="#64748b"/>
+    <rect x="190" y="38" width="130" height="38" rx="19" fill="#eef0ff" stroke="#4f46e5"/>
+    <rect x="190" y="108" width="130" height="38" rx="19" fill="#eef0ff" stroke="#4f46e5"/>
+    <rect x="190" y="178" width="130" height="38" rx="19" fill="#eef0ff" stroke="#4f46e5"/>
+    <rect x="430" y="38" width="140" height="38" rx="3" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="430" y="112" width="140" height="40" rx="3" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="426" y="108" width="140" height="40" rx="3" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="422" y="104" width="140" height="40" rx="3" fill="#e5f6f3" stroke="#0d9488"/>
+    <rect x="430" y="178" width="140" height="38" rx="3" fill="#e5f6f3" stroke="#0d9488"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle" fill="#1b1f2a">
+    <text x="70" y="123">Outline</text><text x="70" y="139">description</text>
+    <text x="255" y="61">Specification</text><text x="255" y="131">Development</text><text x="255" y="201">Validation</text>
+    <text x="500" y="61">Initial version</text>
+    <text x="492" y="120">Intermediate</text><text x="492" y="135">versions</text>
+    <text x="500" y="201">Final version</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa1-arr2)">
+    <path d="M130 127 H188"/>
+    <path d="M262 76 V106"/><path d="M248 108 V78"/><path d="M262 146 V176"/><path d="M248 178 V148"/>
+    <path d="M320 50 H428"/><path d="M430 64 H322"/><path d="M320 118 H420"/><path d="M422 136 H322"/><path d="M320 197 H428"/>
+  </g>
+</svg></div>
+<figcaption><b>Fig Q4</b> Incremental development: concurrent activities produce a series of versions. <span class="src">Sommerville Fig 2.2 · Study guide Fig 2.2</span></figcaption></figure>
+<ul>
+  <li>Starting from an <b>outline description</b>, specification, development and validation run <b>concurrently</b> and produce an <b>initial version</b>, <b>intermediate versions</b> and finally the <b>final version</b>.</li>
+  <li>Each increment adds functionality. <b>Early increments include the most important or most urgently required functionality</b>, so the customer can evaluate the system early; if it is wrong, only the current increment has to be changed.</li>
+  <li>It is now the <b>most common approach</b> for application systems and software products and the basis of agile methods. It may be plan-driven (increments identified in advance), agile, or a mixture.</li>
+</ul>
+<div class="proscons">
+  <div class="pros"><h4>Advantages</h4><ul>
+    <li><b>Cost of accommodating changing customer requirements is reduced</b>: far less analysis and documentation to redo than with waterfall</li>
+    <li><b>Easier to get customer feedback</b> on the work done: customers comment on demonstrations and see how much has been implemented</li>
+    <li><b>More rapid delivery and deployment of useful software</b>, so customers gain value earlier</li>
+  </ul></div>
+  <div class="cons"><h4>Problems</h4><ul>
+    <li><b>The process is not visible</b>: managers need regular deliverables to measure progress, and documenting every quickly built version is not cost-effective</li>
+    <li><b>System structure tends to degrade</b> as new increments are added; unless time and money is spent on refactoring, regular change corrupts the structure and further changes become difficult and costly</li>
+  </ul></div>
+</div>
+<p>These problems are most serious for <b>large, long-lifetime systems</b> developed by several teams, which need a stable architecture planned in advance.</p>
+<div class="tip"><p>Do not confuse this with <b>incremental delivery</b>: in incremental <i>development</i> an increment may only be demonstrated to the customer for comment; in incremental <i>delivery</i> each increment is deployed for real use.</p></div>
+
+<!-- ============================================================ Q5 -->
+<h2 class="qa-h" id="qa1-5"><span class="num">Q5</span> How do software processes cope with change? Explain software prototyping (with the process of prototype development) and incremental delivery.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO1</span><span class="t-bloom">L2</span><span class="t-like">Likely</span></div>
+<div class="qa-split">Two approaches 1 + Prototyping with diagram 2 + Incremental delivery 2</div>
+<div class="ans-label" style="break-after:avoid">Model answer</div>
+<p><b>Change is inevitable in all large software projects</b>: business changes lead to new and changed requirements, new technologies open up new possibilities, and changing platforms require application changes. Change leads to <b>rework</b>, so processes reduce its cost in two ways:</p>
+<ul>
+  <li><b>Change anticipation</b>: the process includes activities that can anticipate possible changes before significant rework is required. Technique: <b>system prototyping</b>.</li>
+  <li><b>Change tolerance</b>: the process is designed so that changes can be accommodated at relatively low cost. Technique: <b>incremental delivery</b> (changes go into increments not yet developed).</li>
+</ul>
+<p><b>(a) Software prototyping.</b> A <b>prototype</b> is an initial version of a system used to demonstrate concepts and try out design options. It is used in <b>requirements engineering</b> (elicitation and validation), in <b>design</b> (to explore options and develop the user interface) and in <b>testing</b> (back-to-back tests).</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 128" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa1-arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" fill="#eef0ff" stroke="#4f46e5">
+    <rect x="8" y="4" width="140" height="56" rx="22"/><rect x="168" y="4" width="140" height="56" rx="22"/>
+    <rect x="328" y="4" width="140" height="56" rx="22"/><rect x="488" y="4" width="140" height="56" rx="22"/>
+  </g>
+  <g stroke-width="1.5" fill="#ffffff" stroke="#64748b">
+    <rect x="18" y="86" width="120" height="38" rx="3"/><rect x="178" y="86" width="120" height="38" rx="3"/>
+    <rect x="338" y="86" width="120" height="38" rx="3"/><rect x="498" y="86" width="120" height="38" rx="3"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle" fill="#1b1f2a">
+    <text x="78" y="21">Establish</text><text x="78" y="36">prototype</text><text x="78" y="51">objectives</text>
+    <text x="238" y="21">Define</text><text x="238" y="36">prototype</text><text x="238" y="51">functionality</text>
+    <text x="398" y="29">Develop</text><text x="398" y="44">prototype</text>
+    <text x="558" y="29">Evaluate</text><text x="558" y="44">prototype</text>
+    <text x="78" y="102">Prototyping</text><text x="78" y="117">plan</text>
+    <text x="238" y="102">Outline</text><text x="238" y="117">definition</text>
+    <text x="398" y="102">Executable</text><text x="398" y="117">prototype</text>
+    <text x="558" y="102">Evaluation</text><text x="558" y="117">report</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa1-arr3)">
+    <path d="M148 32 H166"/><path d="M308 32 H326"/><path d="M468 32 H486"/>
+    <path d="M78 60 V84"/><path d="M238 60 V84"/><path d="M398 60 V84"/><path d="M558 60 V84"/>
+  </g>
+</svg></div>
+<figcaption><b>Fig Q5a</b> The process of prototype development (activities and their outputs). <span class="src">Sommerville Fig 2.9 · Study guide Fig 2.12</span></figcaption></figure>
+<p>Prototype development may use rapid prototyping tools and <b>leaves out functionality</b>: it focuses on areas that are not well understood and on functional rather than non-functional requirements; error checking may be left out. <b>Benefits:</b> improved system usability, a closer match to users' real needs, improved design quality, improved maintainability and reduced development effort. Throw-away prototypes should be discarded, as they are undocumented, have a degraded structure and cannot be tuned to meet non-functional requirements.</p>
+<p><b>(b) Incremental delivery.</b> Rather than deliver the system as a single delivery, development and delivery are broken down into <b>increments</b>, each delivering part of the required functionality. User requirements are <b>prioritised</b> and the highest-priority ones go into early increments. Once an increment is started, <b>its requirements are frozen</b>; requirements for later increments can continue to evolve.</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 200" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa1-arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" fill="#eef0ff" stroke="#4f46e5">
+    <rect x="2" y="4" width="130" height="40" rx="20"/><rect x="157" y="4" width="160" height="40" rx="20"/>
+    <rect x="342" y="4" width="130" height="40" rx="20"/><rect x="497" y="4" width="140" height="40" rx="20"/>
+    <rect x="2" y="90" width="130" height="40" rx="20"/><rect x="167" y="90" width="130" height="40" rx="20"/>
+    <rect x="332" y="90" width="130" height="40" rx="20"/><rect x="497" y="90" width="140" height="40" rx="20" fill="#e5f6f3" stroke="#0d9488"/>
+  </g>
+  <rect x="527" y="160" width="80" height="36" rx="3" fill="#e8f8ee" stroke="#16a34a" stroke-width="1.5"/>
+  <g font-size="12" font-weight="600" text-anchor="middle" fill="#1b1f2a">
+    <text x="67" y="21">Define outline</text><text x="67" y="36">requirements</text>
+    <text x="237" y="21">Assign requirements</text><text x="237" y="36">to increments</text>
+    <text x="407" y="21">Design system</text><text x="407" y="36">architecture</text>
+    <text x="567" y="21">Develop system</text><text x="567" y="36">increment</text>
+    <text x="67" y="107">Validate</text><text x="67" y="122">increment</text>
+    <text x="232" y="107">Integrate</text><text x="232" y="122">increment</text>
+    <text x="397" y="107">Validate</text><text x="397" y="122">system</text>
+    <text x="567" y="107">Deploy</text><text x="567" y="122">increment</text>
+    <text x="567" y="175">Final</text><text x="567" y="190">system</text>
+  </g>
+  <g font-size="11" fill="#6b7385" text-anchor="end">
+    <text x="597" y="80">System incomplete?</text>
+    <text x="560" y="149">System complete?</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa1-arr4)">
+    <path d="M132 24 H155"/><path d="M317 24 H340"/><path d="M472 24 H495"/>
+    <path d="M530 44 V62 H67 V88"/>
+    <path d="M132 110 H165"/><path d="M297 110 H330"/><path d="M462 110 H495"/>
+    <path d="M604 90 V46"/><path d="M567 130 V158"/>
+  </g>
+</svg></div>
+<figcaption><b>Fig Q5b</b> Incremental delivery: the loop repeats once per increment. <span class="src">Sommerville Fig 2.10 · Study guide Fig 2.13</span></figcaption></figure>
+<div class="proscons">
+  <div class="pros"><h4>Advantages</h4><ul>
+    <li>Customer value is delivered with each increment, so functionality is available earlier</li>
+    <li>Early increments act as a prototype to help elicit requirements for later ones</li>
+    <li>Lower risk of overall project failure</li>
+    <li>The highest-priority services receive the most testing</li>
+  </ul></div>
+  <div class="cons"><h4>Problems</h4><ul>
+    <li>Common basic facilities needed by different parts are hard to identify early</li>
+    <li>Conflicts with procurement models where the complete specification is part of the contract</li>
+    <li>Hard to use for replacement systems: users won't accept less than the old system</li>
+  </ul></div>
+</div>
+
+<!-- ============================================================ Q6 -->
+<h2 class="qa-h" id="qa1-6"><span class="num">Q6</span> Explain the process improvement cycle and the SEI capability maturity levels with a neat diagram.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO1</span><span class="t-bloom">L2</span><span class="t-like">Likely</span></div>
+<div class="qa-split">Definition 1 + Improvement cycle 1.5 + Five maturity levels with diagram 2.5</div>
+<div class="ans-label" style="break-after:avoid">Model answer</div>
+<div class="def"><p><span class="term">Process improvement</span> means understanding existing processes and changing these processes to increase product quality and/or reduce costs and development time.</p></div>
+<p>There are two approaches: the <b>process maturity approach</b> (improve process and project management and introduce good software engineering practice; the maturity level reflects how far good technical and management practice has been adopted) and the <b>agile approach</b> (iterative development and the reduction of overheads in the process).</p>
+<div class="cols-2">
+<figure class="fig" style="margin-top:0"><div class="canvas">
+<svg viewBox="0 0 320 196" width="320" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa1-arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa1-arr5)">
+    <path d="M207.0,42.8 A82,82 0 0 1 239.6,129.8"/><path d="M215.9,170.0 A82,82 0 0 1 104.1,170.0"/><path d="M80.4,129.8 A82,82 0 0 1 113.0,42.8"/>
+  </g>
+  <g stroke-width="1.5" fill="#eef0ff" stroke="#4f46e5">
+    <rect x="115" y="12" width="90" height="32" rx="9"/><rect x="186" y="135" width="90" height="32" rx="9"/><rect x="44" y="135" width="90" height="32" rx="9"/>
+  </g>
+  <g font-size="13" font-weight="700" text-anchor="middle" fill="#1b1f2a">
+    <text x="160" y="33">Measure</text><text x="231" y="156">Analyse</text><text x="89" y="156">Change</text>
+  </g>
+  <g font-size="11" font-style="italic" fill="#6b7385" text-anchor="middle"><text x="160" y="96">continuous,</text><text x="160" y="110">long-term cycle</text></g>
+</svg></div>
+<figcaption><b>Fig Q6a</b> The process improvement cycle. <span class="src">Sommerville Fig 2.11</span></figcaption></figure>
+<div>
+<ol class="steps">
+  <li><b>Process measurement</b>: measure one or more attributes of the process or product; these form a <b>baseline</b> to decide whether improvements have been effective.</li>
+  <li><b>Process analysis</b>: assess the current process and identify <b>weaknesses and bottlenecks</b>; process models (process maps) may be developed.</li>
+  <li><b>Process change</b>: propose and introduce changes for the weaknesses found; the cycle then resumes to collect data on their effectiveness.</li>
+</ol>
+</div>
+</div>
+<p>Measurements (time taken, resources required, number of occurrences of an event such as defects found) should be used to <b>assess</b> improvements but should not <b>drive</b> them: the driver should be the <b>organisational objectives</b>.</p>
+<p><b>SEI capability maturity levels.</b> In the late 1980s the <b>Software Engineering Institute (SEI)</b> proposed a model of process capability maturity (Humphrey, 1988) so that the US Department of Defense could assess defence contractors. Its five levels correspond to the use of good software engineering practice (bottom to top):</p>
+<ol class="steps">
+  <li><b>Initial</b>: essentially uncontrolled; process goals are satisfied and the scope of work is set out and communicated to the team.</li>
+  <li><b>Repeatable</b> (CMMI: Managed): product management procedures defined and used; documented project plans, resource management and process monitoring.</li>
+  <li><b>Defined</b>: process management procedures and strategies defined and used; standard organisational processes are adapted for each project.</li>
+  <li><b>Managed</b> (CMMI: Quantitatively managed): quality management strategies defined and used; statistical methods control sub-processes using measurements.</li>
+  <li><b>Optimising</b>: process improvement strategies defined and used; measurements and trends drive continuous improvement.</li>
+</ol>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 238" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa1-arr6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" stroke="#4f46e5">
+    <rect x="10" y="156" width="120" height="48" rx="9" fill="#f2f5f9" stroke="#64748b"/>
+    <rect x="135" y="118" width="120" height="48" rx="9" fill="#eef0ff"/>
+    <rect x="260" y="80" width="120" height="48" rx="9" fill="#e0e3ff"/>
+    <rect x="385" y="42" width="120" height="48" rx="9" fill="#d3d7fe"/>
+    <rect x="510" y="4" width="120" height="48" rx="9" fill="#c7cbfb"/>
+  </g>
+  <g font-size="11" font-style="italic" fill="#3730a3" text-anchor="middle">
+    <text x="70" y="172">Level 1</text><text x="195" y="134">Level 2</text><text x="320" y="96">Level 3</text><text x="445" y="56">Level 4</text><text x="570" y="20">Level 5</text>
+  </g>
+  <g font-size="12.5" font-weight="700" text-anchor="middle" fill="#1b1f2a">
+    <text x="70" y="192">Initial</text><text x="195" y="154">Managed</text><text x="320" y="116">Defined</text>
+    <text x="445" y="71">Quantitatively</text><text x="445" y="85">managed</text><text x="570" y="40">Optimizing</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa1-arr6)">
+    <path d="M40 156 V140 H133"/><path d="M165 118 V102 H258"/><path d="M290 80 V64 H383"/><path d="M415 42 V26 H508"/>
+  </g>
+  <g font-size="11" fill="#6b7385" text-anchor="middle">
+    <text x="70" y="220">Essentially</text><text x="70" y="233">uncontrolled</text>
+    <text x="195" y="182">Product management</text><text x="195" y="195">procedures defined</text><text x="195" y="208">and used</text>
+    <text x="320" y="144">Process management</text><text x="320" y="157">procedures and</text><text x="320" y="170">strategies defined</text><text x="320" y="183">and used</text>
+    <text x="445" y="106">Quality management</text><text x="445" y="119">strategies defined</text><text x="445" y="132">and used</text>
+    <text x="570" y="68">Process improvement</text><text x="570" y="81">strategies defined</text><text x="570" y="94">and used</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig Q6b</b> Capability maturity levels (grey = what each level means). <span class="src">Sommerville Fig 2.12 · Study guide Fig 2.15</span></figcaption></figure>
+<p><b>Limits:</b> the model has too much overhead for small companies, and maturity estimation with agile processes is difficult, so it is used mainly by large companies.</p>
+<div class="mem"><p>SEI levels bottom to top: <b>I</b>nitial, <b>R</b>epeatable, <b>D</b>efined, <b>M</b>anaged, <b>O</b>ptimising: "<b>I R</b>eally <b>D</b>o <b>M</b>ean <b>O</b>rder". The cycle: <b>Measure → Analyse → Change</b>.</p></div>
+
+<!-- ============================================================ Q7 -->
+<h2 class="qa-h" id="qa1-7"><span class="num">Q7</span> Describe and explain the advantages of the following XP practices: (i) refactoring (ii) pair programming (iii) user stories.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO1</span><span class="t-bloom">L1/L2</span><span class="t-pyq">Asked in CIE-1 2024</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">XP intro 0.5 + Each practice: meaning and advantages 1.5 × 3</div>
+<div class="ans-label" style="break-after:avoid">Model answer</div>
+<p><b>Extreme Programming (XP)</b> is a very influential agile method that takes an "extreme" approach to iterative development: new versions may be built several times per day, increments are delivered to customers every 2 weeks, and all tests must be run for every build. Requirements are recorded as user stories, which drive each release:</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 146" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa1-arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" fill="#eef0ff" stroke="#4f46e5">
+    <rect x="20" y="4" width="170" height="46" rx="9"/><rect x="235" y="4" width="170" height="46" rx="9"/><rect x="450" y="4" width="170" height="46" rx="9"/>
+    <rect x="450" y="96" width="170" height="46" rx="9"/><rect x="235" y="96" width="170" height="46" rx="9"/>
+    <rect x="20" y="96" width="170" height="46" rx="9" fill="#e8f8ee" stroke="#16a34a"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle" fill="#1b1f2a">
+    <text x="105" y="24">Select user stories</text><text x="105" y="40">for this release</text>
+    <text x="320" y="24">Break down</text><text x="320" y="40">stories to tasks</text>
+    <text x="535" y="31">Plan release</text>
+    <text x="535" y="116">Develop/integrate/</text><text x="535" y="132">test software</text>
+    <text x="320" y="123">Release software</text>
+    <text x="105" y="123">Evaluate system</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa1-arr7)">
+    <path d="M190 27 H232"/><path d="M405 27 H447"/><path d="M535 50 V93"/><path d="M450 119 H408"/><path d="M235 119 H193"/><path d="M105 96 V53"/>
+  </g>
+  <text x="320" y="70" font-size="11" text-anchor="middle" fill="#6b7385">one release about every 2 weeks;</text>
+  <text x="320" y="84" font-size="11" text-anchor="middle" fill="#6b7385">every build must pass all tests</text>
+</svg></div>
+<figcaption><b>Fig Q7</b> The XP release cycle (optional sketch). <span class="src">Sommerville Fig 3.3 · Study guide Fig 3.3</span></figcaption></figure>
+
+<h4>(i) Refactoring</h4>
+<p><b>Refactoring</b> is constant code improvement: the programming team look for possible improvements to the software and implement them immediately, even where there is no immediate need for them. XP argues that changes cannot be reliably anticipated, so instead of designing for change it keeps the code easy to change. <i>Examples:</i> re-organising a class hierarchy to remove duplicate code; tidying up and renaming attributes and methods; replacing inline code with calls to methods in a program library.</p>
+<ul>
+  <li><b>Improves understandability</b> of the software, and so reduces the need for documentation.</li>
+  <li><b>Changes are easier to make</b>, because the code is well-structured and clear.</li>
+  <li><b>Stops the structure degrading</b> as increments are added, keeping the code simple and maintainable. (Limit: architecture refactoring is much more expensive.)</li>
+</ul>
+
+<h4>(ii) Pair programming</h4>
+<p>Programmers <b>work in pairs, sitting together at the same computer</b>, to develop the code. Pairs are created dynamically, so that all team members work with each other during development.</p>
+<ul>
+  <li><b>Common ownership of code</b>: knowledge is spread across the team, which shares responsibility for problems.</li>
+  <li><b>Informal review process</b>: each line of code is looked at by more than one person; cheaper and easier to organise than formal inspections.</li>
+  <li><b>Encourages refactoring</b>, because the whole team benefits from improving the code.</li>
+  <li><b>Reduces project risk</b> when team members leave. It is not necessarily inefficient: a pair can be as productive as two programmers working separately.</li>
+</ul>
+
+<h4>(iii) User stories</h4>
+<p>A <b>user story</b> is a scenario of use that might be experienced by a system user. The customer, who is part of the XP team, writes it on a <b>story card</b> with the developers. The team breaks each story into <b>implementation tasks</b>, which are the basis of schedule and cost estimates, and the customer chooses the stories for the next release by priority. <i>Example:</i> the Mentcare "Prescribing medication" story is split into tasks such as <i>Change dose of prescribed drug</i>, <i>Formulary selection</i> and <i>Dose checking</i>.</p>
+<ul>
+  <li>People <b>relate to stories more easily</b> than to a requirements document or use cases.</li>
+  <li>Stories <b>get users involved</b> in suggesting requirements.</li>
+  <li>Tasks give a <b>direct basis for estimates and release planning</b>; unimplemented stories can change or be discarded as requirements change. (Problem: it is hard to judge whether the stories are complete.)</li>
+</ul>
+<div class="tip"><p>Structure each part as <b>meaning (2 lines) + 3 advantages</b>. Name one refactoring example and the story-to-task idea; that is what examiners look for.</p></div>
+
+<!-- ============================================================ Q8 -->
+<div class="pagebreak"></div>
+<h2 class="qa-h" id="qa1-8"><span class="num">Q8</span> List the principles of agile methods and explain the Scrum sprint cycle with a neat labelled diagram.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO1</span><span class="t-bloom">L2</span><span class="t-pyq">Asked in CIE-1 2024</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Five principles 2 + Sprint cycle diagram 1.5 + Explanation 1.5</div>
+<div class="ans-label" style="break-after:avoid">Model answer</div>
+<p><b>Agile methods</b> are incremental methods focused on rapid development, frequent releases and minimal documentation. The <b>Agile Manifesto</b> values <i>individuals and interactions</i> over processes and tools, <i>working software</i> over comprehensive documentation, <i>customer collaboration</i> over contract negotiation, and <i>responding to change</i> over following a plan. All agile methods share five principles:</p>
+<table>
+  <thead><tr><th style="width:25%">Principle</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">1. Customer involvement</td><td>Customers are closely involved throughout development; they provide and prioritise new requirements and evaluate the iterations.</td></tr>
+    <tr><td class="rowhead">2. Incremental delivery</td><td>The software is developed in increments, with the customer specifying the requirements to be included in each increment.</td></tr>
+    <tr><td class="rowhead">3. People, not process</td><td>The skills of the team are recognised and exploited; members develop their own ways of working without prescriptive processes.</td></tr>
+    <tr><td class="rowhead">4. Embrace change</td><td>Expect the system requirements to change, and so design the system to accommodate these changes.</td></tr>
+    <tr><td class="rowhead">5. Maintain simplicity</td><td>Focus on simplicity in the software and in the process; actively work to eliminate complexity.</td></tr>
+  </tbody>
+</table>
+<p><b>Scrum</b> is an agile method that focuses on <b>managing iterative development</b>. Its framework is centred on a set of <b>sprints</b>: fixed time periods (usually 2–4 weeks) in which a system increment is developed. A Scrum project has an outline planning phase, a series of sprint cycles, and a project closure phase.</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 266" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa1-arr8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5">
+    <rect x="10" y="92" width="128" height="52" rx="9" fill="#eef0ff" stroke="#4f46e5"/>
+    <rect x="178" y="92" width="176" height="52" rx="9" fill="#eef0ff" stroke="#4f46e5"/>
+    <line x1="266" y1="92" x2="266" y2="144" stroke="#4f46e5"/>
+    <ellipse cx="440" cy="118" rx="52" ry="26" fill="#c7cbfb" stroke="#4f46e5"/>
+    <rect x="530" y="92" width="100" height="52" rx="9" fill="#eef0ff" stroke="#4f46e5"/>
+    <rect x="405" y="52" width="70" height="26" rx="9" fill="#f4efff" stroke="#7c3aed"/>
+    <rect x="105" y="202" width="120" height="50" rx="3" fill="#ffffff" stroke="#64748b"/>
+    <rect x="370" y="202" width="110" height="50" rx="3" fill="#ffffff" stroke="#64748b"/>
+    <rect x="515" y="194" width="120" height="66" rx="9" fill="#e8f8ee" stroke="#16a34a"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle" fill="#1b1f2a">
+    <text x="74" y="115">Review work</text><text x="74" y="131">to be done</text>
+    <text x="222" y="115">Select</text><text x="222" y="131">items</text>
+    <text x="310" y="115">Plan</text><text x="310" y="131">sprint</text>
+    <text x="440" y="123">Sprint</text>
+    <text x="580" y="115">Review</text><text x="580" y="131">sprint</text>
+    <text x="440" y="70">Scrum</text>
+    <text x="165" y="223">Product</text><text x="165" y="239">backlog</text>
+    <text x="425" y="223">Sprint</text><text x="425" y="239">backlog</text>
+    <text x="575" y="216">Potentially</text><text x="575" y="232">shippable</text><text x="575" y="248">software</text>
+  </g>
+  <text x="398" y="69" font-size="11" text-anchor="end" fill="#6b7385">daily meeting</text>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa1-arr8)">
+    <path d="M138 118 H175"/><path d="M354 118 H385"/><path d="M492 118 H527"/>
+    <path d="M580 92 C580 10, 74 10, 74 89"/>
+    <path d="M92 144 L148 199"/><path d="M188 202 L218 147"/>
+    <path d="M312 144 L398 199"/><path d="M470 138 L552 191"/>
+    <path d="M436 147 L431 199" marker-start="url(#qa1-arr8)"/>
+  </g>
+  <text x="327" y="22" font-size="11" text-anchor="middle" fill="#6b7385">next sprint cycle</text>
+</svg></div>
+<figcaption><b>Fig Q8</b> The Scrum sprint cycle. <span class="src">Sommerville Fig 3.9 · Study guide Fig 3.9</span></figcaption></figure>
+<ol class="steps">
+  <li><b>Product backlog</b>: the starting point; the list of work to be done (features, requirements, user stories, engineering tasks), prioritised by the <b>Product Owner</b>.</li>
+  <li><b>Review work and select items</b>: the whole team works with the customer to select the features and functionality to be developed during the sprint.</li>
+  <li><b>Plan sprint</b>: the team estimates the work using its <b>velocity</b> and produces the <b>sprint backlog</b>; the team then organises itself to develop the software.</li>
+  <li><b>Sprint</b>: fixed length (2–4 weeks); the team is isolated, and all outside communication goes through the <b>ScrumMaster</b>, who protects it from distractions. A short daily <b>Scrum</b> meeting reviews progress.</li>
+  <li><b>Review sprint</b>: the work done is reviewed and presented to stakeholders; the output is <b>potentially shippable software</b>, and the next sprint cycle begins.</li>
+</ol>
+<div class="mem"><p>Agile principles: <b>"Can I Pass Every Module?"</b> = <b>C</b>ustomer involvement, <b>I</b>ncremental delivery, <b>P</b>eople not process, <b>E</b>mbrace change, <b>M</b>aintain simplicity.</p></div>
+
+<!-- ============================================================ BACKUP -->
+<section class="qbank backup">
+  <h2 id="qa1-backup">Backup questions (prepare if you have time)</h2>
+  <div class="q"><span class="marks">5M</span><div class="qt">Explain the integration and configuration (reuse-oriented) model with a neat diagram. Give its advantages and disadvantages.</div><div class="hint">System assembled from existing configurable components or application systems (COTS). Reusable software: stand-alone application systems, collections of objects (.NET/J2EE), web services. Stages: requirements specification → software discovery and evaluation → requirements refinement → application system configuration, or component adaptation and integration. Pros: reduced cost and risk, faster delivery. Cons: requirements compromises, loss of control over evolution. Draw Fig 2.3 (study guide 2.2).</div></div>
+  <div class="q"><span class="marks">5M</span><div class="qt">Explain Boehm's spiral model with a neat diagram.</div><div class="hint">Boehm (1988): evolutionary, risk-driven; couples the iteration of prototyping with the control of waterfall. Clockwise from the centre through communication, planning (with risk analysis), modeling, construction, deployment; each circuit gives a more complete version; risk considered on every revolution; anchor point milestones. 2 advantages + 2 disadvantages. Draw Fig 2.6 (study guide 2.3).</div></div>
+  <div class="q"><span class="marks">5M</span><div class="qt">Explain the four fundamental software process activities. Draw the V-model showing the testing phases in a plan-driven process.</div><div class="hint">Specification, design and implementation, validation, evolution (one line each). Testing stages: component → system → customer (acceptance). V-model test plans: acceptance, system integration, sub-system integration; detailed design → module and unit code and test; tests run back up to service. Draw Fig 2.10 (study guide 2.1, 2.4).</div></div>
+  <div class="q"><span class="marks">5M</span><div class="qt">Differentiate between plan-driven and agile development.</div><div class="hint">Plan-driven: separate stages, outputs planned in advance, iteration <i>within</i> activities. Agile: activities interleaved, outputs negotiated, iteration <i>across</i> activities. Table rows: communication, delivery, change, best suited for. Most real processes mix both. Draw Fig 3.1 (study guide 3.1).</div></div>
+  <div class="q"><span class="marks">5M</span><div class="qt">Explain test-first development in XP and the Scrum terminology.</div><div class="hint">Test-first: tests written before the code clarify the requirements; tests are programs (JUnit) and all old and new tests run automatically on each build; 3 problems (short cuts, hard-to-write tests, completeness). Scrum terms: development team (≤ 7), product backlog, product owner, Scrum, ScrumMaster, sprint, velocity, potentially shippable increment (study guide 3.6, 3.8).</div></div>
+</section>
+</section>

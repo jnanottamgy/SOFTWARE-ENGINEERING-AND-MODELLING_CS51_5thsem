@@ -1,0 +1,366 @@
+<section class="chapter unit-3" id="qa3">
+<header class="opener">
+  <span class="tag">Unit 3 · Most likely 5-mark questions</span>
+  <h1 id="qa3-top">Unit 3: 7 questions you must prepare</h1>
+  <p class="sub">CO-3 · Architectural design · Design decisions · Non-functional requirements · 4+1 views · Box-and-line models · Packing robot. Q1 is compulsory with one part per unit, so a Unit 3 question is effectively guaranteed.</p>
+  <div class="meta">
+    <div><b>Questions</b>7 model answers + 4 backups</div>
+    <div><b>From</b>Study guide Chapter 6 (6.1–6.10)</div>
+    <div><b>Time per answer</b>About 10 minutes in the exam</div>
+  </div>
+  <div class="learn"><h4>Questions at a glance</h4><ol class="glance">
+    <li>What is architectural design? Useful views (asked in 2024)</li>
+    <li>Krutchen's 4+1 view model with a diagram</li>
+    <li>Architectural design decisions: the 8 fundamental questions</li>
+    <li>How non-functional requirements shape the architecture</li>
+    <li>Advantages of explicit architecture; architecture in the small vs large</li>
+    <li>Box-and-line diagrams and the two uses of architectural models</li>
+    <li>Packing robot example; architecture in agile; architecture reuse</li>
+  </ol></div>
+</header>
+
+<!-- ============================================================ Q1 -->
+<h2 class="qa-h" id="qa3-1"><span class="num">Q1</span> What is software architecture design? What views or perspectives are useful when designing and documenting a system's architecture?</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO3</span><span class="t-bloom">L2</span><span class="t-pyq">Asked in CIE-1 2024</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Definition + 3 points 2 + Diagram 1 + Views 2</div>
+<div class="ans-label">Model answer</div>
+
+<div class="def"><p><span class="term">Architectural design</span> — is concerned with understanding how a software system should be organized and designing the overall structure of that system.</p></div>
+<ol>
+  <li><b>Overall organization</b> — the software architecture shows the main components (sub-systems) of a system and the relationships between them.</li>
+  <li><b>Critical link</b> — it is the first stage of the software design process and the critical link between design and requirements engineering, because it identifies the main structural components in a system and the relationships between them.</li>
+  <li><b>Output</b> — an <b>architectural model</b> that describes how the system is organized as a set of communicating components. The architecture is the dominant influence on non-functional characteristics such as performance, robustness, distributability and maintainability.</li>
+</ol>
+
+<p><b>Views.</b> Each architectural model shows only <b>one view or perspective</b> of the system: how it is decomposed into modules, how the run-time processes interact, or how components are distributed across a network. So, for both design and documentation, we present <b>multiple views</b>. Krutchen's <b>4+1 view model</b> gives four fundamental views, linked by use cases or scenarios:</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 600 192" width="600" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#94a3b8" stroke-width="1.5" fill="none">
+    <path d="M180 52 L210 76"/><path d="M420 52 L390 76"/><path d="M180 140 L210 116"/><path d="M420 140 L390 116"/>
+  </g>
+  <g fill="#ffffff" stroke="#d97706" stroke-width="1.5">
+    <rect x="10" y="8" width="170" height="52" rx="9"/>
+    <rect x="420" y="8" width="170" height="52" rx="9"/>
+    <rect x="10" y="132" width="170" height="52" rx="9"/>
+    <rect x="420" y="132" width="170" height="52" rx="9"/>
+  </g>
+  <rect x="210" y="66" width="180" height="60" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="2"/>
+  <g font-size="12.5" font-weight="700" text-anchor="middle" fill="#1b1f2a">
+    <text x="95" y="29">Logical view</text>
+    <text x="505" y="29">Physical view</text>
+    <text x="95" y="153">Development view</text>
+    <text x="505" y="153">Process view</text>
+    <text x="300" y="92">System architecture</text>
+  </g>
+  <g font-size="11" text-anchor="middle" fill="#6b7385">
+    <text x="95" y="47">objects / object classes</text>
+    <text x="505" y="47">hardware + distribution</text>
+    <text x="95" y="171">decomposition for teams</text>
+    <text x="505" y="171">run-time processes</text>
+  </g>
+  <text x="300" y="112" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">+1 use cases / scenarios</text>
+</svg></div>
+<figcaption><b>Fig Q1</b> The 4+1 view model, simplified for a quick sketch in the exam. <span class="src">Simplified from Sommerville Fig 6.3</span></figcaption>
+</figure>
+
+<ol>
+  <li><b>Logical view</b> — the key abstractions in the system as objects or object classes; requirements can be related to its entities.</li>
+  <li><b>Process view</b> — how, at run-time, the system is composed of interacting processes; useful for judging non-functional characteristics such as performance and availability.</li>
+  <li><b>Development view</b> — how the software is decomposed for development into components implemented by a single developer or team; useful for software managers and programmers.</li>
+  <li><b>Physical view</b> — the system hardware and how software components are distributed across the processors; useful for systems engineers planning a deployment.</li>
+</ol>
+<p><b>+1 Use cases or scenarios</b> relate the four views to each other. Hofmeister et al. add a <b>conceptual view</b> (an abstract view, e.g. the packing robot diagram). In practice it is rarely necessary to describe all perspectives: develop the views that are useful for communication.</p>
+<div class="tip"><p>Asked as Q1(c) in 2024. Both halves carry marks: definition + 3 points first, then the 4+1 sketch and one line per view. Use the exact view names: logical, process, development, physical, +1 scenarios.</p></div>
+
+<!-- ============================================================ Q2 -->
+<h2 class="qa-h" id="qa3-2"><span class="num">Q2</span> Explain Krutchen's 4+1 view model of software architecture with a neat diagram.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO3</span><span class="t-bloom">L2</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Diagram 2 + Four views 2 + Scenarios (+1) 1</div>
+<div class="ans-label">Model answer</div>
+
+<p>No single diagram can show everything about a system: <b>each architectural model shows only one view or perspective</b>. In his well-known <b>4+1 view model</b> of software architecture, Krutchen suggests <b>four fundamental architectural views</b>, which are related using common <b>use cases or scenarios</b> (the "+1").</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 322" width="640" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="320" cy="166" rx="165" ry="84" fill="none" stroke="#d97706" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <g stroke="#475569" stroke-width="1.6" fill="none">
+    <path d="M150 90 L235 136"/><path d="M490 90 L405 136"/><path d="M150 242 L235 196"/><path d="M490 242 L405 196"/>
+  </g>
+  <rect x="235" y="136" width="170" height="60" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="2"/>
+  <g font-size="13" font-weight="700" text-anchor="middle" fill="#1b1f2a">
+    <text x="320" y="162">System</text><text x="320" y="178">architecture</text>
+  </g>
+  <rect x="220" y="70" width="200" height="24" rx="12" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
+  <text x="320" y="86.5" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">+1  Use cases / scenarios</text>
+  <rect x="240" y="239" width="160" height="22" rx="11" fill="#ffffff" stroke="#d97706" stroke-width="1.2"/>
+  <text x="320" y="254" font-size="11" text-anchor="middle" fill="#92400e">link all four views</text>
+  <g fill="#ffffff" stroke="#64748b" stroke-width="1.5">
+    <ellipse cx="120" cy="76" rx="42" ry="20"/><ellipse cx="520" cy="76" rx="42" ry="20"/>
+    <ellipse cx="120" cy="256" rx="42" ry="20"/><ellipse cx="520" cy="256" rx="42" ry="20"/>
+  </g>
+  <g fill="#fcd9a4" stroke="#d97706" stroke-width="1.3">
+    <circle cx="120" cy="76" r="13"/><circle cx="520" cy="76" r="13"/><circle cx="120" cy="256" r="13"/><circle cx="520" cy="256" r="13"/>
+  </g>
+  <g fill="#1b1f2a"><circle cx="120" cy="76" r="6"/><circle cx="520" cy="76" r="6"/><circle cx="120" cy="256" r="6"/><circle cx="520" cy="256" r="6"/></g>
+  <g font-size="13" font-weight="700" text-anchor="middle" fill="#1b1f2a">
+    <text x="120" y="20">Logical view</text>
+    <text x="520" y="20">Physical view</text>
+    <text x="120" y="298">Development view</text>
+    <text x="520" y="298">Process view</text>
+  </g>
+  <g font-size="11" text-anchor="middle" fill="#6b7385">
+    <text x="120" y="36">objects and object classes</text>
+    <text x="520" y="36">hardware + where software runs</text>
+    <text x="120" y="314">software split up for development</text>
+    <text x="520" y="314">interacting run-time processes</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig Q2</b> Krutchen's 4+1 view model: four views of one system architecture, linked by use cases or scenarios (+1). <span class="src">Sommerville Fig 6.3 · Your slides, slides 18–19</span></figcaption>
+</figure>
+
+<table>
+  <thead><tr><th style="width:13%">View</th><th style="width:34%">What it shows</th><th style="width:20%">Useful for</th><th>Example: Mentcare <span style="font-weight:400">(illustration)</span></th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">1. Logical</td><td>The key abstractions in the system as <b>objects or object classes</b>. It should be possible to relate the system requirements to entities in this view.</td><td>Relating requirements to the design</td><td>Classes such as Patient, Consultation, Prescription, Clinic.</td></tr>
+    <tr><td class="rowhead">2. Process</td><td>How, <b>at run-time</b>, the system is composed of <b>interacting processes</b>.</td><td>Judging performance, availability and other non-functional characteristics</td><td>A client process on each clinic PC talks to a server process that handles patient-record requests.</td></tr>
+    <tr><td class="rowhead">3. Development</td><td>How the software is <b>decomposed for development</b>: its breakdown into components implemented by a single developer or development team.</td><td>Software managers and programmers</td><td>Modules for patient records, appointments and prescribing, each given to one team.</td></tr>
+    <tr><td class="rowhead">4. Physical</td><td>The <b>system hardware</b> and how software components are <b>distributed across the processors</b> in the system.</td><td>Systems engineers planning a system deployment</td><td>Clinic PCs connected over the network to a central database server.</td></tr>
+  </tbody>
+</table>
+<p><b>+1 Use cases or scenarios.</b> A scenario describes one typical interaction with the system, e.g. "a doctor records a consultation". Tracing the same scenario through all four views <b>links the views</b> and checks that they fit together.</p>
+<p><b>In practice</b>, conceptual views are almost always developed during design; other views are added as different aspects are discussed. It is rarely necessary to describe the system from all perspectives: except for critical systems, develop only the views that are useful for communication.</p>
+<div class="tip"><p>Don't mix up the pairs: <b>process</b> view (run-time processes) ≠ <b>development</b> view (code split among teams); <b>physical</b> view (hardware) ≠ <b>logical</b> view (classes). The +1 links the four views; it is not a fifth view.</p></div>
+
+<!-- ============================================================ Q3 -->
+<h2 class="qa-h" id="qa3-3"><span class="num">Q3</span> What are architectural design decisions? Explain the fundamental questions an architect must answer during architectural design.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO3</span><span class="t-bloom">L2</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Creative process 1 + Eight questions (diagram) 3 + Notes 1</div>
+<div class="ans-label">Model answer</div>
+
+<p><b>Architectural design is a creative process</b> in which you design a system organization that will satisfy the functional and non-functional requirements of a system.</p>
+<ol>
+  <li><b>No formulaic process</b> — the process differs depending on the <b>type of system</b> being developed, the <b>background and experience</b> of the system architect, and the <b>specific requirements</b> for the system.</li>
+  <li><b>A series of decisions</b> — so it is best to think of architectural design as a series of decisions to be made rather than a sequence of activities.</li>
+  <li><b>Common decisions</b> — a number of common decisions span all design processes, and they affect the <b>non-functional characteristics</b> of the system. Based on their knowledge and experience, architects answer eight fundamental questions:</li>
+</ol>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 372" width="640" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#94a3b8" stroke-width="1.5" fill="none">
+    <path d="M206 100 L273 153"/><path d="M320 100 V130"/><path d="M434 100 L367 153"/>
+    <path d="M206 190 H260"/><path d="M434 190 H380"/>
+    <path d="M206 280 L273 227"/><path d="M320 280 V250"/><path d="M434 280 L367 227"/>
+  </g>
+  <g fill="#fff3e0" stroke="#d97706" stroke-width="1.5">
+    <rect x="10" y="12" width="196" height="88" rx="9"/>
+    <rect x="222" y="12" width="196" height="88" rx="9"/>
+    <rect x="434" y="12" width="196" height="88" rx="9"/>
+    <rect x="434" y="157" width="196" height="66" rx="9"/>
+    <rect x="434" y="280" width="196" height="88" rx="9"/>
+    <rect x="222" y="280" width="196" height="88" rx="9"/>
+    <rect x="10" y="280" width="196" height="88" rx="9"/>
+    <rect x="10" y="157" width="196" height="66" rx="9"/>
+  </g>
+  <circle cx="320" cy="190" r="60" fill="#d97706"/>
+  <g text-anchor="middle" font-weight="700" fill="#ffffff">
+    <text x="320" y="172" font-size="24">?</text>
+    <text x="320" y="193" font-size="13">Architectural</text>
+    <text x="320" y="208" font-size="13">design</text>
+    <text x="320" y="223" font-size="13">decisions</text>
+  </g>
+  <g fill="#92400e"><circle cx="108" cy="12" r="10"/><circle cx="320" cy="12" r="10"/><circle cx="532" cy="12" r="10"/><circle cx="532" cy="157" r="10"/><circle cx="532" cy="280" r="10"/><circle cx="320" cy="280" r="10"/><circle cx="108" cy="280" r="10"/><circle cx="108" cy="157" r="10"/></g>
+  <g font-size="11" font-weight="700" text-anchor="middle" fill="#ffffff"><text x="108" y="16">1</text><text x="320" y="16">2</text><text x="532" y="16">3</text><text x="532" y="161">4</text><text x="532" y="284">5</text><text x="320" y="284">6</text><text x="108" y="284">7</text><text x="108" y="161">8</text></g>
+  <g font-size="11.5" text-anchor="middle" fill="#1b1f2a">
+    <text x="108" y="33">Is there a generic</text><text x="108" y="46.5">application architecture</text><text x="108" y="60">that can act as a template</text><text x="108" y="73.5">for the system that is</text><text x="108" y="87">being designed?</text>
+    <text x="320" y="39.75">How will the system be</text><text x="320" y="53.25">distributed across</text><text x="320" y="66.75">hardware cores or</text><text x="320" y="80.25">processors?</text>
+    <text x="532" y="46.5">What architectural</text><text x="532" y="60">patterns or styles</text><text x="532" y="73.5">might be used?</text>
+    <text x="532" y="180.5">What will be the</text><text x="532" y="194">fundamental approach used</text><text x="532" y="207.5">to structure the system?</text>
+    <text x="532" y="307.75">How will the structural</text><text x="532" y="321.25">components in the system</text><text x="532" y="334.75">be decomposed into</text><text x="532" y="348.25">sub-components?</text>
+    <text x="320" y="307.75">What strategy will be</text><text x="320" y="321.25">used to control the</text><text x="320" y="334.75">operation of the</text><text x="320" y="348.25">components in the system?</text>
+    <text x="108" y="301">What architectural</text><text x="108" y="314.5">organization is best for</text><text x="108" y="328">delivering the</text><text x="108" y="341.5">non-functional requirements</text><text x="108" y="355">of the system?</text>
+    <text x="108" y="180.5">How should the</text><text x="108" y="194">architecture of the system</text><text x="108" y="207.5">be documented?</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig Q3</b> Architectural design decisions: the eight fundamental questions (numbered clockwise). <span class="src">Sommerville Fig 6.2 · Your slides, slide 13</span></figcaption>
+</figure>
+
+<ul>
+  <li><b>Distribution (2)</b> — embedded systems and apps for PCs and mobiles need not be distributed, but most large systems are; the choice of distribution architecture is a key decision that affects <b>performance and reliability</b>.</li>
+  <li><b>Structure, decomposition, control (4–6)</b> — together these form the <b>architectural style</b> (Garlan and Shaw): choose a structure such as client–server or layered, decide how to decompose components into sub-components, and in <b>control modelling</b> decide how the execution of components is controlled.</li>
+  <li><b>Evaluation</b> — the true test is how well the system meets its requirements when in use; before that, compare the design with reference architectures or generic patterns.</li>
+</ul>
+<div class="mem"><p><b>G</b>eneric · <b>D</b>istribution · <b>P</b>atterns · <b>S</b>tructure · <b>D</b>ecomposition · <b>C</b>ontrol · <b>N</b>on-functional · <b>D</b>ocumentation: "<b>G</b>ood <b>D</b>evelopers <b>P</b>refer <b>S</b>imple <b>D</b>esigns; <b>C</b>lear <b>N</b>on-functional <b>D</b>ocs".</p></div>
+
+<!-- ============================================================ Q4 -->
+<h2 class="qa-h" id="qa3-4"><span class="num">Q4</span> Explain how architectural design depends on the non-functional requirements of a system (performance, security, safety, availability, maintainability).</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO3</span><span class="t-bloom">L2</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Why NFRs drive the architecture 1 + Five strategies 3 + Conflict 1</div>
+<div class="ans-label">Model answer</div>
+
+<p>Software architecture affects the <b>performance, robustness, distributability and maintainability</b> of a system (Bosch). Individual components implement the functional requirements, but <b>the dominant influence on the non-functional characteristics is the system's architecture</b>; non-functional requirements have the most significant effect on the architecture (Chen et al.). Therefore the <b>choice of architectural style and structure should depend on the non-functional requirements</b>:</p>
+
+<table>
+  <thead><tr><th style="width:17%">If this is critical…</th><th style="width:38%">…use this architectural strategy</th><th>Why it works</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">1. Performance</td><td><b>Localise critical operations</b> and minimise communications. Use <b>large</b> rather than fine-grain components.</td><td>Critical operations sit in a few components on the same computer, so most interactions happen inside a component. Replicating the system on different processors may also help.</td></tr>
+    <tr><td class="rowhead">2. Security</td><td>Use a <b>layered architecture</b> with the critical assets in the <b>inner layers</b>.</td><td>The most critical assets are protected by the innermost layers, with a high level of security validation applied to them.</td></tr>
+    <tr><td class="rowhead">3. Safety</td><td><b>Localise safety-critical features</b> in a small number of sub-systems.</td><td>Reduces the cost of safety validation and may allow a protection system that safely shuts the system down on failure.</td></tr>
+    <tr><td class="rowhead">4. Availability</td><td>Include <b>redundant components</b> and mechanisms for <b>fault tolerance</b>.</td><td>Components can be replaced and updated without stopping the system; the system keeps working when a part fails.</td></tr>
+    <tr><td class="rowhead">5. Maintainability</td><td>Use <b>fine-grain, replaceable</b> components.</td><td>Small, self-contained components can readily be changed. Separate producers of data from consumers; avoid shared data structures.</td></tr>
+  </tbody>
+</table>
+
+<p><b>Conflicts and trade-offs.</b> There is potential conflict between some of these architectures. <b>Performance</b> wants a few <b>large</b> components, while <b>maintainability</b> wants many <b>small, fine-grain</b> components. If both are important, a compromise is found by using <b>different architectural patterns or styles for separate parts</b> of the system. Security is now almost always a critical requirement, so the architecture must maintain security while also satisfying the other non-functional requirements.</p>
+<p><b>Example.</b> In Mentcare, patient records are the critical asset, so they sit in the innermost layer; in the insulin pump, the safety-critical dose computation and checks are co-located in one small component that can be validated thoroughly.</p>
+<div class="tip"><p>Learn the five rows as keyword pairs: Performance → <b>large</b>, Security → <b>layers</b>, Safety → <b>localise</b>, Availability → <b>redundancy</b>, Maintainability → <b>fine-grain</b>. End with the performance vs maintainability conflict: it lifts a 4/5 answer to 5/5.</p></div>
+
+<!-- ============================================================ Q5 -->
+<h2 class="qa-h" id="qa3-5"><span class="num">Q5</span> What are the advantages of designing and documenting the software architecture explicitly? Differentiate architecture in the small and architecture in the large.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO3</span><span class="t-bloom">L1 / L2</span><span class="t-like">Likely</span></div>
+<div class="qa-split">Three advantages 3 + Small vs large 2</div>
+<div class="ans-label">Model answer</div>
+
+<p><b>(a) Advantages.</b> "Explicit" means the architecture is deliberately designed and written down, not left to emerge by accident. Bass, Clements and Kazman suggest that explicitly designing and documenting a software architecture has three advantages:</p>
+<ol>
+  <li><b>Stakeholder communication</b> — the architecture is a high-level presentation of the system that may be used as a <b>focus of discussion</b> by a range of different stakeholders (users, customers, managers, engineers).</li>
+  <li><b>System analysis</b> — making the architecture explicit at an early stage requires some analysis, so we can check <b>whether the system can meet its non-functional requirements</b>. Architectural decisions have a profound effect on whether critical requirements such as performance, reliability and maintainability can be met.</li>
+  <li><b>Large-scale reuse</b> — an architectural model is a compact, manageable description of how a system is organized and how its components interoperate. Systems with similar requirements often have the same architecture, so it <b>may be reused across a range of systems</b>; <b>product-line architectures</b> may be developed.</li>
+</ol>
+
+<p><b>(b) Architecture in the small vs architecture in the large.</b></p>
+<table>
+  <thead><tr><th style="width:18%">Point</th><th style="width:41%">Architecture in the small</th><th>Architecture in the large</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Concerned with</td><td>The architecture of <b>individual programs</b>.</td><td>The architecture of <b>complex enterprise systems</b> that include other systems, programs and program components.</td></tr>
+    <tr><td class="rowhead">Main question</td><td>How an individual program is <b>decomposed into components</b>.</td><td>How many separate systems, programs and components are organized together.</td></tr>
+    <tr><td class="rowhead">Distribution and ownership</td><td>A single program.</td><td>May be <b>distributed over different computers</b>, which may be <b>owned and managed by different companies</b>.</td></tr>
+    <tr><td class="rowhead">Example <span class="small">(illustration)</span></td><td>One program split into user interface, calculations and data storage components.</td><td>Order and stock systems of one company linked to the payment and delivery systems of another.</td></tr>
+  </tbody>
+</table>
+<div class="mem"><p>Advantages = <b>CAR</b>: <b>C</b>ommunication (with stakeholders), <b>A</b>nalysis (of the system), <b>R</b>euse (large-scale). Small = one <b>program</b>; large = an <b>enterprise</b> of systems.</p></div>
+
+<!-- ============================================================ Q6 -->
+<h2 class="qa-h" id="qa3-6"><span class="num">Q6</span> What are box-and-line diagrams? Explain the two ways in which architectural models are used.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO3</span><span class="t-bloom">L2</span><span class="t-like">Likely</span></div>
+<div class="qa-split">Definition + strengths 1 + Criticism 1 + Two uses 2 + When rigorous 1</div>
+<div class="ans-label">Model answer</div>
+
+<p><b>Box-and-line (block) diagrams</b> are simple, informal diagrams in which <b>boxes</b> represent components (entities) and <b>lines or arrows</b> show the relationships between them, e.g. the packing robot architecture. They are the <b>most frequently used</b> method for documenting software architectures.</p>
+<ol>
+  <li><b>Simple and informal</b> — quick to draw, even on a whiteboard.</li>
+  <li><b>Intuitive</b> — people from different disciplines (domain experts and engineers) can readily understand them and join the discussion.</li>
+  <li><b>Not cluttered with detail</b> — they show the whole system, so they are useful for <b>communication with stakeholders</b> and for <b>project planning</b>.</li>
+</ol>
+<p><b>Criticism.</b> Bass et al. criticise them because they <b>lack semantics</b> (precise meaning) and are very abstract: they do not show the <b>types of relationships</b> between components, nor the <b>externally visible properties</b> of the entities or sub-systems.</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 560 118" width="560" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa3-arr6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <rect x="10" y="28" width="160" height="52" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <rect x="370" y="28" width="180" height="52" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <g font-size="12.5" font-weight="600" text-anchor="middle" fill="#1b1f2a">
+    <text x="90" y="58">Vision system</text>
+    <text x="460" y="50">Object</text><text x="460" y="66">identification system</text>
+  </g>
+  <path d="M170 54 H368" stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa3-arr6)"/>
+  <text x="269" y="45" font-size="11.5" font-weight="700" text-anchor="middle" fill="#991b1b">type of relationship?</text>
+  <text x="269" y="71" font-size="11" text-anchor="middle" fill="#6b7385">call? message? shared data?</text>
+  <text x="280" y="16" font-size="11" text-anchor="middle" fill="#6b7385">A box-and-line diagram has no precise meaning (semantics)</text>
+  <text x="280" y="106" font-size="11" text-anchor="middle" fill="#6b7385">Not shown either: the services each box offers (its externally visible properties)</text>
+</svg></div>
+<figcaption><b>Fig Q6</b> Why box-and-line diagrams "lack semantics": the arrow and boxes leave the details unstated. <span class="src">Drawn for this guide</span></figcaption>
+</figure>
+
+<p><b>Two uses of architectural models.</b> Whether the criticism matters depends on how the model is used; this explains why industry uses block diagrams although theory criticises them.</p>
+<table>
+  <thead><tr><th style="width:15%"></th><th>1. To facilitate discussion about the system design</th><th>2. To document an architecture that has been designed</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Aim</td><td>A high-level architectural view that is <b>not cluttered with detail</b>.</td><td>A <b>complete system model</b> showing the components, their <b>interfaces</b> and their <b>connections</b>.</td></tr>
+    <tr><td class="rowhead">Benefit</td><td>Stakeholders can relate to it and discuss the system as a whole; it identifies key components, so managers can assign people and plan development.</td><td>A detailed description makes the system easier to <b>understand and evolve</b>.</td></tr>
+    <tr><td class="rowhead">Notation</td><td>Informal block diagrams are enough.</td><td>Ideally a more rigorous notation, e.g. an ADL.</td></tr>
+  </tbody>
+</table>
+<p><b>When is rigour worth it?</b> A detailed, complete description leaves less scope for misunderstanding the relationships between components, but it is <b>expensive and time-consuming</b> to develop and it is hard to know whether it is cost-effective, so it is not widely used. It is mainly worthwhile for <b>critical systems</b>; otherwise, informal models useful for communication are enough.</p>
+<div class="tip"><p>Write the key sentence: "the requirements for model semantics depend on how the models are used". It resolves the contradiction and earns the last mark.</p></div>
+
+<!-- ============================================================ Q7 -->
+<h2 class="qa-h" id="qa3-7"><span class="num">Q7</span> Explain architectural design with the example of the packing robot control system. Why must the architecture be designed early, even in agile development? Mention architecture reuse.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO3</span><span class="t-bloom">L2</span><span class="t-like">Likely</span></div>
+<div class="qa-split">Diagram 2 + Explanation 1 + Agility 1 + Reuse 1</div>
+<div class="ans-label">Model answer</div>
+
+<p>Architectural design identifies the main structural components of a system and the relationships between them. Sommerville's example is a <b>packing robot</b> that can pack different kinds of objects. It uses a vision component to pick out objects on a conveyor, identify the type of object and select the right kind of packaging. It then moves objects from the delivery conveyor to be packaged and places packaged objects on another conveyor.</p>
+
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 366" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa3-arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <rect x="220" y="74" width="340" height="76" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <rect x="190" y="180" width="170" height="180" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <g fill="#ffffff" stroke="#d97706" stroke-width="1.5">
+    <rect x="40" y="8" width="130" height="44" rx="9"/>
+    <rect x="40" y="84" width="130" height="60" rx="9"/>
+    <rect x="240" y="88" width="135" height="48" rx="9"/>
+    <rect x="405" y="88" width="135" height="48" rx="9"/>
+    <rect x="210" y="194" width="130" height="60" rx="9"/>
+    <rect x="210" y="296" width="130" height="48" rx="9"/>
+    <rect x="430" y="304" width="140" height="46" rx="9"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle" fill="#1b1f2a">
+    <text x="105" y="26">Vision</text><text x="105" y="42">system</text>
+    <text x="105" y="104">Object</text><text x="105" y="119">identification</text><text x="105" y="134">system</text>
+    <text x="307.5" y="108">Arm</text><text x="307.5" y="124">controller</text>
+    <text x="472.5" y="108">Gripper</text><text x="472.5" y="124">controller</text>
+    <text x="275" y="214">Packaging</text><text x="275" y="229">selection</text><text x="275" y="244">system</text>
+    <text x="275" y="316">Packing</text><text x="275" y="332">system</text>
+    <text x="500" y="323">Conveyor</text><text x="500" y="339">controller</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa3-arr7)">
+    <path d="M105 52 V82"/>
+    <path d="M170 28 H390 V72"/>
+    <path d="M170 114 H218"/>
+    <path d="M105 144 V326 H188"/>
+    <path d="M275 256 V294" marker-start="url(#qa3-arr7)"/>
+    <path d="M342 312 H398 V152" marker-start="url(#qa3-arr7)"/>
+    <path d="M340 330 H428"/>
+  </g>
+  <rect x="440" y="174" width="190" height="118" rx="9" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="452" y="194" font-size="12" font-weight="700" fill="#92400e">How to read it</text>
+  <rect x="452" y="205" width="24" height="15" rx="3" fill="#ffffff" stroke="#d97706" stroke-width="1.3"/>
+  <rect x="452" y="230" width="24" height="20" rx="3" fill="#fff3e0" stroke="#d97706" stroke-width="1.3"/>
+  <rect x="457" y="235" width="14" height="10" rx="2" fill="#ffffff" stroke="#d97706" stroke-width="1.1"/>
+  <path d="M452 276 H476" stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa3-arr7)"/>
+  <g font-size="11" fill="#1b1f2a">
+    <text x="486" y="217">component</text>
+    <text x="486" y="239">box in a box:</text>
+    <text x="486" y="253">decomposed component</text>
+    <text x="486" y="280">data / control signal</text>
+  </g>
+</svg></div>
+<figcaption><b>Fig Q7</b> The architecture of a packing robot control system (the legend box is not part of the answer). <span class="src">Sommerville Fig 6.1 · Your slides, slide 5</span></figcaption>
+</figure>
+
+<p><b>How to read it.</b> This is an abstract <b>block (box-and-line) diagram</b>, a conceptual view of the system:</p>
+<ul>
+  <li><b>Boxes</b> represent components, e.g. the vision system and the conveyor controller.</li>
+  <li><b>Boxes within boxes</b> show a component decomposed into sub-components: arm + gripper controllers form one sub-system; packaging selection + packing systems form another.</li>
+  <li><b>Arrows</b> mean that data and/or control signals pass from component to component in the direction of the arrow.</li>
+</ul>
+<p><b>Agility and architecture.</b> It is generally accepted that an <b>early stage of agile processes</b> is to design an overall system architecture; incremental development of architectures is not usually successful. <b>Refactoring</b> individual components in response to change is relatively easy, but <b>refactoring the architecture is expensive</b>, because it affects so many components: most of them would have to be modified to adapt to the change.</p>
+<p><b>Architecture reuse.</b> Each system is unique, but architectures are often reused:</p>
+<ol>
+  <li><b>Same domain</b> — systems in the same application domain often have similar architectures that reflect domain concepts.</li>
+  <li><b>Product lines</b> — application product lines are built around a <b>core architecture</b> with <b>variants</b> that satisfy particular customer requirements.</li>
+  <li><b>Patterns or styles</b> — the architecture may be designed around one or more architectural patterns or styles, which capture the essence of an architecture and can be instantiated in different ways.</li>
+</ol>
+<div class="tip"><p>Redraw the robot with its arrow directions and both shaded groups. For the agile part, the key line is: refactoring the architecture affects most components.</p></div>
+
+<!-- ============================================================ BACKUP -->
+<section class="qbank backup">
+  <h2 id="qa3-backup">Backup questions (prepare if you have time)</h2>
+  <div class="q"><span class="marks">5M</span><div class="qt">How should architectural views be represented? Compare the UML, ADLs and informal notations.</div><div class="hint"><b>UML</b>: some argue it suits architecture; Sommerville disagrees (no abstractions for high-level description; object classes are too close to the implementation), so it is best for detailed documentation or model-driven development. <b>ADLs</b>: components and connectors with rules for well-formed architectures; precise but specialist, not widely used. <b>Informal notations</b>: quick, easy, the most common; except for critical systems, develop only the views useful for communication. Revise 6.10.</div></div>
+  <div class="q"><span class="marks">2M</span><div class="qt">What is a conceptual view? Give an example.</div><div class="hint">Hofmeister et al.: an abstract view that can (1) be the basis for decomposing high-level requirements into detailed specifications, (2) help decide which components can be reused, (3) represent a product line rather than a single system. Example: the packing robot (Fig Q7). Almost always developed during design. Revise 6.9.</div></div>
+  <div class="q"><span class="marks">2M</span><div class="qt">Define an architectural pattern (style).</div><div class="hint">A description of a system organization, such as a client–server organization or a layered architecture; it captures the essence of an architecture that has been used in different software systems. "Pattern" and "style" mean the same thing. (The patterns themselves are studied after CIE-1.) Revise 6.7.</div></div>
+  <div class="q"><span class="marks">5M</span><div class="qt">Why is architectural design called the critical link between requirements engineering and design?</div><div class="hint">Definition → it is the first stage of design and identifies the main structural components and their relationships → output: an architectural model of communicating components → requirements and architecture overlap: an abstract architecture grouping functions into large-scale sub-systems is used to discuss requirements with stakeholders. Sketch study guide Fig 6.1 (Requirements engineering → Architectural design → Detailed design). Revise 6.1.</div></div>
+</section>
+</section>

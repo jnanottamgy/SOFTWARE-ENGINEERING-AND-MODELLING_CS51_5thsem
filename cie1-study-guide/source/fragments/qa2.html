@@ -1,0 +1,455 @@
+<section class="chapter unit-2" id="qa2">
+<header class="opener">
+  <span class="tag">Unit 2 · Most likely 5-mark questions</span>
+  <h1 id="qa2-top">Unit 2: 8 questions you must prepare</h1>
+  <p class="sub">CO-2 · Functional &amp; non-functional requirements · RE process · Elicitation · Requirements document · Validation · Design concepts · Design model</p>
+  <div class="meta">
+    <div><b>Questions</b>8 model answers + 5 backups</div>
+    <div><b>From</b>Study guide Chapters 4 and 5</div>
+    <div><b>Time per answer</b>About 10 minutes in the exam</div>
+  </div>
+  <div class="learn"><h4>Questions at a glance</h4><ol class="glance" style="columns:2; column-gap:18pt; margin-bottom:4pt">
+    <li>Functional vs non-functional requirements</li>
+    <li>NFRs: types and metrics <i>(asked 2024)</i></li>
+    <li>Spiral RE process <i>(asked 2024)</i></li>
+    <li>Elicitation &amp; analysis; interviews, ethnography</li>
+    <li>Structure of the requirements document <i>(asked 2024)</i></li>
+    <li>Requirements validation: checks &amp; techniques</li>
+    <li>Abstraction, modularity, hiding, independence</li>
+    <li>Requirements model → design model; its elements</li>
+  </ol></div>
+</header>
+
+<!-- ============================================================ Q1 -->
+<h2 class="qa-h" id="qa2-1"><span class="num">Q1</span> Differentiate between functional and non-functional requirements with examples.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO2</span><span class="t-bloom">L2</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Definitions 1 + Comparison table 2 + Examples 2</div>
+<div class="ans-label">Model answer</div>
+<p><b>Functional requirements (FRs)</b> are statements of services the system should provide, how the system should react to particular inputs and how the system should behave in particular situations. They may also state what the system should <em>not</em> do.</p>
+<p><b>Non-functional requirements (NFRs)</b> are constraints on the services or functions offered by the system, such as timing constraints, constraints on the development process and standards. They often apply to the system as a whole rather than to individual features or services.</p>
+<table>
+  <thead><tr><th style="width:17%">Basis</th><th>Functional requirements</th><th>Non-functional requirements</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Meaning</td><td>Services the system provides; its reactions to inputs and behaviour in particular situations</td><td>Constraints on those services; properties such as reliability, response time, storage</td></tr>
+    <tr><td class="rowhead">Answers</td><td><b>What</b> should the system do?</td><td><b>How well</b>, and under what constraints, must it do it?</td></tr>
+    <tr><td class="rowhead">Scope</td><td>Usually one feature or service</td><td>Often the whole system (emergent properties)</td></tr>
+    <tr><td class="rowhead">Types</td><td>Functional user requirements and functional system requirements</td><td>Product, organisational and external requirements</td></tr>
+    <tr><td class="rowhead">If not met</td><td>Users can often work around the gap</td><td>System may be useless (e.g. an aircraft system not certified as safe)</td></tr>
+    <tr><td class="rowhead">Verified by</td><td>Testing that the function gives the right output for given inputs</td><td>Measuring with metrics: response time, mean time to failure, training time</td></tr>
+  </tbody>
+</table>
+<h4>Examples</h4>
+<table>
+  <thead><tr><th style="width:15%">System</th><th style="width:42.5%">Functional requirement</th><th>Non-functional requirement</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Mentcare (patient information system)</td><td>1. A user shall be able to search the appointments lists for all clinics.<br>2. The system shall generate each day, for each clinic, a list of patients who are expected to attend appointments that day.</td><td>1. The system shall be available to all clinics during normal working hours (Mon–Fri, 08:30–17:30); downtime shall not exceed five seconds in any one day. <i>(product)</i><br>2. Users shall authenticate themselves using their health authority identity card. <i>(organisational)</i></td></tr>
+    <tr><td class="rowhead">Insulin pump</td><td>The system shall measure the blood sugar and deliver insulin, if required, every 10 minutes.</td><td>The system shall be available to deliver insulin when required. <i>(product → dependability)</i></td></tr>
+  </tbody>
+</table>
+<ul>
+  <li><b>The line is not sharp:</b> a security NFR (only authorised users may access the system) generates FRs such as user authentication.</li>
+  <li><b>Two levels:</b> both are written as <b>user requirements</b> (natural language + diagrams, for customers) and <b>system requirements</b> (detailed and structured, for developers; may be part of the contract).</li>
+  <li><b>Imprecision:</b> FRs must be precise — "search" may mean all clinics (user) or one clinic (developer's simpler reading), causing delays and cost.</li>
+</ul>
+<div class="tip"><p>Give one FR and one NFR from the <b>same</b> system, and label each NFR with its type (product, organisational or external). That shows the examiner you know the classification too.</p></div>
+
+<!-- ============================================================ Q2 -->
+<h2 class="qa-h" id="qa2-2"><span class="num">Q2</span> What are non-functional requirements? List the types of non-functional requirements. What are the metrics for specifying non-functional requirements?</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO2</span><span class="t-bloom">L2</span><span class="t-pyq">Asked in CIE-1 2024</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Definition 1 + Types with diagram 2 + Metrics 2</div>
+<div class="ans-label">Model answer</div>
+<p><b>Non-functional requirements</b> are constraints on the services or functions offered by the system, such as timing constraints, constraints on the development process and standards. They define system properties and constraints (e.g. reliability, response time, storage requirements) and often apply to the system as a whole. They may be <b>more critical than functional requirements</b>: if they are not met, the system may be useless.</p>
+<p><b>Types of NFRs</b> (classified by where they come from):</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 366" width="640" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#475569" stroke-width="1.4" fill="none">
+    <path d="M320,48 V62 M110,62 H530 M110,62 V76 M320,62 V76 M530,62 V76"/>
+    <path d="M36,118 V343 M36,143 H50 M36,183 H50 M36,303 H50 M36,343 H50"/>
+    <path d="M68,200 V263 M68,223 H86 M68,263 H86"/>
+    <path d="M246,118 V223 M246,143 H260 M246,183 H260 M246,223 H260"/>
+    <path d="M456,118 V223 M456,143 H470 M456,183 H470 M456,223 H470"/>
+    <path d="M488,240 V303 M488,263 H506 M488,303 H506"/>
+  </g>
+  <rect x="235" y="6" width="170" height="42" rx="9" fill="#e5f6f3" stroke="#0d9488" stroke-width="1.5"/>
+  <rect x="20" y="76" width="180" height="42" rx="9" fill="#eef0ff" stroke="#4f46e5" stroke-width="1.5"/>
+  <rect x="230" y="76" width="180" height="42" rx="9" fill="#fff3e0" stroke="#d97706" stroke-width="1.5"/>
+  <rect x="440" y="76" width="180" height="42" rx="9" fill="#f4efff" stroke="#7c3aed" stroke-width="1.5"/>
+  <g font-size="12.5" font-weight="700" text-anchor="middle">
+    <text x="320" y="23">Non-functional</text><text x="320" y="39">requirements</text>
+    <text x="110" y="93">Product</text><text x="110" y="109">requirements</text>
+    <text x="320" y="93">Organizational</text><text x="320" y="109">requirements</text>
+    <text x="530" y="93">External</text><text x="530" y="109">requirements</text>
+  </g>
+  <g fill="#ffffff" stroke-width="1.4">
+    <rect x="50" y="126" width="124" height="34" rx="8" stroke="#4f46e5"/>
+    <rect x="50" y="166" width="124" height="34" rx="8" stroke="#4f46e5"/>
+    <rect x="86" y="206" width="124" height="34" rx="8" stroke="#4f46e5" fill="#eef0ff"/>
+    <rect x="86" y="246" width="124" height="34" rx="8" stroke="#4f46e5" fill="#eef0ff"/>
+    <rect x="50" y="286" width="124" height="34" rx="8" stroke="#4f46e5"/>
+    <rect x="50" y="326" width="124" height="34" rx="8" stroke="#4f46e5"/>
+    <rect x="260" y="126" width="124" height="34" rx="8" stroke="#d97706"/>
+    <rect x="260" y="166" width="124" height="34" rx="8" stroke="#d97706"/>
+    <rect x="260" y="206" width="124" height="34" rx="8" stroke="#d97706"/>
+    <rect x="470" y="126" width="124" height="34" rx="8" stroke="#7c3aed"/>
+    <rect x="470" y="166" width="124" height="34" rx="8" stroke="#7c3aed"/>
+    <rect x="470" y="206" width="124" height="34" rx="8" stroke="#7c3aed"/>
+    <rect x="506" y="246" width="124" height="34" rx="8" stroke="#7c3aed" fill="#f4efff"/>
+    <rect x="506" y="286" width="124" height="34" rx="8" stroke="#7c3aed" fill="#f4efff"/>
+  </g>
+  <g font-size="11.5" font-weight="600" text-anchor="middle">
+    <text x="112" y="140">Usability</text><text x="112" y="154">requirements</text>
+    <text x="112" y="180">Efficiency</text><text x="112" y="194">requirements</text>
+    <text x="148" y="220">Performance</text><text x="148" y="234">requirements</text>
+    <text x="148" y="260">Space</text><text x="148" y="274">requirements</text>
+    <text x="112" y="300">Dependability</text><text x="112" y="314">requirements</text>
+    <text x="112" y="340">Security</text><text x="112" y="354">requirements</text>
+    <text x="322" y="140">Environmental</text><text x="322" y="154">requirements</text>
+    <text x="322" y="180">Operational</text><text x="322" y="194">requirements</text>
+    <text x="322" y="220">Development</text><text x="322" y="234">requirements</text>
+    <text x="532" y="140">Regulatory</text><text x="532" y="154">requirements</text>
+    <text x="532" y="180">Ethical</text><text x="532" y="194">requirements</text>
+    <text x="532" y="220">Legislative</text><text x="532" y="234">requirements</text>
+    <text x="568" y="260">Accounting</text><text x="568" y="274">requirements</text>
+    <text x="568" y="300">Safety/security</text><text x="568" y="314">requirements</text>
+  </g>
+  <g font-size="11" style="fill:#6b7385">
+    <text x="244" y="274" style="fill:#6b7385">Product: how the delivered</text>
+    <text x="244" y="288" style="fill:#6b7385">software behaves at run time</text>
+    <text x="244" y="306" style="fill:#6b7385">Organizational: from policies</text>
+    <text x="244" y="320" style="fill:#6b7385">and procedures</text>
+    <text x="244" y="338" style="fill:#6b7385">External: from outside the</text>
+    <text x="244" y="352" style="fill:#6b7385">system and its development</text>
+  </g>
+</svg>
+</div><figcaption><b>Fig Q2</b> Types of non-functional requirement. Shaded boxes are sub-types (Efficiency → Performance, Space; Legislative → Accounting, Safety/security). <span class="src">Sommerville Fig 4.3 · study guide Fig 4.5</span></figcaption></figure>
+<ol>
+  <li><b>Product requirements</b> — specify that the delivered product must behave in a particular way (run-time behaviour): usability, efficiency (performance, space), dependability, security. <i>E.g. Mentcare shall be available to all clinics Mon–Fri, 08:30–17:30.</i></li>
+  <li><b>Organisational requirements</b> — a consequence of organisational policies and procedures: environmental, operational, development (programming language, development environment, process standards). <i>E.g. users shall authenticate with their health authority identity card.</i></li>
+  <li><b>External requirements</b> — arise from factors external to the system and its development process: regulatory, ethical, legislative (accounting, safety/security). <i>E.g. the system shall implement the patient privacy provisions in HStan-03-2006-priv.</i></li>
+</ol>
+<p><b>Metrics.</b> A vague <b>goal</b> ("easy to use") cannot be tested, so NFRs should be written as <b>verifiable requirements</b> — statements using some measure that can be objectively tested. The metrics are:</p>
+<table>
+  <thead><tr><th style="width:16%">Property</th><th>Measure</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Speed</td><td>Processed transactions/second · User/event response time · Screen refresh time</td></tr>
+    <tr><td class="rowhead">Size</td><td>Mbytes · Number of ROM chips</td></tr>
+    <tr><td class="rowhead">Ease of use</td><td>Training time · Number of help frames</td></tr>
+    <tr><td class="rowhead">Reliability</td><td>Mean time to failure · Probability of unavailability · Rate of failure occurrence · Availability</td></tr>
+    <tr><td class="rowhead">Robustness</td><td>Time to restart after failure · Percentage of events causing failure · Probability of data corruption on failure</td></tr>
+    <tr><td class="rowhead">Portability</td><td>Percentage of target dependent statements · Number of target systems</td></tr>
+  </tbody>
+</table>
+<p><b>Example:</b> the goal "the system should be easy to use by medical staff" becomes the testable NFR "Medical staff shall be able to use all the system functions after four hours of training; after this, the average number of errors made by experienced users shall not exceed two per hour of system use."</p>
+<div class="mem"><p>Types — <b>P-O-E</b>: Product → <i>U Eat Dosa Slowly</i> (Usability, Efficiency, Dependability, Security) · Organisational → <i>Every Office Decides</i> (Environmental, Operational, Development) · External → the <i>REaL</i> world (Regulatory, Ethical, Legislative).<br>Metrics — "<b>S</b>ix <b>S</b>mart <b>E</b>ngineers <b>R</b>arely <b>R</b>un <b>P</b>oorly": Speed, Size, Ease of use, Reliability, Robustness, Portability.</p></div>
+
+<!-- ============================================================ Q3 -->
+<h2 class="qa-h" id="qa2-3"><span class="num">Q3</span> Explain the requirements engineering process with a neat labelled spiral diagram.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO2</span><span class="t-bloom">L2</span><span class="t-pyq">Asked in CIE-1 2024</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Activities 1 + Spiral diagram 2 + Explanation 2</div>
+<div class="ans-label">Model answer</div>
+<p><b>Requirements engineering (RE)</b> is the process of establishing the services that a customer requires from a system and the constraints under which it operates and is developed. It has three key activities — <b>requirements elicitation and analysis</b> (discovering requirements by interacting with stakeholders), <b>requirements specification</b> (converting them into a standard form) and <b>requirements validation</b> (checking that they define the system the customer wants) — plus <b>requirements management</b> to handle change. In practice these activities are interleaved and organised as an iterative process around a <b>spiral</b>.</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 384" width="640" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="qa2-arrs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0d9488"/></marker></defs>
+<line x1="320" y1="187.0" x2="146.8" y2="109.0" stroke="#475569" stroke-width="1.3"/>
+<line x1="320" y1="187.0" x2="493.2" y2="109.0" stroke="#475569" stroke-width="1.3"/>
+<line x1="320" y1="187.0" x2="320.0" y2="343.0" stroke="#475569" stroke-width="1.3"/>
+<path d="M285.4,202.6 L283.9,201.4 L282.6,200.0 L281.3,198.6 L280.1,197.1 L279.0,195.6 L278.0,193.9 L277.2,192.3 L276.4,190.6 L275.7,188.8 L275.2,187.0 L274.7,185.1 L274.5,183.3 L274.3,181.4 L274.3,179.4 L274.4,177.5 L274.6,175.5 L275.0,173.5 L275.5,171.6 L276.2,169.6 L277.0,167.7 L277.9,165.7 L279.0,163.8 L280.3,161.9 L281.7,160.1 L283.2,158.3 L284.8,156.5 L286.6,154.9 L288.5,153.2 L290.6,151.7 L292.8,150.2 L295.0,148.8 L297.4,147.5 L299.9,146.3 L302.6,145.1 L305.3,144.1 L308.1,143.2 L310.9,142.4 L313.9,141.8 L316.9,141.1 L320.0,140.7 L323.1,140.4 L326.3,140.2 L329.5,140.2 L332.7,140.3 L336.0,140.5 L339.2,140.8 L342.5,141.3 L345.7,142.0 L348.9,142.8 L352.1,143.6 L355.2,144.7 L358.3,145.9 L361.3,147.2 L364.2,148.7 L367.1,150.3 L369.8,152.0 L372.5,153.8 L375.0,155.8 L377.5,157.9 L379.8,160.1 L381.9,162.4 L383.9,164.8 L385.8,167.3 L387.5,169.9 L389.0,172.6 L390.3,175.4 L391.5,178.2 L392.5,181.1 L393.2,184.0 L393.8,187.0 L394.2,190.0 L394.4,193.1 L394.4,196.2 L394.1,199.3 L393.7,202.4 L393.0,205.5 L392.1,208.6 L391.0,211.6 L389.7,214.7 L388.1,217.7 L386.4,220.6 L384.4,223.5 L382.3,226.3 L379.9,229.0 L377.3,231.7 L374.6,234.3 L371.6,236.8 L368.5,239.1 L365.2,241.3 L361.8,243.4 L358.1,245.3 L354.4,247.2 L350.4,248.9 L346.4,250.4 L342.2,251.7 L338.0,252.9 L333.6,253.9 L329.1,254.8 L324.6,255.4 L320.0,255.9 L315.4,256.2 L310.7,256.3 L306.0,256.2 L301.2,255.9 L296.5,255.4 L291.8,254.7 L287.1,253.8 L282.5,252.7 L277.9,251.4 L273.4,249.9 L269.0,248.2 L264.7,246.4 L260.5,244.3 L256.4,242.1 L252.4,239.7 L248.6,237.2 L245.0,234.4 L241.5,231.5 L238.2,228.4 L235.1,225.2 L232.3,221.9 L229.6,218.4 L227.2,214.8 L225.0,211.1 L223.0,207.3 L221.3,203.4 L219.9,199.4 L218.7,195.3 L217.8,191.2 L217.2,187.0 L216.8,182.8 L216.8,178.5 L217.0,174.3 L217.5,170.0 L218.3,165.8 L219.4,161.5 L220.8,157.3 L222.5,153.1 L224.5,149.0 L226.8,145.0 L229.3,141.1 L232.1,137.2 L235.2,133.4 L238.6,129.8 L242.2,126.3 L246.0,122.9 L250.1,119.7 L254.4,116.6 L259.0,113.8 L263.8,111.0 L268.7,108.5 L273.8,106.1 L279.2,104.0 L284.6,102.1 L290.3,100.4 L296.0,98.9 L301.9,97.7 L307.8,96.8 L313.9,96.0 L320.0,95.5 L326.2,95.2 L332.4,95.2 L338.6,95.5 L344.8,96.0 L351.0,96.8 L357.2,97.8 L363.3,99.1 L369.3,100.7 L375.2,102.4 L381.1,104.5 L386.8,106.7 L392.4,109.3 L397.8,112.0 L403.0,115.1 L408.1,118.3 L412.9,121.7 L417.6,125.4 L422.0,129.2 L426.1,133.3 L430.0,137.5 L433.6,141.8 L436.9,146.4 L439.9,151.1 L442.6,156.0 L445.0,160.9 L447.1,165.9 L448.8,171.1 L450.1,176.3 L451.2,181.6 L451.8,187.0 L452.1,192.4 L452.1,197.8 L451.6,203.3 L450.8,208.7 L449.7,214.1 L448.1,219.4 L446.2,224.8 L444.0,230.1 L441.3,235.2 L438.4,240.3 L435.0,245.3 L431.3,250.1 L427.3,254.8 L423.0,259.3 L418.3,263.7 L413.4,267.9 L408.1,271.9 L402.6,275.7 L396.8,279.3 L390.8,282.6 L384.5,285.7 L377.9,288.5 L371.2,291.1 L364.3,293.4 L357.2,295.4 L350.0,297.1 L342.7,298.6 L335.2,299.8 L327.6,300.6 L320.0,301.1 L312.3,301.3 L304.6,301.3 L296.9,300.9 L289.2,300.1 L281.5,299.1 L273.9,297.7 L266.3,296.0 L258.9,294.0 L251.6,291.8 L244.4,289.1 L237.4,286.2 L230.6,283.0 L224.0,279.5 L217.6,275.8 L211.4,271.7 L205.5,267.4 L199.9,262.9 L194.6,258.1 L189.6,253.1 L184.9,247.8 L180.6,242.4 L176.6,236.8 L173.0,231.0 L169.8,225.1 L167.0,219.0 L164.6,212.7 L162.6,206.4 L161.0,200.0 L159.9,193.6 L159.2,187.0 L158.9,180.4 L159.1,173.8 L159.7,167.2 L160.8,160.6 L162.3,154.0 L164.3,147.5 L166.7,141.1 L169.5,134.7 L172.8,128.5 L176.5,122.4 L180.7,116.4 L185.2,110.6 L190.1,104.9 L195.4,99.6 L201.1,94.3 L207.2,89.3 L213.6,84.5 L220.4,80.0 L227.4,75.8 L234.7,71.8 L242.4,68.2 L250.3,64.9 L258.4,61.8 L266.7,59.1 L275.2,56.7 L283.9,54.7 L292.8,53.1 L301.8,51.7 L310.8,50.8 L320.0,50.3 L329.2,50.0 L338.4,50.3 L347.7,50.8 L356.9,51.7 L366.0,53.1 L375.1,54.8 L384.0,56.9 L392.9,59.3 L401.6,62.1 L410.1,65.3 L418.4,68.8 L426.5,72.7 L434.3,76.9 L441.8,81.5 L449.1,86.3 L456.0,91.4 L462.6,96.9 L468.9,102.6 L474.7,108.6 L480.2,114.8 L485.3,121.3 L489.9,128.0 L494.1,134.9 L497.8,141.9 L501.0,149.2 L503.8,156.5 L506.1,164.0 L507.8,171.6 L509.1,179.3 L509.8,187.0 L510.1,194.8 L509.8,202.5 L508.9,210.3 L507.6,218.1 L505.7,225.8 L503.3,233.5 L500.4,241.0 L497.0,248.5 L493.0,255.8 L488.6,262.9 L483.7,269.9 L478.3,276.7 L472.4,283.3 L466.1,289.6 L459.4,295.7 L452.2,301.5 L444.6,307.0 L436.7,312.3 L428.4,317.2 L419.8,321.8 L410.8,326.0 L401.5,329.8 L392.0,333.3 L382.2,336.4 L372.3,339.1 L362.1,341.4 L351.7,343.3 L341.3,344.8 L330.7,345.8 L320.0,346.4 Q306.0,347.9 290.0,354.2" fill="none" stroke="#0d9488" stroke-width="2" marker-end="url(#qa2-arrs)"/>
+<text x="320" y="20.1" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">Requirements specification</text>
+<text x="62" y="181.9" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">Requirements</text><text x="62" y="197.4" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">elicitation</text>
+<text x="580" y="181.9" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">Requirements</text><text x="580" y="197.4" text-anchor="middle" font-size="12.5" font-weight="700" style="fill:#115e59">validation</text>
+<rect x="265.4" y="192.1" width="39.9" height="21.0" rx="7" fill="#e8f8ee" stroke="#16a34a" stroke-width="1.3"/>
+<text x="285.4" y="206.6" text-anchor="middle" font-size="11" font-weight="600">Start</text>
+<rect x="252.1" y="123.7" width="135.7" height="34.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="320.0" y="138.2" text-anchor="middle" font-size="11" font-weight="600">Business requirements</text>
+<text x="320.0" y="151.2" text-anchor="middle" font-size="11" font-weight="600">specification</text>
+<rect x="347.5" y="210.2" width="68.1" height="34.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="381.5" y="224.7" text-anchor="middle" font-size="11" font-weight="600">Feasibility</text>
+<text x="381.5" y="237.7" text-anchor="middle" font-size="11" font-weight="600">study</text>
+<rect x="223.7" y="223.6" width="84.7" height="47.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="266.1" y="238.1" text-anchor="middle" font-size="11" font-weight="600">User</text>
+<text x="266.1" y="251.1" text-anchor="middle" font-size="11" font-weight="600">requirements</text>
+<text x="266.1" y="264.1" text-anchor="middle" font-size="11" font-weight="600">elicitation</text>
+<rect x="263.8" y="78.5" width="112.5" height="34.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="320.0" y="93.0" text-anchor="middle" font-size="11" font-weight="600">User requirements</text>
+<text x="320.0" y="106.0" text-anchor="middle" font-size="11" font-weight="600">specification</text>
+<rect x="387.8" y="245.8" width="76.3" height="21.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="425.9" y="260.3" text-anchor="middle" font-size="11" font-weight="600">Prototyping</text>
+<rect x="194.0" y="267.1" width="77.6" height="34.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="232.8" y="281.6" text-anchor="middle" font-size="11" font-weight="600">System req.</text>
+<text x="232.8" y="294.6" text-anchor="middle" font-size="11" font-weight="600">elicitation</text>
+<rect x="206" y="33.3" width="228" height="34.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="320.0" y="47.3" text-anchor="middle" font-size="11" font-weight="600">System requirements specification</text>
+<text x="320.0" y="60.3" text-anchor="middle" font-size="11" font-weight="600">and modeling</text>
+<rect x="441.2" y="274.9" width="58.3" height="21.0" rx="7" fill="#ffffff" stroke="#0d9488" stroke-width="1.3"/>
+<text x="470.4" y="289.4" text-anchor="middle" font-size="11" font-weight="600">Reviews</text>
+<rect x="142.6" y="339.3" width="143.4" height="36" rx="9" fill="#e8f8ee" stroke="#16a34a" stroke-width="1.5"/>
+<text x="214.3" y="354.3" text-anchor="middle" font-size="12" font-weight="700">System requirements</text>
+<text x="214.3" y="368.3" text-anchor="middle" font-size="12" font-weight="700">document</text>
+</svg>
+
+</div><figcaption><b>Fig Q3</b> A spiral view of the requirements engineering process. <span class="src">Sommerville Fig 4.6 · study guide Fig 4.7</span></figcaption></figure>
+<ol>
+  <li><b>Three sectors:</b> every loop of the spiral passes through elicitation → specification → validation.</li>
+  <li><b>More detail each loop:</b> inner loop — business requirements specification and feasibility study; middle loop — user requirements elicitation and specification, checked by prototyping; outer loop — system requirements elicitation, specification and modeling, checked by reviews.</li>
+  <li><b>Effort varies:</b> the time spent on each activity depends on the stage of the process, the type of system and the budget. Early on, effort goes on high-level business and non-functional requirements and user requirements; later, on detailed system requirements.</li>
+  <li><b>Number of loops can vary:</b> the spiral can be exited after some or all user requirements are elicited; agile development can be used instead of prototyping, so requirements and implementation are developed together.</li>
+  <li><b>Output:</b> the <b>system requirements document</b>.</li>
+  <li><b>Change:</b> in virtually all systems requirements change, so requirements management runs alongside the spiral.</li>
+</ol>
+<div class="tip"><p>Draw a "Y" (three lines from a centre); label <b>specification</b> (top), <b>elicitation</b> (left), <b>validation</b> (right); draw the spiral outwards from <i>Start</i> and write the nine activities in order — business req. spec → feasibility study → user req. elicitation → user req. spec → prototyping → system req. elicitation → system req. spec &amp; modeling → reviews — ending in the system requirements document.</p></div>
+
+<!-- ============================================================ Q4 -->
+<h2 class="qa-h" id="qa2-4"><span class="num">Q4</span> Explain the requirements elicitation and analysis process with a neat diagram. Briefly explain interviewing and ethnography.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO2</span><span class="t-bloom">L2</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Diagram 1.5 + Four activities 1.5 + Interviewing 1 + Ethnography 1</div>
+<div class="ans-label">Model answer</div>
+<p><b>Requirements elicitation and analysis</b> involves technical staff working with customers to find out about the application domain, the services that the system should provide and the system's operational constraints. It may involve end-users, managers, engineers involved in maintenance, domain experts, trade unions, etc. — the <b>stakeholders</b>.</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 252" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa2-arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke-width="1.5" stroke="#0d9488" fill="#e5f6f3">
+    <rect x="235" y="6" width="170" height="48" rx="9"/>
+    <rect x="440" y="96" width="180" height="58" rx="9"/>
+    <rect x="235" y="190" width="170" height="58" rx="9"/>
+    <rect x="20" y="103" width="180" height="44" rx="9"/>
+  </g>
+  <g font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="320" y="26">1. Requirements</text><text x="320" y="42">discovery</text>
+    <text x="530" y="115">2. Requirements</text><text x="530" y="130">classification and</text><text x="530" y="145">organization</text>
+    <text x="320" y="209">3. Requirements</text><text x="320" y="224">prioritization and</text><text x="320" y="239">negotiation</text>
+    <text x="110" y="121">4. Requirements</text><text x="110" y="137">specification</text>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa2-arr4)">
+    <path d="M405,30 Q520,32 528,93"/>
+    <path d="M530,154 Q526,217 408,219"/>
+    <path d="M235,219 Q112,217 110,150"/>
+    <path d="M110,103 Q112,32 232,30"/>
+  </g>
+  <g font-size="11" text-anchor="middle">
+    <text x="320" y="112" style="fill:#6b7385">repeat, improving understanding</text>
+    <text x="320" y="127" style="fill:#6b7385">each round, until the</text>
+    <text x="320" y="142" style="fill:#6b7385">requirements document is produced</text>
+  </g>
+</svg></div><figcaption><b>Fig Q4</b> The requirements elicitation and analysis process. <span class="src">Sommerville Fig 4.7 · study guide Fig 4.8</span></figcaption></figure>
+<ol class="steps">
+  <li><b>Requirements discovery</b> — interacting with stakeholders to discover their requirements; domain requirements are also discovered here.</li>
+  <li><b>Requirements classification and organisation</b> — takes the unstructured collection of requirements, groups related requirements and organises them into coherent clusters.</li>
+  <li><b>Prioritisation and negotiation</b> — prioritising requirements and resolving requirements conflicts through negotiation between stakeholders.</li>
+  <li><b>Requirements specification</b> — requirements are documented and input into the next round of the spiral.</li>
+</ol>
+<p>The process is <b>iterative</b>, with continual feedback between activities; the analyst's understanding improves with each round.</p>
+<div class="cols-2">
+  <div class="card tinted"><h4>Interviewing</h4>
+    <p>Formal or informal interviews in which the RE team asks stakeholders about the system they use now and the system to be developed.</p>
+    <ul>
+      <li><b>Closed interviews</b> — based on a pre-determined list of questions.</li>
+      <li><b>Open interviews</b> — no predefined agenda; various issues are explored with stakeholders.</li>
+    </ul>
+    <p>In practice a mix of both. The interviewer must be open-minded and prompt discussion with a springboard question, a requirements proposal or a prototype. Weak for domain requirements (jargon; knowledge too familiar to articulate).</p></div>
+  <div class="card tinted"><h4>Ethnography</h4>
+    <p>An <b>observational technique</b>: a social scientist spends a considerable time observing and analysing how people actually work. People do not have to explain their work, and social and organisational factors can be observed. It finds requirements from how people <b>actually work</b> and from <b>cooperation and awareness</b> of others' activities, but cannot identify new features.</p>
+    <p><b>Focused ethnography</b> (developed in an air traffic control project) combines ethnography with <b>prototyping</b>: prototype development raises unanswered questions that focus the ethnographic analysis.</p></div>
+</div>
+<div class="mem"><p>The four activities in order — <b>D-C-P-S</b>: "<i>Doctors Collect, Prioritise, Sign</i>" (Discovery, Classification &amp; organisation, Prioritisation &amp; negotiation, Specification).</p></div>
+
+<!-- ============================================================ Q5 -->
+<h2 class="qa-h" id="qa2-5"><span class="num">Q5</span> Explain the structure of the IEEE software requirements specification (requirements document).</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO2</span><span class="t-bloom">L2</span><span class="t-pyq">Asked in CIE-1 2024</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Definition 1 + Chapter structure 3 + Users &amp; notes 1</div>
+<div class="ans-label">Model answer</div>
+<p>The <b>software requirements document</b> (software requirements specification, <b>SRS</b>) is the official statement of what is required of the system developers. It includes both a definition of user requirements and a specification of the system requirements. It is <b>not a design document</b>: it sets out <b>what</b> the system should do rather than <b>how</b>. One possible structure, based on the IEEE standard, is:</p>
+<table>
+  <thead><tr><th style="width:4%">#</th><th style="width:23%">Chapter</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td class="rowhead">Preface</td><td>Defines the expected readership; version history, with a rationale for each new version and a summary of changes.</td></tr>
+    <tr><td>2</td><td class="rowhead">Introduction</td><td>Describes the need for the system, briefly its functions and how it works with other systems, and how it fits the organisation's business or strategic objectives.</td></tr>
+    <tr><td>3</td><td class="rowhead">Glossary</td><td>Defines the technical terms used; makes no assumptions about the reader's experience or expertise.</td></tr>
+    <tr><td>4</td><td class="rowhead">User requirements definition</td><td>Services provided for the user, and the non-functional requirements, in natural language and diagrams customers understand; product and process standards to be followed.</td></tr>
+    <tr><td>5</td><td class="rowhead">System architecture</td><td>High-level overview of the anticipated architecture, showing the distribution of functions across system modules; reused components are highlighted.</td></tr>
+    <tr><td>6</td><td class="rowhead">System requirements specification</td><td>Functional and non-functional requirements in more detail; interfaces to other systems may be defined.</td></tr>
+    <tr><td>7</td><td class="rowhead">System models</td><td>Graphical models showing relationships between system components and between the system and its environment (object, data-flow, semantic data models).</td></tr>
+    <tr><td>8</td><td class="rowhead">System evolution</td><td>Fundamental assumptions on which the system is based, and anticipated changes due to hardware evolution, changing user needs, etc.</td></tr>
+    <tr><td>9</td><td class="rowhead">Appendices</td><td>Detailed application-specific information, e.g. hardware requirements (minimal and optimal configurations) and database requirements (logical organisation of data).</td></tr>
+    <tr><td>10</td><td class="rowhead">Index</td><td>A normal alphabetic index, plus indexes of diagrams, functions, and so on.</td></tr>
+  </tbody>
+</table>
+<p><b>Users of the document</b> — it is organised so that both customers and developers can use it:</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 140" width="640" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa2-arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <rect x="150" y="4" width="340" height="32" rx="9" fill="#e5f6f3" stroke="#0d9488" stroke-width="1.5"/>
+  <text x="320" y="25" font-size="12.5" font-weight="700" text-anchor="middle">Software requirements document</text>
+  <g stroke="#475569" stroke-width="1.6" fill="none">
+    <path d="M320,36 V46 M58,46 H558"/>
+  </g>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa2-arr5)">
+    <path d="M58,46 V58"/><path d="M178,46 V58"/><path d="M286,46 V58"/><path d="M410,46 V58"/><path d="M558,46 V58"/>
+  </g>
+  <g fill="#ffffff" stroke="#0d9488" stroke-width="1.5">
+    <rect x="3" y="60" width="110" height="44" rx="9"/><rect x="129" y="60" width="98" height="44" rx="9"/>
+    <rect x="231" y="60" width="110" height="44" rx="9"/><rect x="351" y="60" width="118" height="44" rx="9"/>
+    <rect x="479" y="60" width="158" height="44" rx="9"/>
+  </g>
+  <g font-size="12" font-weight="600" text-anchor="middle">
+    <text x="58" y="78">System</text><text x="58" y="94">customers</text>
+    <text x="178" y="86">Managers</text>
+    <text x="286" y="78">System</text><text x="286" y="94">engineers</text>
+    <text x="410" y="78">System test</text><text x="410" y="94">engineers</text>
+    <text x="558" y="78">System maintenance</text><text x="558" y="94">engineers</text>
+  </g>
+  <g font-size="11" text-anchor="middle">
+    <text x="58" y="120" style="fill:#6b7385">specify, check,</text><text x="58" y="134" style="fill:#6b7385">request changes</text>
+    <text x="178" y="120" style="fill:#6b7385">plan the bid</text><text x="178" y="134" style="fill:#6b7385">and development</text>
+    <text x="286" y="120" style="fill:#6b7385">understand what</text><text x="286" y="134" style="fill:#6b7385">to develop</text>
+    <text x="410" y="120" style="fill:#6b7385">develop validation</text><text x="410" y="134" style="fill:#6b7385">tests</text>
+    <text x="558" y="120" style="fill:#6b7385">understand the system</text><text x="558" y="134" style="fill:#6b7385">and its parts</text>
+  </g>
+</svg></div><figcaption><b>Fig Q5</b> Users of a requirements document and how they use it. <span class="src">Sommerville Fig 4.16 · study guide Fig 4.11</span></figcaption></figure>
+<p><b>Variability:</b> the information included depends on the type of system and the approach to development. Incrementally developed systems have less detail; critical and outsourced systems need detailed, precise specifications. The IEEE standard is mostly applicable to large systems engineering projects.</p>
+<div class="mem"><p><b>"PIG-U, four S's, A-I"</b>: <b>P</b>reface, <b>I</b>ntroduction, <b>G</b>lossary, <b>U</b>ser requirements definition → <b>S</b>ystem architecture, <b>S</b>ystem requirements specification, <b>S</b>ystem models, <b>S</b>ystem evolution → <b>A</b>ppendices, <b>I</b>ndex.</p></div>
+
+<!-- ============================================================ Q6 -->
+<h2 class="qa-h" id="qa2-6"><span class="num">Q6</span> What is requirements validation? Explain the requirements checks and validation techniques.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO2</span><span class="t-bloom">L2</span><span class="t-like">Likely</span></div>
+<div class="qa-split">Definition 1 + Five checks 2 + Techniques &amp; reviews 2</div>
+<div class="ans-label">Model answer</div>
+<p><b>Requirements validation</b> is the process of demonstrating that the requirements define the system that the customer really wants. It overlaps with elicitation and analysis, as it is concerned with finding problems with the requirements. It is important because requirements error costs are high: fixing a requirements error after delivery may cost up to <b>100 times</b> the cost of fixing an implementation error, since the design and implementation must also change and the system must be retested.</p>
+<h4>Requirements checks</h4>
+<table>
+  <thead><tr><th style="width:18%">Check</th><th>Question asked</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">1. Validity</td><td>Does the system provide the functions which best support the customer's needs?</td></tr>
+    <tr><td class="rowhead">2. Consistency</td><td>Are there any requirements conflicts (contradictory constraints, different descriptions of the same function)?</td></tr>
+    <tr><td class="rowhead">3. Completeness</td><td>Are all functions required by the customer included?</td></tr>
+    <tr><td class="rowhead">4. Realism</td><td>Can the requirements be implemented given the available budget and technology?</td></tr>
+    <tr><td class="rowhead">5. Verifiability</td><td>Can the requirements be checked (can tests show the delivered system meets each one)?</td></tr>
+  </tbody>
+</table>
+<h4>Requirements validation techniques</h4>
+<ol class="steps">
+  <li><b>Requirements reviews</b> — systematic manual analysis of the requirements by a team of reviewers, who check for errors and inconsistencies.</li>
+  <li><b>Prototyping</b> — using an executable model of the system to check requirements; end-users and customers experiment with it and feed back requirements changes.</li>
+  <li><b>Test-case generation</b> — developing tests for requirements to check testability. If a test is difficult or impossible to design, the requirement will be hard to implement and should be reconsidered.</li>
+</ol>
+<h4>Requirements reviews</h4>
+<p>Regular reviews should be held while the requirements definition is being formulated. Both client and contractor staff should be involved. Reviews may be formal (with completed documents) or informal; good communication between developers, customers and users can resolve problems at an early stage. <b>Review checks:</b></p>
+<table>
+  <thead><tr><th style="width:18%">Review check</th><th>Question</th></tr></thead>
+  <tbody>
+    <tr><td class="rowhead">Verifiability</td><td>Is the requirement realistically testable?</td></tr>
+    <tr><td class="rowhead">Comprehensibility</td><td>Is the requirement properly understood?</td></tr>
+    <tr><td class="rowhead">Traceability</td><td>Is the origin of the requirement clearly stated?</td></tr>
+    <tr><td class="rowhead">Adaptability</td><td>Can the requirement be changed without a large impact on other requirements?</td></tr>
+  </tbody>
+</table>
+<div class="mem"><p>Checks — <b>V-C-C-R-V</b>: "<i>Very Careful Clients Request Verification</i>" (Validity, Consistency, Completeness, Realism, Verifiability). Techniques — <b>R-P-T</b>: Reviews, Prototyping, Test cases. Do not mix the 5 checks with the 4 review checks; only verifiability is in both.</p></div>
+
+<!-- ============================================================ Q7 -->
+<h2 class="qa-h" id="qa2-7"><span class="num">Q7</span> Explain the following design concepts: abstraction, modularity, information hiding and functional independence (cohesion and coupling).</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO2</span><span class="t-bloom">L2</span><span class="t-vlike">Very likely</span></div>
+<div class="qa-split">Abstraction 1 + Modularity with graph 1.5 + Information hiding 1 + Functional independence 1.5</div>
+<div class="ans-label">Model answer</div>
+<p><b>1. Abstraction.</b> A modular solution can be stated at many levels of abstraction: at the <b>highest</b> level in broad terms using the language of the problem environment; at <b>lower</b> levels in more detail, using implementation-oriented terms; at the <b>lowest</b> level in a form that can be directly implemented.</p>
+<ul>
+  <li><b>Procedural abstraction</b> — a sequence of instructions that have a specific and limited function; the name implies the function but specific details are suppressed. <i>E.g. "open" a door (walk to the door, grasp the knob, turn and pull…).</i></li>
+  <li><b>Data abstraction</b> — a named collection of data that describes a data object. <i>E.g. "door": door type, swing direction, opening mechanism, weight, dimensions.</i></li>
+</ul>
+<p><b>2. Modularity.</b> Software is divided into <b>separately named and addressable components</b>, called modules, that are integrated to satisfy problem requirements. "Modularity is the single attribute of software that allows a program to be intellectually manageable" (Myers). But modules should not be split indefinitely:</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 500 226" width="500" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="qa2-arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+  <g stroke="#475569" stroke-width="1.6" fill="none" marker-end="url(#qa2-arr7)"><path d="M64,200 V20"/><path d="M64,200 H392"/></g>
+  <text x="228" y="220" font-size="12" font-weight="600" text-anchor="middle">Number of modules</text>
+  <text x="44" y="112" font-size="12" font-weight="600" text-anchor="middle" transform="rotate(-90 44 112)">Cost or effort</text>
+  <g stroke="#64748b" stroke-width="1.2" stroke-dasharray="4 3" fill="none"><path d="M161,140 V200"/><path d="M209,140 V200"/></g>
+  <path d="M161,118 V113 H209 V118" stroke="#475569" stroke-width="1.3" fill="none"/>
+  <text x="185" y="105" font-size="11.5" text-anchor="middle">Region of minimum cost</text>
+  <text x="185" y="133" font-size="13" font-weight="700" font-style="italic" text-anchor="middle">M</text>
+  <path d="M70.0,61.5 L82.1,87.5 L94.2,104.9 L106.3,117.4 L118.4,126.8 L130.5,134.1 L142.6,140.0 L154.7,144.8 L166.8,148.8 L178.9,152.3 L191.0,155.1 L203.1,157.7 L215.2,159.9 L227.3,161.8 L239.4,163.6 L251.5,165.2 L263.6,166.6 L275.7,167.8 L287.8,169.0 L299.9,170.0 L312.0,171.0 L324.1,171.9 L336.2,172.7 L348.3,173.5 L354.3,173.9" stroke="#4f46e5" stroke-width="2" fill="none"/>
+  <path d="M70.0,196.7 L82.1,196.6 L94.2,196.5 L106.3,196.3 L118.4,195.8 L130.5,195.0 L142.6,193.9 L154.7,192.4 L166.8,190.4 L178.9,188.0 L191.0,184.9 L203.1,181.2 L215.2,176.8 L227.3,171.7 L239.4,165.7 L251.5,158.8 L263.6,151.0 L275.7,142.3 L287.8,132.3 L299.9,121.4 L312.0,109.1 L324.1,95.7 L336.2,81.0 L348.3,64.9 L354.3,56.3" stroke="#dc2626" stroke-width="2" fill="none"/>
+  <path d="M70.0,58.1 L82.1,84.1 L94.2,101.4 L106.3,113.6 L118.4,122.5 L130.5,129.1 L142.6,133.9 L154.7,137.2 L166.8,139.2 L178.9,140.2 L191.0,140.1 L203.1,138.9 L215.2,136.7 L227.3,133.5 L239.4,129.3 L251.5,124.0 L263.6,117.6 L275.7,110.1 L287.8,101.4 L299.9,91.4 L312.0,80.2 L324.1,67.6 L336.2,53.7 L348.3,38.4" stroke="#0d9488" stroke-width="2.4" stroke-dasharray="7 4" fill="none"/>
+  <g font-size="12" font-weight="600">
+    <text x="356" y="42" style="fill:#0d9488">Total software cost</text>
+    <text x="360" y="64" style="fill:#dc2626">Cost to integrate</text>
+    <text x="360" y="180" style="fill:#4f46e5">Cost/module</text>
+  </g>
+</svg></div><figcaption><b>Fig Q7</b> Modularity and software cost: total cost is lowest in the region near <i>M</i> modules. <span class="src">Pressman Fig 8.2 · study guide Fig 5.4</span></figcaption></figure>
+<p>As the number of modules grows, the <b>cost per module falls</b> but the <b>cost to integrate rises</b>. Total cost is lowest near some number <i>M</i>, so we modularize but stay near <i>M</i> — <b>avoid under-modularity and over-modularity</b>.</p>
+<p><b>3. Information hiding</b> (Parnas). Modules should be "characterized by design decisions that (each) hides from all others": the <b>information (algorithms and data) inside a module is inaccessible to other modules that have no need for it</b>. Modules communicate only the information necessary, through an interface. <b>Benefit:</b> during testing and maintenance, errors introduced by a modification are less likely to propagate to other parts of the software.</p>
+<p><b>4. Functional independence</b> is achieved by developing modules with a <b>"single-minded" function</b> and an <b>"aversion" to excessive interaction</b> with other modules: each module addresses a specific subset of requirements and has a simple interface. Such modules are easier to develop, test and maintain, and errors propagate less. It is assessed by two criteria:</p>
+<ul>
+  <li><b>Cohesion</b> — an indication of the relative functional strength of a module. A cohesive module performs a single task and ideally does just one thing. Aim: <b>high cohesion</b>.</li>
+  <li><b>Coupling</b> — an indication of the relative interdependence among modules; it depends on interface complexity, the point at which entry or reference is made, and what data pass across the interface. Aim: <b>low coupling</b>, which avoids the "ripple effect" of errors.</li>
+</ul>
+<div class="mem"><p><b>Co-HE-sion = inside one module; COUPLE-ing = between two.</b> Good design = <b>high cohesion, low coupling</b> — "strong teams, few meetings".</p></div>
+
+<!-- ============================================================ Q8 -->
+<h2 class="qa-h" id="qa2-8"><span class="num">Q8</span> Explain how the requirements model is translated into the design model, and describe the elements of the design model.</h2>
+<div class="qa-tags"><span class="t-marks">5 marks</span><span class="t-co">CO2</span><span class="t-bloom">L2</span><span class="t-like">Likely</span></div>
+<div class="qa-split">Translation diagram 2 + Explanation 1 + Elements 2</div>
+<div class="ans-label">Model answer</div>
+<p>Design is the last software engineering action within the modeling activity and sets the stage for construction. The <b>requirements model</b> — its scenario-based, class-based, flow-oriented and behavioural elements — feeds the design task. Using design notation and methods, design produces the <b>design model</b>: a representation of the software that gives detail about the architecture, data structures, interfaces and components needed to implement the system.</p>
+<figure class="fig"><div class="canvas">
+<svg viewBox="0 0 640 242" width="640" xmlns="http://www.w3.org/2000/svg">
+  <text x="170" y="15" font-size="12.5" font-weight="700" text-anchor="middle">Analysis model (requirements model)</text>
+  <rect x="1" y="24" width="339" height="200" rx="12" fill="none" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <g stroke-width="1.5" fill="#ffffff" stroke="#0d9488">
+    <rect x="8" y="32" width="160" height="90" rx="9"/><rect x="174" y="32" width="160" height="90" rx="9"/>
+    <rect x="8" y="128" width="160" height="90" rx="9"/><rect x="174" y="128" width="160" height="90" rx="9"/>
+  </g>
+  <g stroke="#0d9488" stroke-width="1"><path d="M8,74 H168"/><path d="M174,74 H334"/><path d="M8,170 H168"/><path d="M174,170 H334"/></g>
+  <g font-size="12.5" font-weight="700" text-anchor="middle">
+    <text x="88" y="50">Scenario-based</text><text x="88" y="66">elements</text>
+    <text x="254" y="50">Flow-oriented</text><text x="254" y="66">elements</text>
+    <text x="88" y="146">Class-based</text><text x="88" y="162">elements</text>
+    <text x="254" y="146">Behavioral</text><text x="254" y="162">elements</text>
+  </g>
+  <g font-size="11.5">
+    <text x="18" y="93">Use cases – text</text><text x="18" y="110">Activity diagrams</text>
+    <text x="184" y="93">Data flow diagrams</text><text x="184" y="110">Control-flow diagrams</text>
+    <text x="18" y="189">Class diagrams</text><text x="18" y="206">CRC models</text>
+    <text x="184" y="189">State diagrams</text><text x="184" y="206">Sequence diagrams</text>
+  </g>
+  <polygon points="346,111 366,111 366,97 394,125 366,153 366,139 346,139" fill="#0d9488"/>
+  <g stroke="#0d9488" stroke-width="1.5">
+    <polygon points="448,30 548,30 563.2,76 432.8,76" fill="#e5f6f3"/>
+    <polygon points="432.8,76 563.2,76 578.4,122 417.6,122" fill="#ccefe9"/>
+    <polygon points="417.6,122 578.4,122 593.6,168 402.4,168" fill="#b3e6dd"/>
+    <polygon points="402.4,168 593.6,168 608.8,214 387.2,214" fill="#99ddd1"/>
+  </g>
+  <g font-size="12.5" font-weight="700" text-anchor="middle">
+    <text x="498" y="50">Component-</text><text x="498" y="66">level design</text>
+    <text x="498" y="104">Interface design</text>
+    <text x="498" y="150">Architectural design</text>
+    <text x="498" y="196">Data/class design</text>
+    <text x="498" y="236">Design model</text>
+  </g>
+</svg></div><figcaption><b>Fig Q8</b> Translating the requirements model into the design model. <span class="src">Pressman Fig 8.1 (simplified) · study guide Fig 5.2</span></figcaption></figure>
+<ul>
+  <li><b>Data/class design</b> — transforms class models into design class realizations and the data structures needed for implementation (from CRC objects, class attributes).</li>
+  <li><b>Architectural design</b> — defines the relationships between major structural elements, the architectural styles and design patterns, and the constraints on implementation.</li>
+  <li><b>Interface design</b> — how the software communicates with interoperating systems and with the humans who use it (from usage scenarios and behavioural models).</li>
+  <li><b>Component-level design</b> — transforms structural elements of the architecture into a procedural description of software components.</li>
+</ul>
+<p>Design should <b>begin with data</b>, the foundation (base of the pyramid); then the architecture is derived. The design model has two dimensions: the <b>process dimension</b> (how the model evolves as design tasks are done) and the <b>abstraction dimension</b> (level of detail).</p>
+<h4>Elements of the design model</h4>
+<ol>
+  <li><b>Data design elements</b> — (data architecting) a high-level model of data refined into implementation-specific representations: data structures (component level), a database (application level), a data warehouse (business level).</li>
+  <li><b>Architectural design elements</b> — like the <b>floor plan</b> of a house: an overall view of the software as a set of interconnected subsystems, derived from the application domain, requirements model elements and available architectural styles and patterns.</li>
+  <li><b>Interface design elements</b> — like the doors, windows and external utilities: how information flows into and out of the system and among its components; three parts — user interface, external interfaces, internal interfaces.</li>
+  <li><b>Component-level design elements</b> — like the detailed drawing of each room: the internal detail of each component — data structures, algorithmic detail and an interface to its operations (UML component and activity diagrams, pseudocode).</li>
+  <li><b>Deployment-level design elements</b> — how software functionality and subsystems are allocated within the physical computing environment (UML deployment diagram, first in descriptor form, later in instance form).</li>
+</ol>
+<div class="tip"><p>Write all <b>five</b> elements (the textbook counts four in some places). Draw the pyramid with <b>data/class design at the base</b> — it is the foundation for everything above it.</p></div>
+
+<!-- ============================================================ BACKUP -->
+<section class="qbank backup">
+  <h2 id="qa2-backup">Backup questions (prepare if you have time)</h2>
+  <div class="q"><span class="marks">5M</span><div class="qt">Explain the requirements change management process with a diagram. Differentiate between enduring and volatile requirements.</div><div class="hint">Why requirements change (business/technical environment changes, payers ≠ users, diverse user community) → draw: identified problem → <b>problem analysis and change specification</b> → <b>change analysis and costing</b> → <b>change implementation</b> → revised requirements, one line per stage → <b>enduring</b> = core, slow-to-change activities (recording patients' treatments) vs <b>volatile</b> = supporting activities likely to change (report layout, login method). Revise 4.7, Fig 4.13.</div></div>
+  <div class="q"><span class="marks">5M</span><div class="qt">Explain the ways of writing a system requirements specification. Explain structured specifications and use cases.</div><div class="hint">Five notations (N-S-D-G-M): natural language, structured natural language, design description languages, graphical notations, mathematical specifications → structured spec = standard form; fields: function, inputs + source, outputs + destination, requires, action, pre/post-condition, side effects (insulin pump dose form) → use cases: UML scenarios; actors as stick figures, interactions as named ellipses; draw Mentcare use cases. Revise 4.5, Fig 4.10.</div></div>
+  <div class="q"><span class="marks">5M</span><div class="qt">List the design quality guidelines. Explain the FURPS quality attributes.</div><div class="hint">Eight guidelines: architecture (recognisable styles/patterns, good components, evolutionary), modular, distinct representations of data, architecture, interfaces, components, appropriate data structures, independent components, interfaces that reduce complexity, repeatable method, notation that communicates → FURPS table: Functionality, Usability, Reliability, Performance, Supportability with what each is assessed by. Revise 5.2.</div></div>
+  <div class="q"><span class="marks">5M</span><div class="qt">Differentiate between cohesion and coupling. Why are high cohesion and low coupling desired?</div><div class="hint">Both definitions (functional strength vs interdependence) → table: measures inside vs between modules; goal high vs low; depends on related functions vs interface complexity, entry point, data passed; bad case "schizophrenic" module vs ripple effect → draw good vs poor modules (Fig 5.6) → benefits: easier to develop, test, maintain, reuse. Add the cohesion and coupling types only if asked. Revise 5.3 (concept 7).</div></div>
+  <div class="q"><span class="marks">5M</span><div class="qt">Who are system stakeholders? Differentiate between user requirements and system requirements.</div><div class="hint">Stakeholder = any person or organisation affected by the system with a legitimate interest → types: end users, system managers, system owners, external stakeholders; Mentcare examples (patients, doctors, nurses, receptionists, IT staff) → user vs system table (detail, notation, readers, purpose) → Mentcare drug-cost example (1 → 1.1–1.5) → readers diagram. Revise 4.1, Figs 4.1–4.2.</div></div>
+</section>
+</section>

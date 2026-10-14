@@ -276,3 +276,22 @@ a.ud-ch { display: grid; }
 .toc .toc-row { padding: 0.9pt 8pt 0.9pt 18pt; }
 .toc .toc-ch { margin: 6pt 0 2pt; padding: 3pt 8pt; }
 .toc .toc-unit { margin: 10pt 0 2pt; padding: 5pt 10pt; }
+
+/* ---------- Q&A book ---------- */
+h2.qa-h { font-size: 12.5pt; line-height: 1.35; align-items: flex-start; flex-wrap: nowrap; margin-top: 22pt; color: var(--ink); border-bottom-width: 1.5px; }
+h2.qa-h .num { flex: none; top: 0; font-size: 10pt; padding: 2pt 7pt; }
+.qa-tags { display: flex; gap: 5pt; flex-wrap: wrap; margin: -2pt 0 5pt; break-after: avoid; }
+.qa-tags span { font-size: 7.3pt; font-weight: 700; padding: 1.5pt 7pt; border-radius: 20pt; letter-spacing: .05em; text-transform: uppercase; }
+.qa-tags .t-marks { background: var(--u); color: #fff; }
+.qa-tags .t-co { background: var(--u-soft); color: var(--u-dark); }
+.qa-tags .t-bloom { background: #eceff3; color: #5b6475; }
+.qa-tags .t-pyq { background: #fde2e2; color: #b42318; }
+.qa-tags .t-vlike { background: #fff1c2; color: #8a6100; }
+.qa-tags .t-like { background: #e8f8ee; color: #166534; }
+.qa-split { font-size: 8.6pt; color: var(--ink-2); background: var(--soft); border-radius: 6pt; padding: 3pt 8pt; margin: 0 0 7pt; display: inline-block; break-after: avoid; }
+.qa-split::before { content: "Marks split → "; font-weight: 700; color: var(--u-dark); }
+.ans-label { font-size: 7.6pt; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--u-dark); margin: 4pt 0 3pt; }
+.glance { counter-reset: g; }
+.glance li { margin-bottom: 3pt; }
+.backup .q .hint::before { content: "Answer outline → "; }
+.front table a, .chapter table a { color: var(--u-dark); font-weight: 650; text-decoration: none; border-bottom: 1px dotted var(--u); }
